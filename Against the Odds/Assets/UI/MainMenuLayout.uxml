@@ -1,0 +1,12 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="MainMenuStyle.uss" />
+    <ui:VisualElement name="background" class="background">
+        <ui:VisualElement name="menu-container" class="menu-container">
+            <ui:Label text="AGAINST THE ODDS" name="title" class="title-text" />
+            <ui:Button text="Nouvelle Partie" name="btn-new-game" class="menu-button" />
+            <ui:Button text="Continuer" name="btn-continue" class="menu-button" />
+            <ui:Button text="Options" name="btn-options" class="menu-button" />
+            <ui:Button text="Quitter" name="btn-quit" class="menu-button" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

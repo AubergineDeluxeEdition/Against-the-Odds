@@ -1,0 +1,20 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="IntroductionStyle.uss" />
+    <ui:VisualElement name="background" class="background">
+        <ui:Label text="CHOOSE YOUR DECK" name="title" class="title-text" />
+        
+        <ui:VisualElement name="decks-container" class="decks-container">
+            <ui:Button name="deck-fire" class="deck-card">
+                <ui:Label text="FIRE" class="deck-title" />
+            </ui:Button>
+            <ui:Button name="deck-water" class="deck-card">
+                <ui:Label text="WATER" class="deck-title" />
+            </ui:Button>
+            <ui:Button name="deck-electric" class="deck-card">
+                <ui:Label text="ELECTRIC" class="deck-title" />
+            </ui:Button>
+        </ui:VisualElement>
+        
+        <ui:Button text="CONFIRM DECK" name="btn-confirm" class="confirm-button" />
+    </ui:VisualElement>
+</ui:UXML>

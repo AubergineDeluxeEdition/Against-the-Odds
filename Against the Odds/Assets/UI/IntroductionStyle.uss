@@ -1,0 +1,54 @@
+.background {
+    flex-grow: 1;
+    background-color: rgb(25, 25, 25);
+    align-items: center;
+    padding-top: 50px;
+}
+
+.title-text {
+    font-size: 50px;
+    color: white;
+    -unity-font-style: bold;
+    margin-bottom: 50px;
+}
+
+.decks-container {
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.deck-card {
+    width: 250px;
+    height: 400px;
+    background-color: rgb(40, 40, 40);
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 15px;
+    border-width: 3px;
+    border-color: rgb(80, 80, 80);
+    align-items: center;
+    justify-content: center;
+    transition-duration: 0.2s;
+}
+
+.deck-card:hover {
+    scale: 1.05;
+    border-color: rgb(200, 200, 200);
+}
+
+.deck-title {
+    font-size: 30px;
+    color: white;
+    -unity-font-style: bold;
+}
+
+.confirm-button {
+    width: 300px;
+    height: 60px;
+    font-size: 24px;
+    background-color: rgb(100, 30, 30);
+    color: white;
+    border-radius: 10px;
+}

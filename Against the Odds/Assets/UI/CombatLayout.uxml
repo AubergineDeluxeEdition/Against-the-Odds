@@ -1,0 +1,30 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="CombatStyle.uss" />
+    <ui:VisualElement name="background" class="background">
+        
+        <ui:VisualElement name="enemy-area" class="enemy-area">
+            <ui:VisualElement name="boss-sprite" class="boss-sprite" />
+            <ui:VisualElement name="boss-hp-bar" class="hp-bar">
+                <ui:Label text="150 / 150" class="hp-text" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        
+        <ui:VisualElement name="player-area" class="player-area">
+            <ui:VisualElement name="stats-bar" class="stats-bar">
+                <ui:Label text="MANA: 3 / 3" name="mana" class="mana-text" />
+                <ui:VisualElement name="player-hp-bar" class="hp-bar">
+                    <ui:Label text="100 / 100" class="hp-text" />
+                </ui:VisualElement>
+                <ui:Button text="END TURN" name="btn-end-turn" class="end-turn-button" />
+            </ui:VisualElement>
+            
+            <ui:VisualElement name="cards-area" class="cards-area">
+                <ui:VisualElement class="card-slot" />
+                <ui:VisualElement class="card-slot" />
+                <ui:VisualElement class="card-slot" />
+                <ui:VisualElement class="card-slot" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        
+    </ui:VisualElement>
+</ui:UXML>

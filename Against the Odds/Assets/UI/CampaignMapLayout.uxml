@@ -1,0 +1,24 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="CampaignMapStyle.uss" />
+    <ui:VisualElement name="background" class="background">
+        
+        <ui:VisualElement name="header" class="header">
+            <ui:Button text="Back" name="btn-back" class="back-button" />
+            <ui:Label text="CURSED LANDS" name="title" class="map-title" />
+        </ui:VisualElement>
+        
+        <ui:VisualElement name="map-area" class="map-area">
+            <ui:VisualElement name="boss-3" class="boss-node">
+                <ui:Label text="BOSS 3" class="boss-text" />
+            </ui:VisualElement>
+            <ui:VisualElement name="boss-2" class="boss-node">
+                <ui:Label text="BOSS 2" class="boss-text" />
+            </ui:VisualElement>
+            <ui:VisualElement name="boss-1" class="boss-node">
+                <ui:Label text="BOSS 1" class="boss-text" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        
+        <ui:Button text="FIGHT" name="btn-fight" class="start-combat-button" />
+    </ui:VisualElement>
+</ui:UXML>

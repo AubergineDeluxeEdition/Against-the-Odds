@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="ResultStyle.uss" />
+    <ui:VisualElement name="background" class="background">
+        
+        <ui:VisualElement name="modal-box" class="modal-box">
+            <ui:Label text="VICTORY" name="result-title" class="result-title" />
+            <ui:Button text="CONTINUE" name="btn-continue" class="continue-button" />
+        </ui:VisualElement>
+        
+    </ui:VisualElement>
+</ui:UXML>
