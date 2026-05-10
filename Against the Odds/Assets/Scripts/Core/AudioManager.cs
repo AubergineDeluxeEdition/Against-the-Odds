@@ -3,26 +3,22 @@ using UnityEngine;
 
 namespace AgainstTheOdds.Core
 {
-    /// <summary>
-    /// Gère la musique (loop + crossfade) et les SFX one-shot.
-    /// Lit les volumes depuis SettingsManager au démarrage.
-    /// </summary>
     public class AudioManager : MonoBehaviour
     {
         public static AudioManager Instance { get; private set; }
 
-        [Header("Sources audio (à assigner dans l'inspecteur)")]
+        [Header("Audio Sources")]
         [SerializeField] private AudioSource musicSource;
         [SerializeField] private AudioSource sfxSource;
 
-        [Header("Réglages par défaut")]
+        [Header("Defaults")]
         [SerializeField] private float dureeCrossfadeParDefaut = 1.0f;
 
-        // Volumes effectifs appliqués, déjà multipliés par le Master Volume
         private float volumeMusiqueEffectif = 1f;
         private float volumeSfxEffectif = 1f;
-
+        private float musicDuckingMultiplier = 1f;
         private Coroutine coroutineFadeMusique;
+        private Coroutine coroutineDuckingMusique;
 
         private void Awake()
         {
@@ -34,67 +30,82 @@ namespace AgainstTheOdds.Core
 
             Instance = this;
             DontDestroyOnLoad(transform.root.gameObject);
-
-            if (musicSource == null || sfxSource == null)
-            {
-                Debug.LogError("[AudioManager] MusicSource ou SFXSource non assignées dans l'inspecteur.");
-            }
+            EnsureSources();
         }
 
         private void Start()
         {
-            // SettingsManager a aussi un Awake, donc il est prêt ici
             if (SettingsManager.Instance != null)
             {
                 ApplyVolumesFromSettings();
             }
         }
 
-        /// <summary>Recalcule les volumes effectifs à partir du SettingsManager. À appeler après un changement de réglage.</summary>
         public void ApplyVolumesFromSettings()
         {
-            var settings = SettingsManager.Instance;
+            SettingsManager settings = SettingsManager.Instance;
             if (settings == null) return;
 
             volumeMusiqueEffectif = settings.MusicVolume * settings.MasterVolume;
             volumeSfxEffectif = settings.SFXVolume * settings.MasterVolume;
 
+            EnsureSources();
             if (musicSource != null && coroutineFadeMusique == null)
             {
-                musicSource.volume = volumeMusiqueEffectif;
+                musicSource.volume = GetTargetMusicVolume();
             }
         }
 
-        /// <summary>Joue une musique en boucle, avec crossfade si une musique joue déjà.</summary>
         public void PlayMusic(AudioClip clip, bool fadeIn = true)
         {
-            if (clip == null)
-            {
-                Debug.LogWarning("[AudioManager] PlayMusic appelé avec un clip null.");
-                return;
-            }
+            if (clip == null) return;
 
-            // Si la même musique joue déjà, ne rien faire
+            EnsureSources();
+            if (musicSource == null) return;
+
             if (musicSource.clip == clip && musicSource.isPlaying) return;
 
-            if (coroutineFadeMusique != null) StopCoroutine(coroutineFadeMusique);
+            if (coroutineFadeMusique != null)
+            {
+                StopCoroutine(coroutineFadeMusique);
+            }
+
             float duree = fadeIn ? dureeCrossfadeParDefaut : 0f;
             coroutineFadeMusique = StartCoroutine(RoutineCrossfadeMusique(clip, duree));
         }
 
-        /// <summary>Arrête la musique, avec fondu si demandé.</summary>
         public void StopMusic(bool fadeOut = true)
         {
-            if (coroutineFadeMusique != null) StopCoroutine(coroutineFadeMusique);
+            EnsureSources();
+            if (musicSource == null) return;
+
+            if (coroutineFadeMusique != null)
+            {
+                StopCoroutine(coroutineFadeMusique);
+            }
+
             float duree = fadeOut ? dureeCrossfadeParDefaut : 0f;
             coroutineFadeMusique = StartCoroutine(RoutineFadeOutMusique(duree));
         }
 
-        /// <summary>Joue un effet sonore one-shot sans interrompre la musique ni les autres SFX.</summary>
         public void PlaySFX(AudioClip clip)
         {
-            if (clip == null || sfxSource == null) return;
+            if (clip == null) return;
+
+            EnsureSources();
+            if (sfxSource == null) return;
+
             sfxSource.PlayOneShot(clip, volumeSfxEffectif);
+        }
+
+        public void DuckMusic(float multiplier, float duration = 0.35f)
+        {
+            FadeMusicDucking(Mathf.Clamp01(multiplier), duration);
+        }
+
+        public void RestoreMusic(float duration = 0.35f)
+        {
+            FadeMusicDucking(1f, duration);
         }
 
         public void SetMusicVolume(float volume)
@@ -103,6 +114,7 @@ namespace AgainstTheOdds.Core
             {
                 SettingsManager.Instance.MusicVolume = Mathf.Clamp01(volume);
             }
+
             ApplyVolumesFromSettings();
         }
 
@@ -112,12 +124,48 @@ namespace AgainstTheOdds.Core
             {
                 SettingsManager.Instance.SFXVolume = Mathf.Clamp01(volume);
             }
+
             ApplyVolumesFromSettings();
+        }
+
+        private void EnsureSources()
+        {
+            if (musicSource == null)
+            {
+                musicSource = FindOrCreateSource("MusicSource", true);
+            }
+
+            if (sfxSource == null)
+            {
+                sfxSource = FindOrCreateSource("SFXSource", false);
+            }
+        }
+
+        private AudioSource FindOrCreateSource(string sourceName, bool loop)
+        {
+            Transform existing = transform.Find(sourceName);
+            AudioSource source = existing != null ? existing.GetComponent<AudioSource>() : null;
+
+            if (source == null)
+            {
+                GameObject sourceObject = existing != null ? existing.gameObject : new GameObject(sourceName);
+                sourceObject.transform.SetParent(transform);
+                source = sourceObject.AddComponent<AudioSource>();
+            }
+
+            source.playOnAwake = false;
+            source.loop = loop;
+            return source;
         }
 
         private IEnumerator RoutineCrossfadeMusique(AudioClip nouveauClip, float duree)
         {
-            // Fade out de la musique actuelle
+            if (musicSource == null)
+            {
+                coroutineFadeMusique = null;
+                yield break;
+            }
+
             if (musicSource.isPlaying && duree > 0f)
             {
                 float volumeDepart = musicSource.volume;
@@ -136,24 +184,29 @@ namespace AgainstTheOdds.Core
             musicSource.volume = 0f;
             musicSource.Play();
 
-            // Fade in
             if (duree > 0f)
             {
                 float temps = 0f;
                 while (temps < duree)
                 {
                     temps += Time.unscaledDeltaTime;
-                    musicSource.volume = Mathf.Lerp(0f, volumeMusiqueEffectif, temps / duree);
+                    musicSource.volume = Mathf.Lerp(0f, GetTargetMusicVolume(), temps / duree);
                     yield return null;
                 }
             }
 
-            musicSource.volume = volumeMusiqueEffectif;
+            musicSource.volume = GetTargetMusicVolume();
             coroutineFadeMusique = null;
         }
 
         private IEnumerator RoutineFadeOutMusique(float duree)
         {
+            if (musicSource == null)
+            {
+                coroutineFadeMusique = null;
+                yield break;
+            }
+
             if (duree > 0f && musicSource.isPlaying)
             {
                 float volumeDepart = musicSource.volume;
@@ -167,8 +220,58 @@ namespace AgainstTheOdds.Core
             }
 
             musicSource.Stop();
-            musicSource.volume = volumeMusiqueEffectif;
+            musicSource.volume = GetTargetMusicVolume();
             coroutineFadeMusique = null;
+        }
+
+        private void FadeMusicDucking(float targetMultiplier, float duration)
+        {
+            EnsureSources();
+            if (musicSource == null)
+            {
+                musicDuckingMultiplier = targetMultiplier;
+                return;
+            }
+
+            if (coroutineDuckingMusique != null)
+            {
+                StopCoroutine(coroutineDuckingMusique);
+            }
+
+            coroutineDuckingMusique = StartCoroutine(RoutineFadeMusicDucking(targetMultiplier, duration));
+        }
+
+        private IEnumerator RoutineFadeMusicDucking(float targetMultiplier, float duration)
+        {
+            float startMultiplier = musicDuckingMultiplier;
+            float startVolume = musicSource != null ? musicSource.volume : GetTargetMusicVolume();
+            float targetVolume = volumeMusiqueEffectif * targetMultiplier;
+
+            if (duration > 0f && musicSource != null)
+            {
+                float temps = 0f;
+                while (temps < duration)
+                {
+                    temps += Time.unscaledDeltaTime;
+                    float t = Mathf.Clamp01(temps / duration);
+                    musicDuckingMultiplier = Mathf.Lerp(startMultiplier, targetMultiplier, t);
+                    musicSource.volume = Mathf.Lerp(startVolume, targetVolume, t);
+                    yield return null;
+                }
+            }
+
+            musicDuckingMultiplier = targetMultiplier;
+            if (musicSource != null)
+            {
+                musicSource.volume = GetTargetMusicVolume();
+            }
+
+            coroutineDuckingMusique = null;
+        }
+
+        private float GetTargetMusicVolume()
+        {
+            return volumeMusiqueEffectif * musicDuckingMultiplier;
         }
     }
 }

@@ -1,0 +1,268 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1273a23465fb4c5d9462acfebf7f111c, type: 3}
+  m_Name: Boss_08
+  m_EditorClassIdentifier: 
+  bossIndex: 7
+  bossDisplayName: La Sutureuse Royale
+  playerStartHP: 100
+  bossStartHP: 175
+  cardDatabaseResourcePath: 
+  bossSprite: {fileID: 8783028345257018075, guid: 9254b3eefcca0ec468e1861198c01f01, type: 3}
+  bossVisualScale: 2
+  combatMusic: {fileID: 8300000, guid: bf01471e0e770a84fbd47ccbb898578b, type: 3}
+  fadeInCombatMusic: 1
+  cardAudioProfile: {fileID: 11400000, guid: 6ec1711d07634374a801a8ad8cc27c81, type: 2}
+  defaultAttackDamage: 10
+  introDialogue: Encore un corps qui marche mal.
+  introVoiceLine: {fileID: 0}
+  hpDialogues:
+  - triggerWhenHpPercentAtOrBelow: 0.72
+    line: Pourquoi vos morts reviennent-ils toujours incomplets ?
+    voiceLine: {fileID: 0}
+  - triggerWhenHpPercentAtOrBelow: 0.38
+    line: Pourquoi ma main connait-elle deja la forme de ton cou ?
+    voiceLine: {fileID: 0}
+  deathDialogue: Mon amour... si tu reviens encore... passe sans me reveiller.
+  deathVoiceLine: {fileID: 0}
+  defeatResultText: Elle te recoud contre elle sans comprendre pourquoi elle pleure.
+    Quand ton coeur ralentit, elle sourit enfin.
+  victoryResultText: Elle ne t'a reconnu qu'au moment de te perdre. Le dernier lien
+    qui te tirait vers le sommet vient de se rompre.
+  bossDeathSfx: {fileID: 8300000, guid: fd318bafa5bd05040be0cf2bc5d86ab1, type: 3}
+  victorySfx: {fileID: 8300000, guid: a5a4fc7157527324f9a1233dc68e70f7, type: 3}
+  defeatSfx: {fileID: 8300000, guid: 0ed4cba76ba954b4d9f9098ed17d1114, type: 3}
+  defeatButtonSfx: {fileID: 8300000, guid: 87ae847158639d4468acae75a0cfe2c6, type: 3}
+  phases:
+  - phaseId: reparatrice
+    displayName: La Reparatrice
+    startsWhenHpPercentAtOrBelow: 1
+    advanceAfterBossTurns: 0
+    advanceAfterPatternIterations: 0
+    deathEndsCombatBeforeNextPhase: 0
+    maxHpOverride: 0
+    healToHpPercentOnStart: 0
+    shieldOnStart: 0
+    invulnerableTurnsOnStart: 0
+    bossSprite: {fileID: 0}
+    bossVisualScale: 0
+    phaseStartSfx: {fileID: 0}
+    dialogueOnStart: Ne bouge pas. Les ouvertures s'elargissent quand on se debat.
+    actions:
+    - actionId: point_sous_la_peau
+      actionType: 0
+      bossLine: Un point sous la peau. Un point dans le nerf.
+      bossVoiceLine: {fileID: 0}
+      chargeLine: 
+      chargeVoiceLine: {fileID: 0}
+      chargeTurns: 0
+      vulnerableWhileCharging: 0
+      startEffects: []
+      chargeTurnEffects: []
+      resolveEffects: []
+      interruptIfPlayerBlockAtLeast: 0
+      interruptBossStunTurns: 0
+      interruptLine: 
+      interruptVoiceLine: {fileID: 0}
+      damage: 13
+      shield: 0
+      invulnerableTurns: 0
+      vulnerableTurns: 0
+    - actionId: table_d_argent
+      actionType: 1
+      bossLine: Je peux arranger ca. Je peux tout arranger.
+      bossVoiceLine: {fileID: 0}
+      chargeLine: 
+      chargeVoiceLine: {fileID: 0}
+      chargeTurns: 0
+      vulnerableWhileCharging: 0
+      startEffects: []
+      chargeTurnEffects: []
+      resolveEffects: []
+      interruptIfPlayerBlockAtLeast: 0
+      interruptBossStunTurns: 0
+      interruptLine: 
+      interruptVoiceLine: {fileID: 0}
+      damage: 0
+      shield: 18
+      invulnerableTurns: 0
+      vulnerableTurns: 0
+    - actionId: mauvaise_couture
+      actionType: 0
+      bossLine: Tu as ete mal referme.
+      bossVoiceLine: {fileID: 0}
+      chargeLine: 
+      chargeVoiceLine: {fileID: 0}
+      chargeTurns: 0
+      vulnerableWhileCharging: 0
+      startEffects: []
+      chargeTurnEffects: []
+      resolveEffects: []
+      interruptIfPlayerBlockAtLeast: 0
+      interruptBossStunTurns: 0
+      interruptLine: 
+      interruptVoiceLine: {fileID: 0}
+      damage: 16
+      shield: 0
+      invulnerableTurns: 0
+      vulnerableTurns: 0
+  - phaseId: collection
+    displayName: La Collection
+    startsWhenHpPercentAtOrBelow: 0.65
+    advanceAfterBossTurns: 0
+    advanceAfterPatternIterations: 0
+    deathEndsCombatBeforeNextPhase: 0
+    maxHpOverride: 0
+    healToHpPercentOnStart: 0
+    shieldOnStart: 20
+    invulnerableTurnsOnStart: 1
+    bossSprite: {fileID: 0}
+    bossVisualScale: 0
+    phaseStartSfx: {fileID: 0}
+    dialogueOnStart: Il y a quelque chose dans ta structure... une resistance ancienne.
+    actions:
+    - actionId: suture_profonde
+      actionType: 0
+      bossLine: Je vais te garder sur la table plus longtemps que les autres.
+      bossVoiceLine: {fileID: 0}
+      chargeLine: Aiguille d'argent. Fil de nerf.
+      chargeVoiceLine: {fileID: 0}
+      chargeTurns: 1
+      vulnerableWhileCharging: 0
+      startEffects: []
+      chargeTurnEffects: []
+      resolveEffects: []
+      interruptIfPlayerBlockAtLeast: 0
+      interruptBossStunTurns: 0
+      interruptLine: 
+      interruptVoiceLine: {fileID: 0}
+      damage: 30
+      shield: 0
+      invulnerableTurns: 0
+      vulnerableTurns: 0
+    - actionId: corps_conserve
+      actionType: 1
+      bossLine: Deux peaux, une seule douleur.
+      bossVoiceLine: {fileID: 0}
+      chargeLine: 
+      chargeVoiceLine: {fileID: 0}
+      chargeTurns: 0
+      vulnerableWhileCharging: 0
+      startEffects: []
+      chargeTurnEffects: []
+      resolveEffects: []
+      interruptIfPlayerBlockAtLeast: 0
+      interruptBossStunTurns: 0
+      interruptLine: 
+      interruptVoiceLine: {fileID: 0}
+      damage: 0
+      shield: 24
+      invulnerableTurns: 0
+      vulnerableTurns: 0
+    - actionId: incision_tendre
+      actionType: 0
+      bossLine: Ces cicatrices ne m'appartiennent pas toutes.
+      bossVoiceLine: {fileID: 0}
+      chargeLine: 
+      chargeVoiceLine: {fileID: 0}
+      chargeTurns: 0
+      vulnerableWhileCharging: 0
+      startEffects: []
+      chargeTurnEffects: []
+      resolveEffects: []
+      interruptIfPlayerBlockAtLeast: 0
+      interruptBossStunTurns: 0
+      interruptLine: 
+      interruptVoiceLine: {fileID: 0}
+      damage: 18
+      shield: 0
+      invulnerableTurns: 0
+      vulnerableTurns: 0
+  - phaseId: reconnaissance
+    displayName: La Reconnaissance
+    startsWhenHpPercentAtOrBelow: 0.3
+    advanceAfterBossTurns: 0
+    advanceAfterPatternIterations: 0
+    deathEndsCombatBeforeNextPhase: 0
+    maxHpOverride: 0
+    healToHpPercentOnStart: 0.42
+    shieldOnStart: 0
+    invulnerableTurnsOnStart: 0
+    bossSprite: {fileID: 0}
+    bossVisualScale: 0
+    phaseStartSfx: {fileID: 0}
+    dialogueOnStart: Attends. Ce nom dans ma bouche... pourquoi est-ce qu'il fait
+      mal ?
+    actions:
+    - actionId: souvenir_brise
+      actionType: 0
+      bossLine: Tu etais venu me chercher.
+      bossVoiceLine: {fileID: 0}
+      chargeLine: 
+      chargeVoiceLine: {fileID: 0}
+      chargeTurns: 0
+      vulnerableWhileCharging: 0
+      startEffects: []
+      chargeTurnEffects: []
+      resolveEffects: []
+      interruptIfPlayerBlockAtLeast: 0
+      interruptBossStunTurns: 0
+      interruptLine: 
+      interruptVoiceLine: {fileID: 0}
+      damage: 22
+      shield: 0
+      invulnerableTurns: 0
+      vulnerableTurns: 0
+    - actionId: ne_pars_pas
+      actionType: 1
+      bossLine: Non. Si je me souviens, je dois te laisser partir.
+      bossVoiceLine: {fileID: 0}
+      chargeLine: 
+      chargeVoiceLine: {fileID: 0}
+      chargeTurns: 0
+      vulnerableWhileCharging: 0
+      startEffects: []
+      chargeTurnEffects: []
+      resolveEffects: []
+      interruptIfPlayerBlockAtLeast: 0
+      interruptBossStunTurns: 0
+      interruptLine: 
+      interruptVoiceLine: {fileID: 0}
+      damage: 0
+      shield: 16
+      invulnerableTurns: 0
+      vulnerableTurns: 0
+    - actionId: derniere_aiguille
+      actionType: 0
+      bossLine: Reste. Meme dechire, reste.
+      bossVoiceLine: {fileID: 0}
+      chargeLine: Sa main tremble pour la premiere fois.
+      chargeVoiceLine: {fileID: 0}
+      chargeTurns: 1
+      vulnerableWhileCharging: 1
+      startEffects: []
+      chargeTurnEffects: []
+      resolveEffects: []
+      interruptIfPlayerBlockAtLeast: 5
+      interruptBossStunTurns: 0
+      interruptLine: "Pourquoi, pourquoi tu cherches autant \xE0 me fuir ?"
+      interruptVoiceLine: {fileID: 0}
+      damage: 34
+      shield: 0
+      invulnerableTurns: 0
+      vulnerableTurns: 0
+  rewardPickCount: 1
+  rewardCardIds:
+  - trone_des_restes
+  - jugement_du_bucher
+  - rite_de_l_ascension
+  potionRewardCount: 0

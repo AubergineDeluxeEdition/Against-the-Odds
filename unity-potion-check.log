@@ -1,0 +1,20 @@
+[Licensing::Module] Trying to connect to existing licensing client channel...
+Built from '6000.3/staging' branch; Version is '6000.3.9f1 (7a9955a4f2fa) revision 8034645'; Using compiler version '194234433'; Build Type 'Release'
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-theal" at "2026-05-09T18:43:44.4284039Z"
+OS: 'Windows 11  (10.0.26200) Core' Language: 'fr' Physical Memory: 32431 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
+System  architecture: x64
+Process architecture: x64
+Date: 2026-05-09T18:43:44Z
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\6000.3.9f1\Editor\Unity.exe
+-batchmode
+-quit
+-projectPath
+D:\Perso\Against-the-Odds\Against the Odds
+-logFile
+D:\Perso\Against-the-Odds\unity-potion-check.log
+Successfully changed project path to: D:\Perso\Against-the-Odds\Against the Odds
+D:/Perso/Against-the-Odds/Against the Odds
+Exiting without the bug reporter. Application will terminate with return code 1

@@ -12,6 +12,13 @@ namespace AgainstTheOdds.Core
         [SerializeField] private string premiereSceneACharger = "01_MainMenu";
         [SerializeField] private float dureeFonduDemarrage = 0.5f;
 
+        [Header("Deck de depart")]
+        [SerializeField] private string cardDatabaseResourcePath = "Data/Deck";
+        [SerializeField] private DeckEntry[] initialDeck;
+
+        [Header("Run de depart")]
+        [SerializeField, Min(0)] private int initialPotionCount = 0;
+
         // Protège contre une double-initialisation si la scène Bootstrap est rechargée.
         private static bool bootstrapDejaInitialise = false;
 
@@ -32,6 +39,8 @@ namespace AgainstTheOdds.Core
                 Debug.LogError("[Bootstrap] Un ou plusieurs managers sont manquants. Initialisation avortée.");
                 return;
             }
+
+            GameManager.Instance.ConfigureRunDefaults(cardDatabaseResourcePath, initialDeck, initialPotionCount);
 
             SceneLoader.Instance.LoadScene(premiereSceneACharger, dureeFonduDemarrage);
         }

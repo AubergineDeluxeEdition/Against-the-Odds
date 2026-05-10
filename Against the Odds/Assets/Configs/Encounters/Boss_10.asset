@@ -1,0 +1,234 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1273a23465fb4c5d9462acfebf7f111c, type: 3}
+  m_Name: Boss_10
+  m_EditorClassIdentifier: 
+  bossIndex: 9
+  bossDisplayName: L'Ultime Penitence
+  playerStartHP: 100
+  bossStartHP: 165
+  cardDatabaseResourcePath: 
+  bossSprite: {fileID: 4805271038156805735, guid: 4474ad13511a8ec4596a6370c44a4584, type: 3}
+  bossVisualScale: 2
+  combatMusic: {fileID: 8300000, guid: 8ff06a9282839db4ba63d93d78e0ea81, type: 3}
+  fadeInCombatMusic: 1
+  cardAudioProfile: {fileID: 11400000, guid: 6ec1711d07634374a801a8ad8cc27c81, type: 2}
+  defaultAttackDamage: 10
+  introDialogue: Il n'y a plus personne a tuer.
+  introVoiceLine: {fileID: 0}
+  hpDialogues:
+  - triggerWhenHpPercentAtOrBelow: 0.75
+    line: Tu as appele ca courage parce que le mot etait plus doux que malediction.
+    voiceLine: {fileID: 0}
+  - triggerWhenHpPercentAtOrBelow: 0.4
+    line: Chaque pas vers elle a releve la ville entiere.
+    voiceLine: {fileID: 0}
+  deathDialogue: Enfin.
+  deathVoiceLine: {fileID: 0}
+  defeatResultText: Tu refuses. Tres bien. La fosse t'attend, et tous les autres
+    avec elle.
+  victoryResultText: Pour la premiere fois, Rhodesia ne respire plus.
+  bossDeathSfx: {fileID: 8300000, guid: 69bb2c927b1f3d54e828f08f7542dfaf, type: 3}
+  victorySfx: {fileID: 8300000, guid: a5a4fc7157527324f9a1233dc68e70f7, type: 3}
+  defeatSfx: {fileID: 8300000, guid: 0ed4cba76ba954b4d9f9098ed17d1114, type: 3}
+  defeatButtonSfx: {fileID: 8300000, guid: 87ae847158639d4468acae75a0cfe2c6, type: 3}
+  phases:
+  - phaseId: refus
+    displayName: Le Refus
+    startsWhenHpPercentAtOrBelow: 1
+    advanceAfterBossTurns: 0
+    advanceAfterPatternIterations: 0
+    deathEndsCombatBeforeNextPhase: 0
+    maxHpOverride: 0
+    healToHpPercentOnStart: 0
+    shieldOnStart: 0
+    invulnerableTurnsOnStart: 0
+    bossSprite: {fileID: 0}
+    bossVisualScale: 0
+    phaseStartSfx: {fileID: 0}
+    dialogueOnStart: La barre au-dessus de toi porte un autre nom, mais c'est ton
+      poids.
+    actions:
+    - actionId: reflexe_survie
+      actionType: 1
+      bossLine: Ton instinct leve un rempart avant ta pensee.
+      bossVoiceLine: {fileID: 0}
+      chargeLine: 
+      chargeVoiceLine: {fileID: 0}
+      chargeTurns: 0
+      vulnerableWhileCharging: 0
+      startEffects: []
+      chargeTurnEffects: []
+      resolveEffects: []
+      interruptIfPlayerBlockAtLeast: 0
+      interruptBossStunTurns: 0
+      interruptLine: 
+      interruptVoiceLine: {fileID: 0}
+      damage: 0
+      shield: 16
+      invulnerableTurns: 0
+      vulnerableTurns: 0
+    - actionId: coup_retourne
+      actionType: 0
+      bossLine: La lame revient par le meme chemin.
+      bossVoiceLine: {fileID: 0}
+      chargeLine: 
+      chargeVoiceLine: {fileID: 0}
+      chargeTurns: 0
+      vulnerableWhileCharging: 0
+      startEffects: []
+      chargeTurnEffects: []
+      resolveEffects: []
+      interruptIfPlayerBlockAtLeast: 0
+      interruptBossStunTurns: 0
+      interruptLine: 
+      interruptVoiceLine: {fileID: 0}
+      damage: 16
+      shield: 0
+      invulnerableTurns: 0
+      vulnerableTurns: 0
+    - actionId: continuer
+      actionType: 0
+      bossLine: 'Tu fais ce que tu as toujours fait : avancer.'
+      bossVoiceLine: {fileID: 0}
+      chargeLine: 
+      chargeVoiceLine: {fileID: 0}
+      chargeTurns: 0
+      vulnerableWhileCharging: 0
+      startEffects: []
+      chargeTurnEffects: []
+      resolveEffects: []
+      interruptIfPlayerBlockAtLeast: 0
+      interruptBossStunTurns: 0
+      interruptLine: 
+      interruptVoiceLine: {fileID: 0}
+      damage: 18
+      shield: 0
+      invulnerableTurns: 0
+      vulnerableTurns: 0
+  - phaseId: volonte
+    displayName: La Volonte
+    startsWhenHpPercentAtOrBelow: 0.7
+    advanceAfterBossTurns: 0
+    advanceAfterPatternIterations: 0
+    deathEndsCombatBeforeNextPhase: 0
+    maxHpOverride: 0
+    healToHpPercentOnStart: 0
+    shieldOnStart: 22
+    invulnerableTurnsOnStart: 1
+    bossSprite: {fileID: 0}
+    bossVisualScale: 0
+    phaseStartSfx: {fileID: 0}
+    dialogueOnStart: Tu peux encore survivre. C'est precisement le probleme.
+    actions:
+    - actionId: ancre
+      actionType: 1
+      bossLine: La ville s'accroche a ton refus.
+      bossVoiceLine: {fileID: 0}
+      chargeLine: 
+      chargeVoiceLine: {fileID: 0}
+      chargeTurns: 0
+      vulnerableWhileCharging: 0
+      startEffects: []
+      chargeTurnEffects: []
+      resolveEffects: []
+      interruptIfPlayerBlockAtLeast: 0
+      interruptBossStunTurns: 0
+      interruptLine: 
+      interruptVoiceLine: {fileID: 0}
+      damage: 0
+      shield: 24
+      invulnerableTurns: 0
+      vulnerableTurns: 0
+    - actionId: memoire_des_morts
+      actionType: 0
+      bossLine: Toutes les voix que tu as liberees reviennent une seconde.
+      bossVoiceLine: {fileID: 0}
+      chargeLine: 
+      chargeVoiceLine: {fileID: 0}
+      chargeTurns: 0
+      vulnerableWhileCharging: 0
+      startEffects: []
+      chargeTurnEffects: []
+      resolveEffects: []
+      interruptIfPlayerBlockAtLeast: 0
+      interruptBossStunTurns: 0
+      interruptLine: 
+      interruptVoiceLine: {fileID: 0}
+      damage: 24
+      shield: 0
+      invulnerableTurns: 0
+      vulnerableTurns: 0
+    - actionId: souffle_de_rhodesia
+      actionType: 0
+      bossLine: Rhodesia respire par ta poitrine.
+      bossVoiceLine: {fileID: 0}
+      chargeLine: Le silence entier attend ta decision.
+      chargeVoiceLine: {fileID: 0}
+      chargeTurns: 1
+      vulnerableWhileCharging: 0
+      startEffects: []
+      chargeTurnEffects: []
+      resolveEffects: []
+      interruptIfPlayerBlockAtLeast: 0
+      interruptBossStunTurns: 0
+      interruptLine: 
+      interruptVoiceLine: {fileID: 0}
+      damage: 36
+      shield: 0
+      invulnerableTurns: 0
+      vulnerableTurns: 0
+  - phaseId: acceptation
+    displayName: La Fin Acceptee
+    startsWhenHpPercentAtOrBelow: 0.35
+    advanceAfterBossTurns: 0
+    advanceAfterPatternIterations: 0
+    deathEndsCombatBeforeNextPhase: 0
+    maxHpOverride: 0
+    healToHpPercentOnStart: 0
+    shieldOnStart: 0
+    invulnerableTurnsOnStart: 0
+    bossSprite: {fileID: 0}
+    bossVisualScale: 0
+    phaseStartSfx: {fileID: 0}
+    dialogueOnStart: La sortie n'est pas devant toi. Elle est dans l'abandon.
+    actions:
+    - actionId: se_defaire
+      actionType: 0
+      bossLine: La volonte se fend.
+      bossVoiceLine: {fileID: 0}
+      chargeLine: 
+      chargeVoiceLine: {fileID: 0}
+      chargeTurns: 0
+      vulnerableWhileCharging: 0
+      startEffects: []
+      chargeTurnEffects: []
+      resolveEffects:
+      - effectType: 2
+        value: 12
+        line: Ce qui te maintient se consume.
+        voiceLine: {fileID: 0}
+      - effectType: 0
+        value: 26
+        line: Le dernier refus frappe encore.
+        voiceLine: {fileID: 0}
+      interruptIfPlayerBlockAtLeast: 0
+      interruptBossStunTurns: 0
+      interruptLine: 
+      interruptVoiceLine: {fileID: 0}
+      damage: 0
+      shield: 0
+      invulnerableTurns: 0
+      vulnerableTurns: 0
+  rewardPickCount: 1
+  rewardCardIds: []
+  potionRewardCount: 1

@@ -1,0 +1,196 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1273a23465fb4c5d9462acfebf7f111c, type: 3}
+  m_Name: Boss_03
+  m_EditorClassIdentifier: 
+  bossIndex: 2
+  bossDisplayName: Le Chevalier Fou
+  playerStartHP: 70
+  bossStartHP: 82
+  cardDatabaseResourcePath: 
+  bossSprite: {fileID: -6670215685767622339, guid: 61c18572e31a44d4aaa024a56353a1df, type: 3}
+  bossVisualScale: 2
+  combatMusic: {fileID: 8300000, guid: 054ba47d76f9d9744ae0979266d54a50, type: 3}
+  fadeInCombatMusic: 1
+  cardAudioProfile: {fileID: 11400000, guid: 6ec1711d07634374a801a8ad8cc27c81, type: 2}
+  defaultAttackDamage: 10
+  introDialogue: Halte. Qui marche ? Un mort ? Un traetre ? Un roi ?
+  introVoiceLine: {fileID: 0}
+  hpDialogues:
+  - triggerWhenHpPercentAtOrBelow: 0.7
+    line: Tu n'es pas celui d'hier... pourtant ton pas est le meme.
+    voiceLine: {fileID: 0}
+  - triggerWhenHpPercentAtOrBelow: 0.35
+    line: Je me souviens. Ce n'etait pas l'ennemi devant les murs. C'etait quelque
+      chose dedans.
+    voiceLine: {fileID: 0}
+  deathDialogue: Je gardais la porte... contre toi ? Non... contre ton retour.
+  deathVoiceLine: {fileID: 0}
+  defeatResultText: Il plante sa lame dans ton ventre et salue ton cadavre comme
+    un vieux camarade.
+  victoryResultText: Il n'a jamais garde Rhodesia contre les envahisseurs. Il gardait
+    la ville contre la repetition.
+  bossDeathSfx: {fileID: 8300000, guid: fd318bafa5bd05040be0cf2bc5d86ab1, type: 3}
+  victorySfx: {fileID: 8300000, guid: a5a4fc7157527324f9a1233dc68e70f7, type: 3}
+  defeatSfx: {fileID: 8300000, guid: 0ed4cba76ba954b4d9f9098ed17d1114, type: 3}
+  defeatButtonSfx: {fileID: 8300000, guid: 87ae847158639d4468acae75a0cfe2c6, type: 3}
+  phases:
+  - phaseId: demence
+    displayName: La Demence
+    startsWhenHpPercentAtOrBelow: 1
+    advanceAfterBossTurns: 0
+    advanceAfterPatternIterations: 0
+    deathEndsCombatBeforeNextPhase: 0
+    maxHpOverride: 0
+    healToHpPercentOnStart: 0
+    shieldOnStart: 0
+    invulnerableTurnsOnStart: 0
+    bossSprite: {fileID: 0}
+    bossVisualScale: 0
+    phaseStartSfx: {fileID: 8300000, guid: 4f49b749c82532148965d3133163de0c, type: 3}
+    dialogueOnStart: Fermez les portes... avant qu'il ne remonte.
+    actions:
+    - actionId: coup_reflexe
+      actionType: 0
+      bossLine: Mauvais nom. Mauvais visage.
+      bossVoiceLine: {fileID: 0}
+      chargeLine: 
+      chargeVoiceLine: {fileID: 0}
+      chargeTurns: 0
+      vulnerableWhileCharging: 0
+      startEffects: []
+      chargeTurnEffects: []
+      resolveEffects: []
+      interruptIfPlayerBlockAtLeast: 0
+      interruptBossStunTurns: 0
+      interruptLine: 
+      interruptVoiceLine: {fileID: 0}
+      damage: 7
+      shield: 0
+      invulnerableTurns: 0
+      vulnerableTurns: 0
+    - actionId: garde_rouillee
+      actionType: 1
+      bossLine: Le fer se souvient mieux que moi.
+      bossVoiceLine: {fileID: 0}
+      chargeLine: 
+      chargeVoiceLine: {fileID: 0}
+      chargeTurns: 0
+      vulnerableWhileCharging: 0
+      startEffects: []
+      chargeTurnEffects: []
+      resolveEffects: []
+      interruptIfPlayerBlockAtLeast: 0
+      interruptBossStunTurns: 0
+      interruptLine: 
+      interruptVoiceLine: {fileID: 0}
+      damage: 0
+      shield: 8
+      invulnerableTurns: 0
+      vulnerableTurns: 0
+    - actionId: charge_colossale
+      actionType: 0
+      bossLine: Ne bouge pas. Je sais encore faire ca.
+      bossVoiceLine: {fileID: 0}
+      chargeLine: Il leve sa lame trop haut, presque maladroitement.
+      chargeVoiceLine: {fileID: 0}
+      chargeTurns: 1
+      vulnerableWhileCharging: 1
+      startEffects: []
+      chargeTurnEffects: []
+      resolveEffects: []
+      interruptIfPlayerBlockAtLeast: 0
+      interruptBossStunTurns: 0
+      interruptLine: 
+      interruptVoiceLine: {fileID: 0}
+      damage: 19
+      shield: 0
+      invulnerableTurns: 0
+      vulnerableTurns: 0
+  - phaseId: souvenir
+    displayName: Le Souvenir
+    startsWhenHpPercentAtOrBelow: 0.45
+    advanceAfterBossTurns: 0
+    advanceAfterPatternIterations: 0
+    deathEndsCombatBeforeNextPhase: 0
+    maxHpOverride: 0
+    healToHpPercentOnStart: 0
+    shieldOnStart: 8
+    invulnerableTurnsOnStart: 0
+    bossSprite: {fileID: 0}
+    bossVisualScale: 0
+    phaseStartSfx: {fileID: 0}
+    dialogueOnStart: Rhodesia est tombee de l'interieur.
+    actions:
+    - actionId: taille_precise
+      actionType: 0
+      bossLine: Pour le royaume mort.
+      bossVoiceLine: {fileID: 0}
+      chargeLine: 
+      chargeVoiceLine: {fileID: 0}
+      chargeTurns: 0
+      vulnerableWhileCharging: 0
+      startEffects: []
+      chargeTurnEffects: []
+      resolveEffects: []
+      interruptIfPlayerBlockAtLeast: 0
+      interruptBossStunTurns: 0
+      interruptLine: 
+      interruptVoiceLine: {fileID: 0}
+      damage: 11
+      shield: 0
+      invulnerableTurns: 0
+      vulnerableTurns: 0
+    - actionId: serment_de_porte
+      actionType: 1
+      bossLine: Aucun retour. Plus jamais.
+      bossVoiceLine: {fileID: 0}
+      chargeLine: 
+      chargeVoiceLine: {fileID: 0}
+      chargeTurns: 0
+      vulnerableWhileCharging: 0
+      startEffects: []
+      chargeTurnEffects: []
+      resolveEffects: []
+      interruptIfPlayerBlockAtLeast: 0
+      interruptBossStunTurns: 0
+      interruptLine: 
+      interruptVoiceLine: {fileID: 0}
+      damage: 0
+      shield: 13
+      invulnerableTurns: 0
+      vulnerableTurns: 0
+    - actionId: execution
+      actionType: 0
+      bossLine: Je tranche ce qui recommence.
+      bossVoiceLine: {fileID: 0}
+      chargeLine: 
+      chargeVoiceLine: {fileID: 0}
+      chargeTurns: 0
+      vulnerableWhileCharging: 0
+      startEffects: []
+      chargeTurnEffects: []
+      resolveEffects: []
+      interruptIfPlayerBlockAtLeast: 0
+      interruptBossStunTurns: 0
+      interruptLine: 
+      interruptVoiceLine: {fileID: 0}
+      damage: 15
+      shield: 0
+      invulnerableTurns: 0
+      vulnerableTurns: 0
+  rewardPickCount: 1
+  rewardCardIds:
+  - armure_calcinee
+  - rempart_des_cendres
+  - autel_des_cendres
+  potionRewardCount: 1

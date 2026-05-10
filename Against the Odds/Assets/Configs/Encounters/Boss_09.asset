@@ -1,0 +1,130 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1273a23465fb4c5d9462acfebf7f111c, type: 3}
+  m_Name: Boss_09
+  m_EditorClassIdentifier: 
+  bossIndex: 8
+  bossDisplayName: Le Roi-Mecanisme
+  playerStartHP: 100
+  bossStartHP: 205
+  cardDatabaseResourcePath: 
+  bossSprite: {fileID: -3138948173054701969, guid: d81767b738dbf3d4685214ed44ed0cb1, type: 3}
+  bossVisualScale: 2
+  combatMusic: {fileID: 8300000, guid: 5035c3eda24bd934f80a17a7ac4132e3, type: 3}
+  fadeInCombatMusic: 1
+  cardAudioProfile: {fileID: 11400000, guid: 6ec1711d07634374a801a8ad8cc27c81, type: 2}
+  defaultAttackDamage: 10
+  introDialogue: Tu es arrive au coeur. C'est ce que tu crois.
+  introVoiceLine: {fileID: 0}
+  hpDialogues:
+  - triggerWhenHpPercentAtOrBelow: 0.72
+    line: Je pompe. Je redistribue. Je ne decide rien.
+    voiceLine: {fileID: 0}
+  - triggerWhenHpPercentAtOrBelow: 0.38
+    line: Tu veux un coupable avec une couronne. C'est plus simple.
+    voiceLine: {fileID: 0}
+  deathDialogue: Je n'etais qu'une bouche. Le souffle venait d'ailleurs.
+  deathVoiceLine: {fileID: 0}
+  defeatResultText: La machine boit ton sang et le recrache dans la ville. Au loin,
+    la fosse tousse deja ton nom.
+  victoryResultText: Le Roi tombe. Les pistons s'arretent. Puis, dans les rues, les
+    morts remuent encore. Le cycle ne venait pas du trone. Il suivait celui qui refusait
+    de finir.
+  bossDeathSfx: {fileID: 8300000, guid: 2884d48ef356cf24cb85f65f134173e9, type: 3}
+  victorySfx: {fileID: 8300000, guid: a5a4fc7157527324f9a1233dc68e70f7, type: 3}
+  defeatSfx: {fileID: 8300000, guid: 0ed4cba76ba954b4d9f9098ed17d1114, type: 3}
+  defeatButtonSfx: {fileID: 8300000, guid: 87ae847158639d4468acae75a0cfe2c6, type: 3}
+  phases:
+  - phaseId: pompe
+    displayName: Pompe Royale
+    startsWhenHpPercentAtOrBelow: 1
+    advanceAfterBossTurns: 0
+    advanceAfterPatternIterations: 0
+    deathEndsCombatBeforeNextPhase: 0
+    maxHpOverride: 0
+    healToHpPercentOnStart: 0
+    shieldOnStart: 0
+    invulnerableTurnsOnStart: 0
+    bossSprite: {fileID: 0}
+    bossVisualScale: 0
+    phaseStartSfx: {fileID: 0}
+    dialogueOnStart: Chaque fois que tu montes, ils me maudissent. Chaque fois que
+      tu tombes, ils me prient.
+    actions:
+    - actionId: piston
+      actionType: 0
+      bossLine: Le piston descend comme un couperet.
+      bossVoiceLine: {fileID: 0}
+      chargeLine: 
+      chargeVoiceLine: {fileID: 0}
+      chargeTurns: 0
+      vulnerableWhileCharging: 0
+      startEffects: []
+      chargeTurnEffects: []
+      resolveEffects: []
+      interruptIfPlayerBlockAtLeast: 0
+      interruptBossStunTurns: 0
+      interruptLine: 
+      interruptVoiceLine: {fileID: 0}
+      damage: 17
+      shield: 0
+      invulnerableTurns: 0
+      vulnerableTurns: 0
+    - actionId: redistribution_sang
+      actionType: 1
+      bossLine: Le sang remonte dans les tuyaux.
+      bossVoiceLine: {fileID: 0}
+      chargeLine: 
+      chargeVoiceLine: {fileID: 0}
+      chargeTurns: 0
+      vulnerableWhileCharging: 0
+      startEffects: []
+      chargeTurnEffects: []
+      resolveEffects: []
+      interruptIfPlayerBlockAtLeast: 0
+      interruptBossStunTurns: 0
+      interruptLine: 
+      interruptVoiceLine: {fileID: 0}
+      damage: 0
+      shield: 22
+      invulnerableTurns: 0
+      vulnerableTurns: 0
+    - actionId: pression
+      actionType: 0
+      bossLine: La machine prend au roi pour nourrir la ville.
+      bossVoiceLine: {fileID: 0}
+      chargeLine: 
+      chargeVoiceLine: {fileID: 0}
+      chargeTurns: 0
+      vulnerableWhileCharging: 0
+      startEffects: []
+      chargeTurnEffects: []
+      resolveEffects:
+      - effectType: 2
+        value: 5
+        line: La tete dessechee se vide un peu.
+        voiceLine: {fileID: 0}
+      - effectType: 1
+        value: 28
+        line: La machine se blinde de sang coagule.
+        voiceLine: {fileID: 0}
+      interruptIfPlayerBlockAtLeast: 0
+      interruptBossStunTurns: 0
+      interruptLine: 
+      interruptVoiceLine: {fileID: 0}
+      damage: 0
+      shield: 0
+      invulnerableTurns: 0
+      vulnerableTurns: 0
+  rewardPickCount: 1
+  rewardCardIds: []
+  potionRewardCount: 1

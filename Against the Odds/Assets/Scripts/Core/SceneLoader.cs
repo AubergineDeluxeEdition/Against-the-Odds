@@ -92,6 +92,8 @@ namespace AgainstTheOdds.Core
             op.allowSceneActivation = true;
             while (!op.isDone) yield return null;
 
+            yield return SceneVideoPreloader.PrepareSceneVideos();
+
             yield return RoutineFade(1f, 0f, dureeFade);
 
             IsLoading = false;

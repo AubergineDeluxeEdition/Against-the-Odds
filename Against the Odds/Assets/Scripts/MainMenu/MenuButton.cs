@@ -1,15 +1,11 @@
+using AgainstTheOdds.Core;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using AgainstTheOdds.Core;
 
 namespace AgainstTheOdds.MainMenu
 {
-    /// <summary>
-    /// À attacher sur un GameObject qui possède déjà un composant uGUI Button (avec un label TextMeshProUGUI enfant).
-    /// Déclenche une action configurable au clic : charger une scène, quitter, continuer depuis une save.
-    /// Gère aussi les SFX hover/click via les events du système UI.
-    /// </summary>
     [RequireComponent(typeof(Button))]
     public class MenuButton : MonoBehaviour, IPointerEnterHandler
     {
@@ -22,18 +18,46 @@ namespace AgainstTheOdds.MainMenu
 
         [Header("Action du bouton")]
         [SerializeField] private ActionBouton action = ActionBouton.ChargerScene;
-        [SerializeField] private string sceneACharger = "02_Campaign";
+        [SerializeField] private string sceneACharger = "03_CampaignMap";
+        [SerializeField] private string defaultDeckId = "default";
+
+        [Header("Sauvegarde")]
+        [SerializeField] private bool masquerSiAucuneSauvegarde = true;
+        [SerializeField] private bool avertirAvantEcrasement = true;
+        [SerializeField] private float delaiConfirmationEcrasement = 3f;
+        [SerializeField] private string texteAvertissementEcrasement = "Ecraser la sauvegarde ?";
+        [SerializeField] private TMP_Text label;
 
         [Header("SFX (optionnels)")]
         [SerializeField] private AudioClip sfxHover;
         [SerializeField] private AudioClip sfxClick;
 
         private Button bouton;
+        private string texteInitial;
+        private float limiteConfirmationEcrasement;
 
         private void Awake()
         {
             bouton = GetComponent<Button>();
+            if (label == null) label = GetComponentInChildren<TMP_Text>(true);
+            if (label != null) texteInitial = label.text;
+
             bouton.onClick.AddListener(OnClic);
+            RefreshVisibility();
+        }
+
+        private void OnEnable()
+        {
+            RefreshVisibility();
+        }
+
+        private void Update()
+        {
+            if (label != null && limiteConfirmationEcrasement > 0f && Time.unscaledTime > limiteConfirmationEcrasement)
+            {
+                limiteConfirmationEcrasement = 0f;
+                label.text = texteInitial;
+            }
         }
 
         private void OnDestroy()
@@ -41,55 +65,106 @@ namespace AgainstTheOdds.MainMenu
             if (bouton != null) bouton.onClick.RemoveListener(OnClic);
         }
 
-        // IPointerEnterHandler : déclenché quand la souris entre sur le Button (ou le RectTransform qui a un Graphic)
         public void OnPointerEnter(PointerEventData eventData)
         {
-            if (!bouton.interactable) return;
+            if (bouton != null && !bouton.interactable) return;
             if (sfxHover != null && AudioManager.Instance != null) AudioManager.Instance.PlaySFX(sfxHover);
         }
 
         private void OnClic()
         {
             if (sfxClick != null && AudioManager.Instance != null) AudioManager.Instance.PlaySFX(sfxClick);
-            ExecuterAction();
-        }
 
-        private void ExecuterAction()
-        {
             switch (action)
             {
                 case ActionBouton.ChargerScene:
-                    if (SceneLoader.Instance != null)
-                    {
-                        SceneLoader.Instance.LoadScene(sceneACharger);
-                    }
-                    else
-                    {
-                        Debug.LogError("[MenuButton] SceneLoader.Instance absent — as-tu démarré depuis 00_Bootstrap ?");
-                    }
+                    DemarrerNouvellePartie();
                     break;
-
                 case ActionBouton.Quitter:
-                    #if UNITY_EDITOR
-                    UnityEditor.EditorApplication.isPlaying = false;
-                    #else
-                    Application.Quit();
-                    #endif
+                    Quitter();
                     break;
-
                 case ActionBouton.ContinuerSave:
-                    if (SaveManager.Instance != null && SaveManager.Instance.HasSave())
-                    {
-                        var data = SaveManager.Instance.CurrentData;
-                        GameManager.Instance.StartNewRun(data.selectedDeckId);
-                        SceneLoader.Instance.LoadScene("02_Campaign");
-                    }
-                    else
-                    {
-                        Debug.LogWarning("[MenuButton] Aucune sauvegarde à charger.");
-                    }
+                    ContinuerPartie();
                     break;
             }
+        }
+
+        private void DemarrerNouvellePartie()
+        {
+            bool saveExiste = SaveManager.Instance != null && SaveManager.Instance.HasSave();
+            if (saveExiste && avertirAvantEcrasement && Time.unscaledTime > limiteConfirmationEcrasement)
+            {
+                limiteConfirmationEcrasement = Time.unscaledTime + delaiConfirmationEcrasement;
+                if (label != null) label.text = texteAvertissementEcrasement;
+                return;
+            }
+
+            if (GameManager.Instance != null)
+            {
+                GameManager.Instance.StartNewRun(defaultDeckId);
+            }
+
+            ChargerSceneConfiguree();
+        }
+
+        private void ContinuerPartie()
+        {
+            if (SaveManager.Instance == null || !SaveManager.Instance.HasSave())
+            {
+                Debug.LogWarning("[MenuButton] Aucune sauvegarde a charger.");
+                RefreshVisibility();
+                return;
+            }
+
+            SaveData data = SaveManager.Instance.LoadGame();
+            if (data == null)
+            {
+                Debug.LogWarning("[MenuButton] Sauvegarde illisible.");
+                RefreshVisibility();
+                return;
+            }
+
+            SaveManager.Instance.SetCurrentData(data);
+            if (GameManager.Instance != null)
+            {
+                GameManager.Instance.LoadRun(data);
+            }
+
+            ChargerSceneConfiguree();
+        }
+
+        private void ChargerSceneConfiguree()
+        {
+            if (string.IsNullOrWhiteSpace(sceneACharger))
+            {
+                sceneACharger = "03_CampaignMap";
+            }
+
+            if (SceneLoader.Instance != null)
+            {
+                SceneLoader.Instance.LoadScene(sceneACharger);
+            }
+            else
+            {
+                Debug.LogError("[MenuButton] SceneLoader.Instance absent. Demarre depuis 00_Bootstrap.");
+            }
+        }
+
+        private void RefreshVisibility()
+        {
+            if (action != ActionBouton.ContinuerSave || !masquerSiAucuneSauvegarde) return;
+
+            bool saveExiste = SaveManager.Instance != null && SaveManager.Instance.HasSave();
+            gameObject.SetActive(saveExiste);
+        }
+
+        private static void Quitter()
+        {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+            Application.Quit();
+#endif
         }
     }
 }

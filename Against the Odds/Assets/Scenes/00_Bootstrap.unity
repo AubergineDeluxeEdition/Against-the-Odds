@@ -526,6 +526,22 @@ MonoBehaviour:
   currentBossIndex: 0
   selectedDeckId: default
   isInRun: 0
+  potionCount: 0
+  runRewardCardIds: []
+  cardDatabaseResourcePath: Data/Deck
+  initialDeck:
+  - cardId: entaille_de_braise
+    quantity: 2
+  - cardId: mur_de_charbon
+    quantity: 2
+  - cardId: rempart_des_cendres
+    quantity: 1
+  - cardId: offrande_impie
+    quantity: 1
+  - cardId: cendres_voraces
+    quantity: 2
+  - cardId: jugement_du_bucher
+    quantity: 2
 --- !u!114 &872842955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -540,6 +556,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AgainstTheOdds.Core.Bootstrap
   premiereSceneACharger: 01_MainMenu
   dureeFonduDemarrage: 0.5
+  cardDatabaseResourcePath: Data/Deck
+  initialDeck: []
 --- !u!4 &872842956
 Transform:
   m_ObjectHideFlags: 0
