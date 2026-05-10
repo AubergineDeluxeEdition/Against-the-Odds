@@ -1,0 +1,196 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1273a23465fb4c5d9462acfebf7f111c, type: 3}
+  m_Name: Boss_04
+  m_EditorClassIdentifier: 
+  bossIndex: 3
+  bossDisplayName: L'Inhumateur des Cris
+  playerStartHP: 80
+  bossStartHP: 105
+  cardDatabaseResourcePath: 
+  bossSprite: {fileID: -6189037954818753227, guid: 3df311dc3c3833047a2626218033a361, type: 3}
+  bossVisualScale: 2
+  combatMusic: {fileID: 8300000, guid: 840675357e8f4024194b2a4e8b87f554, type: 3}
+  fadeInCombatMusic: 1
+  cardAudioProfile: {fileID: 11400000, guid: 6ec1711d07634374a801a8ad8cc27c81, type: 2}
+  defaultAttackDamage: 10
+  introDialogue: Chut. La douleur a une forme. Je peux encore la corriger.
+  introVoiceLine: {fileID: 0}
+  hpDialogues:
+  - triggerWhenHpPercentAtOrBelow: 0.75
+    line: Tu hurlais plus fort la premiere fois.
+    voiceLine: {fileID: 0}
+  - triggerWhenHpPercentAtOrBelow: 0.45
+    line: Je t'avais ferme les plaies. Qui t'a rendu a la route ?
+    voiceLine: {fileID: 0}
+  deathDialogue: Ton nom... je l'avais ecrit avec les cas sans espoir.
+  deathVoiceLine: {fileID: 0}
+  defeatResultText: Il t'endort avec des gestes tendres. C'est presque pire que la
+    violence.
+  victoryResultText: Dans son registre, ton nom apparait rature. Il t'avait soigne
+    avant que la ville ne te recrache dans la fosse.
+  bossDeathSfx: {fileID: 8300000, guid: fd318bafa5bd05040be0cf2bc5d86ab1, type: 3}
+  victorySfx: {fileID: 8300000, guid: a5a4fc7157527324f9a1233dc68e70f7, type: 3}
+  defeatSfx: {fileID: 8300000, guid: 0ed4cba76ba954b4d9f9098ed17d1114, type: 3}
+  defeatButtonSfx: {fileID: 8300000, guid: 87ae847158639d4468acae75a0cfe2c6, type: 3}
+  phases:
+  - phaseId: rassembleur
+    displayName: Le Rassembleur
+    startsWhenHpPercentAtOrBelow: 1
+    advanceAfterBossTurns: 0
+    advanceAfterPatternIterations: 0
+    deathEndsCombatBeforeNextPhase: 0
+    maxHpOverride: 0
+    healToHpPercentOnStart: 0
+    shieldOnStart: 0
+    invulnerableTurnsOnStart: 0
+    bossSprite: {fileID: 0}
+    bossVisualScale: 0
+    phaseStartSfx: {fileID: 0}
+    dialogueOnStart: Les cris doivent etre ranges avant de devenir des prieres.
+    actions:
+    - actionId: chaines
+      actionType: 0
+      bossLine: Un crochet pour chaque fuite.
+      bossVoiceLine: {fileID: 0}
+      chargeLine: 
+      chargeVoiceLine: {fileID: 0}
+      chargeTurns: 0
+      vulnerableWhileCharging: 0
+      startEffects: []
+      chargeTurnEffects: []
+      resolveEffects: []
+      interruptIfPlayerBlockAtLeast: 0
+      interruptBossStunTurns: 0
+      interruptLine: 
+      interruptVoiceLine: {fileID: 0}
+      damage: 9
+      shield: 0
+      invulnerableTurns: 0
+      vulnerableTurns: 0
+    - actionId: pansement_de_fer
+      actionType: 1
+      bossLine: Je maintiens ce qui se defait.
+      bossVoiceLine: {fileID: 0}
+      chargeLine: 
+      chargeVoiceLine: {fileID: 0}
+      chargeTurns: 0
+      vulnerableWhileCharging: 0
+      startEffects: []
+      chargeTurnEffects: []
+      resolveEffects: []
+      interruptIfPlayerBlockAtLeast: 0
+      interruptBossStunTurns: 0
+      interruptLine: 
+      interruptVoiceLine: {fileID: 0}
+      damage: 0
+      shield: 12
+      invulnerableTurns: 0
+      vulnerableTurns: 0
+    - actionId: amalgames
+      actionType: 0
+      bossLine: Ils roulent encore. Ils veulent seulement une place.
+      bossVoiceLine: {fileID: 0}
+      chargeLine: Des bras cousus ensemble rampent vers toi.
+      chargeVoiceLine: {fileID: 0}
+      chargeTurns: 1
+      vulnerableWhileCharging: 0
+      startEffects: []
+      chargeTurnEffects: []
+      resolveEffects: []
+      interruptIfPlayerBlockAtLeast: 0
+      interruptBossStunTurns: 0
+      interruptLine: 
+      interruptVoiceLine: {fileID: 0}
+      damage: 20
+      shield: 0
+      invulnerableTurns: 0
+      vulnerableTurns: 0
+  - phaseId: fusion
+    displayName: L'Horreur de la Fusion
+    startsWhenHpPercentAtOrBelow: 0.5
+    advanceAfterBossTurns: 0
+    advanceAfterPatternIterations: 0
+    deathEndsCombatBeforeNextPhase: 0
+    maxHpOverride: 0
+    healToHpPercentOnStart: 0.65
+    shieldOnStart: 16
+    invulnerableTurnsOnStart: 1
+    bossSprite: {fileID: 0}
+    bossVisualScale: 0
+    phaseStartSfx: {fileID: 0}
+    dialogueOnStart: Il se refugie dans la pile de chair. Toute la salle commence
+      a respirer.
+    actions:
+    - actionId: masse_de_membres
+      actionType: 0
+      bossLine: La montagne avance.
+      bossVoiceLine: {fileID: 0}
+      chargeLine: 
+      chargeVoiceLine: {fileID: 0}
+      chargeTurns: 0
+      vulnerableWhileCharging: 0
+      startEffects: []
+      chargeTurnEffects: []
+      resolveEffects: []
+      interruptIfPlayerBlockAtLeast: 0
+      interruptBossStunTurns: 0
+      interruptLine: 
+      interruptVoiceLine: {fileID: 0}
+      damage: 14
+      shield: 0
+      invulnerableTurns: 0
+      vulnerableTurns: 0
+    - actionId: absorber
+      actionType: 1
+      bossLine: Plus il range de corps, plus il devient vaste.
+      bossVoiceLine: {fileID: 0}
+      chargeLine: 
+      chargeVoiceLine: {fileID: 0}
+      chargeTurns: 0
+      vulnerableWhileCharging: 0
+      startEffects: []
+      chargeTurnEffects: []
+      resolveEffects: []
+      interruptIfPlayerBlockAtLeast: 0
+      interruptBossStunTurns: 0
+      interruptLine: 
+      interruptVoiceLine: {fileID: 0}
+      damage: 0
+      shield: 18
+      invulnerableTurns: 0
+      vulnerableTurns: 0
+    - actionId: chirurgie_finale
+      actionType: 0
+      bossLine: Je vais t'anesthesier pour de bon.
+      bossVoiceLine: {fileID: 0}
+      chargeLine: Les aiguilles cherchent les anciennes coutures.
+      chargeVoiceLine: {fileID: 0}
+      chargeTurns: 1
+      vulnerableWhileCharging: 0
+      startEffects: []
+      chargeTurnEffects: []
+      resolveEffects: []
+      interruptIfPlayerBlockAtLeast: 0
+      interruptBossStunTurns: 0
+      interruptLine: 
+      interruptVoiceLine: {fileID: 0}
+      damage: 24
+      shield: 0
+      invulnerableTurns: 0
+      vulnerableTurns: 0
+  rewardPickCount: 1
+  rewardCardIds:
+  - forteresse_de_cendres
+  - rite_de_l_ascension
+  - fortification_sepulcrale
+  potionRewardCount: 1

@@ -20,7 +20,7 @@ namespace AgainstTheOdds.Core
         private const float DefautMusicVolume = 0.7f;
         private const float DefautSfxVolume = 1.0f;
         private const float DefautMasterVolume = 1.0f;
-        private const bool DefautFullscreen = true;
+        private const bool DefautFullscreen = false;
 
         private float musicVolume;
         private float sfxVolume;
@@ -50,8 +50,8 @@ namespace AgainstTheOdds.Core
             get => fullscreen;
             set
             {
-                fullscreen = value;
-                Screen.fullScreen = value;
+                fullscreen = false;
+                Screen.SetResolution(1920, 1080, FullScreenMode.Windowed);
                 Save();
             }
         }
@@ -75,9 +75,10 @@ namespace AgainstTheOdds.Core
             musicVolume = PlayerPrefs.GetFloat(ClePrefMusicVolume, DefautMusicVolume);
             sfxVolume = PlayerPrefs.GetFloat(ClePrefSfxVolume, DefautSfxVolume);
             masterVolume = PlayerPrefs.GetFloat(ClePrefMasterVolume, DefautMasterVolume);
-            fullscreen = PlayerPrefs.GetInt(ClePrefFullscreen, DefautFullscreen ? 1 : 0) == 1;
+            fullscreen = false;
 
-            Screen.fullScreen = fullscreen;
+            Screen.SetResolution(1920, 1080, FullScreenMode.Windowed);
+            Save();
         }
 
         public void Save()

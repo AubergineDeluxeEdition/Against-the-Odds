@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1273a23465fb4c5d9462acfebf7f111c, type: 3}
+  m_Name: Boss_01
+  m_EditorClassIdentifier: 
+  bossIndex: 0
+  bossDisplayName: Le Gardien de la Fosse
+  playerStartHP: 50
+  bossStartHP: 50
+  cardDatabaseResourcePath: 
+  bossSprite: {fileID: 6352788030801057508, guid: 92e51483e9ed3d14bad206a6627c4223, type: 3}
+  bossVisualScale: 1
+  combatMusic: {fileID: 8300000, guid: a7f569dfa16afc94d83e100ef0efb7d7, type: 3}
+  fadeInCombatMusic: 1
+  cardAudioProfile: {fileID: 11400000, guid: 6ec1711d07634374a801a8ad8cc27c81, type: 2}
+  defaultAttackDamage: 10
+  introDialogue: Tu remontes encore. La fosse n'a donc pas fini de te rendre.
+  introVoiceLine: {fileID: 0}
+  hpDialogues:
+  - triggerWhenHpPercentAtOrBelow: 1
+    line: Je connais ce pas. Je l'ai deja entendu mourir.
+    voiceLine: {fileID: 0}
+  - triggerWhenHpPercentAtOrBelow: 0.6
+    line: Tu crois ouvrir une sortie. Tu ne fais que remuer la plaie.
+    voiceLine: {fileID: 0}
+  deathDialogue: Tue-moi si tu veux. La fosse garde les noms au chaud.
+  deathVoiceLine: {fileID: 0}
+  defeatResultText: Le Gardien te repousse dans la boue. Un instant plus tard, la fosse recommence a respirer.
+  victoryResultText: Sous son casque, il n'y avait presque plus d'homme. Seulement un souvenir charge de garder le seuil, encore et encore.
+  bossDeathSfx: {fileID: 8300000, guid: fd318bafa5bd05040be0cf2bc5d86ab1, type: 3}
+  victorySfx: {fileID: 8300000, guid: a5a4fc7157527324f9a1233dc68e70f7, type: 3}
+  defeatSfx: {fileID: 8300000, guid: 0ed4cba76ba954b4d9f9098ed17d1114, type: 3}
+  defeatButtonSfx: {fileID: 8300000, guid: 87ae847158639d4468acae75a0cfe2c6, type: 3}
+  phases:
+  - phaseId: 
+    displayName: 
+    startsWhenHpPercentAtOrBelow: 0
+    advanceAfterBossTurns: 0
+    advanceAfterPatternIterations: 0
+    deathEndsCombatBeforeNextPhase: 0
+    maxHpOverride: 0
+    healToHpPercentOnStart: 0
+    shieldOnStart: 0
+    invulnerableTurnsOnStart: 0
+    bossSprite: {fileID: 0}
+    bossVisualScale: 0
+    phaseStartSfx: {fileID: 0}
+    dialogueOnStart: Aucun mort ne quitte Rhodesia sans etre reconnu.
+    actions:
+    - actionId: 
+      actionType: 0
+      bossLine: Retourne en bas.
+      bossVoiceLine: {fileID: 0}
+      chargeLine: 
+      chargeVoiceLine: {fileID: 0}
+      chargeTurns: 0
+      vulnerableWhileCharging: 0
+      startEffects: []
+      chargeTurnEffects: []
+      resolveEffects: []
+      interruptIfPlayerBlockAtLeast: 0
+      interruptBossStunTurns: 0
+      interruptLine: 
+      interruptVoiceLine: {fileID: 0}
+      damage: 0
+      shield: 0
+      invulnerableTurns: 0
+      vulnerableTurns: 0
+  rewardPickCount: 2
+  rewardCardIds:
+  - champ_de_braises
+  - apotheose_cendree
+  - fortification_sepulcrale
+  potionRewardCount: 1

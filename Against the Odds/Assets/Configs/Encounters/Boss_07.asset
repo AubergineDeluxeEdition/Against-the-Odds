@@ -1,0 +1,250 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1273a23465fb4c5d9462acfebf7f111c, type: 3}
+  m_Name: Boss_07
+  m_EditorClassIdentifier: 
+  bossIndex: 6
+  bossDisplayName: L'Inquisiteur des Larmes
+  playerStartHP: 100
+  bossStartHP: 155
+  cardDatabaseResourcePath: 
+  bossSprite: {fileID: -4065339293910650641, guid: 1030af53be0f0ed4d854dc6ebfe87dcb, type: 3}
+  bossVisualScale: 2
+  combatMusic: {fileID: 8300000, guid: 9dc5ef5dadbe9594eb959b4b0344237e, type: 3}
+  fadeInCombatMusic: 1
+  cardAudioProfile: {fileID: 11400000, guid: 6ec1711d07634374a801a8ad8cc27c81, type: 2}
+  defaultAttackDamage: 10
+  introDialogue: Chaque douleur laisse une preuve. La tienne manque a mon registre.
+  introVoiceLine: {fileID: 0}
+  hpDialogues:
+  - triggerWhenHpPercentAtOrBelow: 0.7
+    line: Tu as promis quelque chose au pied d'un autel. Tu l'as oublie, mais pas
+      moi.
+    voiceLine: {fileID: 0}
+  - triggerWhenHpPercentAtOrBelow: 0.35
+    line: Elle criait ton nom quand les cloches sont tombees.
+    voiceLine: {fileID: 0}
+  deathDialogue: Prends-le. Ce papier pese plus que ma cuirasse.
+  deathVoiceLine: {fileID: 0}
+  defeatResultText: Il ajoute ton anneau absent a sa collection. L'emplacement etait
+    deja prevu.
+  victoryResultText: Dans sa cuirasse, ton acte de mariage. Le nom de ta femme revient
+    avant son visage.
+  bossDeathSfx: {fileID: 8300000, guid: fd318bafa5bd05040be0cf2bc5d86ab1, type: 3}
+  victorySfx: {fileID: 8300000, guid: a5a4fc7157527324f9a1233dc68e70f7, type: 3}
+  defeatSfx: {fileID: 8300000, guid: 0ed4cba76ba954b4d9f9098ed17d1114, type: 3}
+  defeatButtonSfx: {fileID: 8300000, guid: 87ae847158639d4468acae75a0cfe2c6, type: 3}
+  phases:
+  - phaseId: comptable
+    displayName: Le Comptable
+    startsWhenHpPercentAtOrBelow: 1
+    advanceAfterBossTurns: 0
+    advanceAfterPatternIterations: 0
+    deathEndsCombatBeforeNextPhase: 0
+    maxHpOverride: 0
+    healToHpPercentOnStart: 0
+    shieldOnStart: 0
+    invulnerableTurnsOnStart: 0
+    bossSprite: {fileID: 0}
+    bossVisualScale: 0
+    phaseStartSfx: {fileID: 0}
+    dialogueOnStart: Les bijoux ne brillent plus. Ils pesent.
+    actions:
+    - actionId: inventaire
+      actionType: 1
+      bossLine: Une alliance pour chaque plainte.
+      bossVoiceLine: {fileID: 0}
+      chargeLine: 
+      chargeVoiceLine: {fileID: 0}
+      chargeTurns: 0
+      vulnerableWhileCharging: 0
+      startEffects: []
+      chargeTurnEffects: []
+      resolveEffects: []
+      interruptIfPlayerBlockAtLeast: 0
+      interruptBossStunTurns: 0
+      interruptLine: 
+      interruptVoiceLine: {fileID: 0}
+      damage: 0
+      shield: 16
+      invulnerableTurns: 0
+      vulnerableTurns: 0
+    - actionId: marteau_des_larmes
+      actionType: 0
+      bossLine: La dette frappe avant le verdict.
+      bossVoiceLine: {fileID: 0}
+      chargeLine: 
+      chargeVoiceLine: {fileID: 0}
+      chargeTurns: 0
+      vulnerableWhileCharging: 0
+      startEffects: []
+      chargeTurnEffects: []
+      resolveEffects: []
+      interruptIfPlayerBlockAtLeast: 0
+      interruptBossStunTurns: 0
+      interruptLine: 
+      interruptVoiceLine: {fileID: 0}
+      damage: 14
+      shield: 0
+      invulnerableTurns: 0
+      vulnerableTurns: 0
+    - actionId: saisie
+      actionType: 0
+      bossLine: Il arrache une preuve invisible.
+      bossVoiceLine: {fileID: 0}
+      chargeLine: 
+      chargeVoiceLine: {fileID: 0}
+      chargeTurns: 0
+      vulnerableWhileCharging: 0
+      startEffects: []
+      chargeTurnEffects: []
+      resolveEffects: []
+      interruptIfPlayerBlockAtLeast: 0
+      interruptBossStunTurns: 0
+      interruptLine: 
+      interruptVoiceLine: {fileID: 0}
+      damage: 12
+      shield: 0
+      invulnerableTurns: 0
+      vulnerableTurns: 0
+  - phaseId: alliances
+    displayName: Le Poids des Alliances
+    startsWhenHpPercentAtOrBelow: 0.6
+    advanceAfterBossTurns: 0
+    advanceAfterPatternIterations: 0
+    deathEndsCombatBeforeNextPhase: 0
+    maxHpOverride: 0
+    healToHpPercentOnStart: 0
+    shieldOnStart: 24
+    invulnerableTurnsOnStart: 0
+    bossSprite: {fileID: 0}
+    bossVisualScale: 0
+    phaseStartSfx: {fileID: 0}
+    dialogueOnStart: Tu montes pour la sauver ? Non. Tu montes parce que tu ne sais
+      pas t'arreter.
+    actions:
+    - actionId: charge_des_noms
+      actionType: 0
+      bossLine: Il recite des noms jusqu'a couvrir le tien.
+      bossVoiceLine: {fileID: 0}
+      chargeLine: Toutes les bagues tremblent a la fois.
+      chargeVoiceLine: {fileID: 0}
+      chargeTurns: 1
+      vulnerableWhileCharging: 0
+      startEffects: []
+      chargeTurnEffects: []
+      resolveEffects: []
+      interruptIfPlayerBlockAtLeast: 0
+      interruptBossStunTurns: 0
+      interruptLine: 
+      interruptVoiceLine: {fileID: 0}
+      damage: 29
+      shield: 0
+      invulnerableTurns: 0
+      vulnerableTurns: 0
+    - actionId: cuirasse_de_deuil
+      actionType: 1
+      bossLine: Le deuil devient armure.
+      bossVoiceLine: {fileID: 0}
+      chargeLine: 
+      chargeVoiceLine: {fileID: 0}
+      chargeTurns: 0
+      vulnerableWhileCharging: 0
+      startEffects: []
+      chargeTurnEffects: []
+      resolveEffects: []
+      interruptIfPlayerBlockAtLeast: 0
+      interruptBossStunTurns: 0
+      interruptLine: 
+      interruptVoiceLine: {fileID: 0}
+      damage: 0
+      shield: 22
+      invulnerableTurns: 0
+      vulnerableTurns: 0
+    - actionId: sentence_lourde
+      actionType: 0
+      bossLine: Une faute ancienne revient au poing.
+      bossVoiceLine: {fileID: 0}
+      chargeLine: 
+      chargeVoiceLine: {fileID: 0}
+      chargeTurns: 0
+      vulnerableWhileCharging: 0
+      startEffects: []
+      chargeTurnEffects: []
+      resolveEffects: []
+      interruptIfPlayerBlockAtLeast: 0
+      interruptBossStunTurns: 0
+      interruptLine: 
+      interruptVoiceLine: {fileID: 0}
+      damage: 18
+      shield: 0
+      invulnerableTurns: 0
+      vulnerableTurns: 0
+  - phaseId: dette_totale
+    displayName: Dette Totale
+    startsWhenHpPercentAtOrBelow: 0.25
+    advanceAfterBossTurns: 0
+    advanceAfterPatternIterations: 0
+    deathEndsCombatBeforeNextPhase: 0
+    maxHpOverride: 0
+    healToHpPercentOnStart: 0
+    shieldOnStart: 0
+    invulnerableTurnsOnStart: 1
+    bossSprite: {fileID: 0}
+    bossVisualScale: 0
+    phaseStartSfx: {fileID: 0}
+    dialogueOnStart: Tu veux une preuve ? Tu es la preuve.
+    actions:
+    - actionId: jugement_final
+      actionType: 0
+      bossLine: Il ne compte plus. Il condamne.
+      bossVoiceLine: {fileID: 0}
+      chargeLine: 
+      chargeVoiceLine: {fileID: 0}
+      chargeTurns: 0
+      vulnerableWhileCharging: 0
+      startEffects: []
+      chargeTurnEffects: []
+      resolveEffects: []
+      interruptIfPlayerBlockAtLeast: 0
+      interruptBossStunTurns: 0
+      interruptLine: 
+      interruptVoiceLine: {fileID: 0}
+      damage: 24
+      shield: 0
+      invulnerableTurns: 0
+      vulnerableTurns: 0
+    - actionId: registre_ferme
+      actionType: 1
+      bossLine: Le registre se referme comme une tombe.
+      bossVoiceLine: {fileID: 0}
+      chargeLine: 
+      chargeVoiceLine: {fileID: 0}
+      chargeTurns: 0
+      vulnerableWhileCharging: 0
+      startEffects: []
+      chargeTurnEffects: []
+      resolveEffects: []
+      interruptIfPlayerBlockAtLeast: 0
+      interruptBossStunTurns: 0
+      interruptLine: 
+      interruptVoiceLine: {fileID: 0}
+      damage: 0
+      shield: 20
+      invulnerableTurns: 0
+      vulnerableTurns: 0
+  rewardPickCount: 1
+  rewardCardIds:
+  - armure_calcinee
+  - autel_profane
+  - saignee_ardente
+  potionRewardCount: 1

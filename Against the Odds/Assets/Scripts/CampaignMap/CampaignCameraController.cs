@@ -1,216 +1,314 @@
 using System.Collections;
+using System.Collections.Generic;
+using AgainstTheOdds.Core;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using AgainstTheOdds.Core;
 
 namespace AgainstTheOdds.CampaignMap
 {
-    /// <summary>
-    /// Contrôleur de la Main Camera de la scène 03_CampaignMap.
-    /// Scroll vertical (molette / drag clic gauche / flèches) avec smoothing SmoothDamp et clamp,
-    /// plus FocusOnPin() pour centrer la caméra sur un pin donné (appelé au Start sur le boss courant).
-    /// </summary>
     [RequireComponent(typeof(Camera))]
     public class CampaignCameraController : MonoBehaviour
     {
-        [Header("Bornes verticales (Y monde)")]
-        [Tooltip("Y minimum (centre de la carte du bas).")]
+        [Header("Bounds")]
+        [SerializeField] private float minX = 0f;
+        [SerializeField] private float maxX = 0f;
         [SerializeField] private float minY = 0f;
-        [Tooltip("Y maximum (centre de la carte du haut, boss final).")]
         [SerializeField] private float maxY = 40f;
+        [SerializeField] private bool lockXWhenBoundsAreZero = true;
 
-        [Header("Vitesses d'input")]
-        [Tooltip("Unités monde ajoutées par cran de molette (un cran = une \"notch\" standard).")]
-        [SerializeField] private float scrollSpeed = 2f;
-        [Tooltip("Multiplicateur appliqué au delta souris (pixels/frame) pendant le drag. Input System : rester petit (~0.05).")]
-        [SerializeField] private float dragSpeed = 0.05f;
-        [Tooltip("Unités monde par seconde quand une flèche haut/bas est maintenue.")]
-        [SerializeField] private float keyboardSpeed = 6f;
+        [Header("Manual Movement")]
+        [SerializeField] private float smoothTime = 0.12f;
 
-        [Header("Smoothing")]
-        [Tooltip("Temps (secondes) que met SmoothDamp pour rattraper la cible. Plus petit = plus réactif, plus grand = plus mou.")]
-        [SerializeField] private float smoothFactor = 0.15f;
+        [Header("Pin Navigation")]
+        [SerializeField] private bool enablePinNavigation = true;
+        [SerializeField] private float focusSmoothTime = 0.28f;
+        [SerializeField] private float focusArrivalDistance = 0.02f;
+        [SerializeField] private float focusMaxDuration = 2f;
+        [SerializeField] private float directionalConeDegrees = 65f;
+        [SerializeField] private float navigationCooldown = 0.06f;
+        [SerializeField] private Vector2 pinFocusOffset = Vector2.zero;
+        [SerializeField] private bool focusCurrentBossOnStart = true;
 
-        [Header("Focus automatique")]
-        [Tooltip("Durée (secondes) de l'animation FocusOnPin.")]
-        [SerializeField] private float focusDuration = 0.8f;
-
-        // Cible de Y vers laquelle la caméra tend en permanence (mise à jour par les inputs).
-        private float targetY;
-        // Vitesse courante utilisée par Mathf.SmoothDamp.
-        private float currentVelocity;
-        // Désactivé pendant FocusOnPin pour éviter que l'utilisateur "lutte" contre l'animation.
+        private Camera campaignCamera;
+        private Vector2 targetPosition;
+        private Vector2 smoothVelocity;
         private bool userInputEnabled = true;
+        private bool isFocusing;
+        private float nextNavigationTime;
         private Coroutine focusRoutine;
+        private BossPin focusedPin;
+
+        private void Awake()
+        {
+            campaignCamera = GetComponent<Camera>();
+            if (!campaignCamera.orthographic)
+            {
+                Debug.LogWarning("[CampaignCameraController] Campaign camera forced to orthographic.");
+                campaignCamera.orthographic = true;
+            }
+        }
 
         private void Start()
         {
-            var cam = GetComponent<Camera>();
-            if (!cam.orthographic)
+            targetPosition = ClampPosition(transform.position);
+            ApplyPosition(targetPosition);
+
+            if (focusCurrentBossOnStart)
             {
-                Debug.LogWarning("[CampaignCameraController] La caméra n'était pas orthographique — forcée en ortho.");
-                cam.orthographic = true;
+                FocusCurrentBoss();
             }
-
-            // On part de la position actuelle (clampée), puis on focus sur le pin courant si possible.
-            targetY = Mathf.Clamp(transform.position.y, minY, maxY);
-            ApplyY(targetY);
-
-            FocusSurBossCourant();
         }
 
         private void Update()
         {
             if (userInputEnabled)
             {
-                LireInputs();
+                ReadInputs();
             }
 
-            // Clamp permanent (utile si on retouche min/max en Play Mode).
-            targetY = Mathf.Clamp(targetY, minY, maxY);
-
-            // SmoothDamp : fluide quel que soit le frame rate, pas saccadé comme un Lerp naïf.
-            float nouveauY = Mathf.SmoothDamp(transform.position.y, targetY, ref currentVelocity, smoothFactor);
-            ApplyY(nouveauY);
+            targetPosition = ClampPosition(targetPosition);
+            float activeSmoothTime = isFocusing ? focusSmoothTime : smoothTime;
+            Vector2 currentPosition = transform.position;
+            Vector2 newPosition = Vector2.SmoothDamp(currentPosition, targetPosition, ref smoothVelocity, activeSmoothTime);
+            ApplyPosition(newPosition);
         }
 
-        private void LireInputs()
-        {
-            var mouse = Mouse.current;
-            var keyboard = Keyboard.current;
-
-            // 1) Molette — input principal.
-            //    L'Input System renvoie le scroll en "pixels" (typiquement 120 par cran sous Windows).
-            //    On normalise en /120 pour que scrollSpeed reste exprimé en "unités par cran".
-            if (mouse != null)
-            {
-                float scroll = mouse.scroll.ReadValue().y;
-                if (Mathf.Abs(scroll) > 0.01f)
-                {
-                    targetY += (scroll / 120f) * scrollSpeed;
-                }
-
-                // 2) Drag clic gauche maintenu — convention "grab the map" : la carte suit le curseur,
-                //    donc la caméra va dans le sens opposé au mouvement souris.
-                //    mouse.delta renvoie des pixels/frame (bien plus gros que l'ancien GetAxis), d'où dragSpeed ~0.05.
-                if (mouse.leftButton.isPressed)
-                {
-                    float deltaY = mouse.delta.ReadValue().y;
-                    if (Mathf.Abs(deltaY) > 0.001f)
-                    {
-                        targetY -= deltaY * dragSpeed;
-                    }
-                }
-            }
-
-            // 3) Flèches haut/bas — fallback clavier.
-            if (keyboard != null)
-            {
-                if (keyboard.upArrowKey.isPressed)
-                {
-                    targetY += keyboardSpeed * Time.deltaTime;
-                }
-                else if (keyboard.downArrowKey.isPressed)
-                {
-                    targetY -= keyboardSpeed * Time.deltaTime;
-                }
-            }
-        }
-
-        private void ApplyY(float y)
-        {
-            var p = transform.position;
-            p.y = y;
-            transform.position = p;
-        }
-
-        /// <summary>
-        /// Anime la caméra vers la position Y du Transform donné. Désactive le scroll utilisateur
-        /// pendant l'animation puis le réactive à la fin. Appelable à tout moment : toute animation
-        /// déjà en cours est interrompue et remplacée.
-        /// </summary>
         public void FocusOnPin(Transform pinTransform)
         {
             if (pinTransform == null)
             {
-                Debug.LogWarning("[CampaignCameraController] FocusOnPin appelé avec un Transform null — ignoré.");
+                Debug.LogWarning("[CampaignCameraController] FocusOnPin called with null transform.");
                 return;
             }
 
+            focusedPin = pinTransform.GetComponent<BossPin>();
+            FocusOnWorldPosition(pinTransform.position);
+        }
+
+        public void FocusOnBossIndex(int bossIndex)
+        {
+            BossPin pin = CampaignPinRegistry.GetPin(bossIndex);
+            if (pin == null)
+            {
+                Debug.LogWarning($"[CampaignCameraController] No BossPin found for index {bossIndex}.");
+                return;
+            }
+
+            focusedPin = pin;
+            FocusOnWorldPosition(pin.transform.position);
+        }
+
+        private void ReadInputs()
+        {
+            Mouse mouse = Mouse.current;
+            Keyboard keyboard = Keyboard.current;
+
+            if (mouse != null)
+            {
+                ReadMouse(mouse);
+            }
+
+            if (keyboard != null)
+            {
+                ReadKeyboard(keyboard);
+            }
+        }
+
+        private void ReadMouse(Mouse mouse)
+        {
+            float scroll = mouse.scroll.ReadValue().y;
+            if (!enablePinNavigation || Mathf.Abs(scroll) <= 0.01f || Time.unscaledTime < nextNavigationTime)
+            {
+                return;
+            }
+
+            Vector2 direction = scroll > 0f ? Vector2.up : Vector2.down;
+            int steps = Mathf.Max(1, Mathf.RoundToInt(Mathf.Abs(scroll) / 120f));
+            bool moved = false;
+            for (int i = 0; i < steps; i++)
+            {
+                moved |= FocusPinInDirection(direction);
+            }
+
+            if (moved)
+            {
+                nextNavigationTime = Time.unscaledTime + navigationCooldown;
+            }
+        }
+
+        private void ReadKeyboard(Keyboard keyboard)
+        {
+            Vector2 direction = Vector2.zero;
+
+            if (keyboard.upArrowKey.isPressed || keyboard.wKey.isPressed) direction.y += 1f;
+            if (keyboard.downArrowKey.isPressed || keyboard.sKey.isPressed) direction.y -= 1f;
+            if (keyboard.rightArrowKey.isPressed || keyboard.dKey.isPressed) direction.x += 1f;
+            if (keyboard.leftArrowKey.isPressed || keyboard.aKey.isPressed) direction.x -= 1f;
+
+            if (direction == Vector2.zero || !enablePinNavigation || Time.unscaledTime < nextNavigationTime)
+            {
+                return;
+            }
+
+            if (IsNavigationPressed(keyboard) && FocusPinInDirection(direction.normalized))
+            {
+                nextNavigationTime = Time.unscaledTime + navigationCooldown;
+            }
+        }
+
+        private bool IsNavigationPressed(Keyboard keyboard)
+        {
+            return keyboard.upArrowKey.wasPressedThisFrame
+                || keyboard.downArrowKey.wasPressedThisFrame
+                || keyboard.leftArrowKey.wasPressedThisFrame
+                || keyboard.rightArrowKey.wasPressedThisFrame
+                || keyboard.wKey.wasPressedThisFrame
+                || keyboard.aKey.wasPressedThisFrame
+                || keyboard.sKey.wasPressedThisFrame
+                || keyboard.dKey.wasPressedThisFrame;
+        }
+
+        private bool FocusPinInDirection(Vector2 direction)
+        {
+            IReadOnlyList<BossPin> pins = CampaignPinRegistry.GetAllPins();
+            if (pins.Count == 0)
+            {
+                return false;
+            }
+
+            if (focusedPin == null)
+            {
+                focusedPin = FindNearestPin(pins, transform.position);
+            }
+            Vector2 origin = focusedPin != null ? (Vector2)focusedPin.transform.position : (Vector2)transform.position;
+            BossPin bestPin = null;
+            float bestScore = float.PositiveInfinity;
+            float minDot = Mathf.Cos(directionalConeDegrees * Mathf.Deg2Rad);
+
+            foreach (BossPin pin in pins)
+            {
+                if (pin == null || pin == focusedPin) continue;
+
+                Vector2 toPin = (Vector2)pin.transform.position - origin;
+                float distance = toPin.magnitude;
+                if (distance <= 0.001f) continue;
+
+                Vector2 toPinDirection = toPin / distance;
+                float dot = Vector2.Dot(direction, toPinDirection);
+                if (dot < minDot) continue;
+
+                float alignmentPenalty = (1f - dot) * 20f;
+                float score = distance + alignmentPenalty;
+                if (score < bestScore)
+                {
+                    bestScore = score;
+                    bestPin = pin;
+                }
+            }
+
+            if (bestPin == null)
+            {
+                return false;
+            }
+
+            focusedPin = bestPin;
+            FocusOnWorldPosition(bestPin.transform.position);
+            return true;
+        }
+
+        private BossPin FindNearestPin(IReadOnlyList<BossPin> pins, Vector2 position)
+        {
+            BossPin nearestPin = null;
+            float nearestDistance = float.PositiveInfinity;
+            foreach (BossPin pin in pins)
+            {
+                if (pin == null) continue;
+
+                float distance = Vector2.Distance(position, pin.transform.position);
+                if (distance < nearestDistance)
+                {
+                    nearestDistance = distance;
+                    nearestPin = pin;
+                }
+            }
+
+            return nearestPin;
+        }
+
+        private void FocusCurrentBoss()
+        {
+            if (GameManager.Instance == null)
+            {
+                Debug.LogWarning("[CampaignCameraController] GameManager missing. Start the game from 00_Bootstrap for campaign focus.");
+                return;
+            }
+
+            FocusOnBossIndex(GameManager.Instance.CurrentBossIndex);
+        }
+
+        private void FocusOnWorldPosition(Vector2 worldPosition)
+        {
             if (focusRoutine != null)
             {
                 StopCoroutine(focusRoutine);
             }
-            focusRoutine = StartCoroutine(FocusCoroutine(pinTransform.position.y));
+
+            focusRoutine = StartCoroutine(FocusCoroutine(worldPosition + pinFocusOffset));
         }
 
-        private IEnumerator FocusCoroutine(float cibleY)
+        private IEnumerator FocusCoroutine(Vector2 worldPosition)
         {
-            userInputEnabled = false;
-            currentVelocity = 0f;
+            userInputEnabled = true;
+            isFocusing = true;
+            smoothVelocity = Vector2.zero;
 
-            float departY = transform.position.y;
-            float clampCibleY = Mathf.Clamp(cibleY, minY, maxY);
+            Vector2 end = ClampPosition(worldPosition);
+            targetPosition = end;
+            float elapsed = 0f;
 
-            // Cas trivial : on est déjà au bon endroit, rien à animer.
-            if (Mathf.Approximately(departY, clampCibleY) || focusDuration <= 0f)
+            if (focusSmoothTime <= 0f)
             {
-                ApplyY(clampCibleY);
+                ApplyPosition(end);
             }
             else
             {
-                float t = 0f;
-                while (t < focusDuration)
+                while (Vector2.Distance(transform.position, end) > focusArrivalDistance && elapsed < focusMaxDuration)
                 {
-                    t += Time.deltaTime;
-                    float k = Mathf.Clamp01(t / focusDuration);
-                    // SmoothStep = ease-in/ease-out, plus agréable qu'un Lerp linéaire.
-                    float y = Mathf.Lerp(departY, clampCibleY, Mathf.SmoothStep(0f, 1f, k));
-                    ApplyY(y);
+                    elapsed += Time.deltaTime;
                     yield return null;
                 }
             }
 
-            // Aligne la cible du SmoothDamp sur la position finale pour que la reprise user soit sans à-coup.
-            ApplyY(clampCibleY);
-            targetY = clampCibleY;
+            ApplyPosition(end);
+            targetPosition = end;
+            isFocusing = false;
             userInputEnabled = true;
             focusRoutine = null;
         }
 
-        private void FocusSurBossCourant()
+        private Vector2 ClampPosition(Vector2 position)
         {
-            if (GameManager.Instance == null)
-            {
-                Debug.LogWarning("[CampaignCameraController] GameManager.Instance absent — démarrage hors 00_Bootstrap ? Focus auto skippé.");
-                return;
-            }
+            bool lockX = lockXWhenBoundsAreZero && Mathf.Approximately(minX, maxX);
+            float x = lockX ? transform.position.x : Mathf.Clamp(position.x, minX, maxX);
+            float y = Mathf.Clamp(position.y, minY, maxY);
+            return new Vector2(x, y);
+        }
 
-            int index = GameManager.Instance.CurrentBossIndex;
-            if (index < 0 || index >= GameManager.NombreBossCampagne)
-            {
-                Debug.LogWarning($"[CampaignCameraController] CurrentBossIndex hors range ({index}). Focus auto skippé.");
-                return;
-            }
-
-            var pin = CampaignPinRegistry.GetPin(index);
-            if (pin == null)
-            {
-                Debug.LogWarning($"[CampaignCameraController] Aucun BossPin trouvé pour l'index {index}. Vérifie que tous les pins ont un BossPin avec le bon bossIndex.");
-                return;
-            }
-
-            FocusOnPin(pin.transform);
+        private void ApplyPosition(Vector2 position)
+        {
+            Vector3 current = transform.position;
+            transform.position = new Vector3(position.x, position.y, current.z);
         }
 
 #if UNITY_EDITOR
-        // Visualise les bornes min/max dans la Scene view quand la caméra est sélectionnée.
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.cyan;
             Vector3 p = transform.position;
             Gizmos.DrawLine(new Vector3(p.x - 5f, minY, p.z), new Vector3(p.x + 5f, minY, p.z));
             Gizmos.DrawLine(new Vector3(p.x - 5f, maxY, p.z), new Vector3(p.x + 5f, maxY, p.z));
+            Gizmos.DrawLine(new Vector3(minX, p.y - 5f, p.z), new Vector3(minX, p.y + 5f, p.z));
+            Gizmos.DrawLine(new Vector3(maxX, p.y - 5f, p.z), new Vector3(maxX, p.y + 5f, p.z));
         }
 #endif
     }

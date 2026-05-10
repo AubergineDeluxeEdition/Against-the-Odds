@@ -12,7 +12,10 @@ namespace AgainstTheOdds.Core
     [Serializable]
     public class SaveData
     {
+        public bool isInRun;
         public int currentBossIndex;
+        public int potionCount = 0;
+        public List<string> runRewardCardIds = new List<string>();
         public List<string> unlockedCards = new List<string>();
         public string selectedDeckId;
         public string lastPlayTimeIso;
@@ -73,7 +76,9 @@ namespace AgainstTheOdds.Core
             try
             {
                 string json = File.ReadAllText(CheminFichierSauvegarde);
-                return JsonUtility.FromJson<SaveData>(json);
+                SaveData data = JsonUtility.FromJson<SaveData>(json);
+                Normalize(data);
+                return data;
             }
             catch (Exception e)
             {
@@ -84,9 +89,45 @@ namespace AgainstTheOdds.Core
 
         public bool HasSave() => File.Exists(CheminFichierSauvegarde);
 
+        public void SaveRun(GameManager gameManager)
+        {
+            if (gameManager == null) return;
+
+            CurrentData.isInRun = gameManager.IsInRun;
+            CurrentData.currentBossIndex = gameManager.CurrentBossIndex;
+            CurrentData.potionCount = gameManager.PotionCount;
+            CurrentData.selectedDeckId = gameManager.SelectedDeckId;
+            CurrentData.runRewardCardIds = new List<string>(gameManager.RunRewardCardIds);
+            SaveGame();
+        }
+
+        public void SetCurrentData(SaveData data)
+        {
+            if (data == null) return;
+
+            Normalize(data);
+            CurrentData = data;
+        }
+
+        private static void Normalize(SaveData data)
+        {
+            if (data == null) return;
+
+            if (data.runRewardCardIds == null) data.runRewardCardIds = new List<string>();
+            if (data.unlockedCards == null) data.unlockedCards = new List<string>();
+            if (string.IsNullOrWhiteSpace(data.selectedDeckId))
+            {
+                data.selectedDeckId = "default";
+            }
+        }
+
         public void DeleteSave()
         {
-            if (!HasSave()) return;
+            if (!HasSave())
+            {
+                CurrentData = new SaveData();
+                return;
+            }
 
             try
             {

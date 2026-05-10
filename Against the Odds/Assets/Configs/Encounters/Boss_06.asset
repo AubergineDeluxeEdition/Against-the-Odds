@@ -1,0 +1,232 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1273a23465fb4c5d9462acfebf7f111c, type: 3}
+  m_Name: Boss_06
+  m_EditorClassIdentifier: 
+  bossIndex: 5
+  bossDisplayName: La Chose
+  playerStartHP: 100
+  bossStartHP: 30
+  cardDatabaseResourcePath: 
+  bossSprite: {fileID: -7893665339903949397, guid: f2b7d781bbf44c04bab07e934979e043, type: 3}
+  bossVisualScale: 1
+  combatMusic: {fileID: 8300000, guid: 1d83702dbb861b74e87460030c879c25, type: 3}
+  fadeInCombatMusic: 1
+  cardAudioProfile: {fileID: 11400000, guid: 6ec1711d07634374a801a8ad8cc27c81, type: 2}
+  defaultAttackDamage: 10
+  introDialogue: Ne frappe pas... Je ne garde rien. Je ne suis rien.
+  introVoiceLine: {fileID: 0}
+  hpDialogues:
+  - triggerWhenHpPercentAtOrBelow: 0.75
+    line: Je t'ai deja vu passer. Tu ne m'avais pas regarde.
+    voiceLine: {fileID: 0}
+  - triggerWhenHpPercentAtOrBelow: 0.4
+    line: S'il descend, ferme les yeux. ca fait moins peur.
+    voiceLine: {fileID: 0}
+  deathDialogue: Merci... ou pardon... je ne sais plus.
+  deathVoiceLine: {fileID: 0}
+  defeatResultText: Le Novice disparait dans sa gorge. Tu le suis.
+  victoryResultText: Meme la pitie a ete dressee ici pour devenir une arme.
+  bossDeathSfx: {fileID: 8300000, guid: 2884d48ef356cf24cb85f65f134173e9, type: 3}
+  victorySfx: {fileID: 8300000, guid: a5a4fc7157527324f9a1233dc68e70f7, type: 3}
+  defeatSfx: {fileID: 8300000, guid: 0ed4cba76ba954b4d9f9098ed17d1114, type: 3}
+  defeatButtonSfx: {fileID: 8300000, guid: 87ae847158639d4468acae75a0cfe2c6, type: 3}
+  phases:
+  - phaseId: novice
+    displayName: Le Novice Aveugle
+    startsWhenHpPercentAtOrBelow: 1
+    advanceAfterBossTurns: 3
+    advanceAfterPatternIterations: 0
+    deathEndsCombatBeforeNextPhase: 1
+    maxHpOverride: 0
+    healToHpPercentOnStart: 0
+    shieldOnStart: 0
+    invulnerableTurnsOnStart: 0
+    bossSprite: {fileID: 0}
+    bossVisualScale: 0
+    phaseStartSfx: {fileID: 0}
+    dialogueOnStart: Il reste la, trop faible pour lever les mains.
+    actions:
+    - actionId: supplication
+      actionType: 5
+      bossLine: Ne me regarde pas comme si j'etais un choix.
+      bossVoiceLine: {fileID: 0}
+      chargeLine: 
+      chargeVoiceLine: {fileID: 0}
+      chargeTurns: 3
+      vulnerableWhileCharging: 0
+      startEffects: []
+      chargeTurnEffects: []
+      resolveEffects: []
+      interruptIfPlayerBlockAtLeast: 0
+      interruptBossStunTurns: 0
+      interruptLine: 
+      interruptVoiceLine: {fileID: 0}
+      damage: 0
+      shield: 0
+      invulnerableTurns: 0
+      vulnerableTurns: 0
+    - actionId: tremblement
+      actionType: 5
+      bossLine: Il vient toujours quand quelqu'un hesite.
+      bossVoiceLine: {fileID: 0}
+      chargeLine: 
+      chargeVoiceLine: {fileID: 0}
+      chargeTurns: 0
+      vulnerableWhileCharging: 0
+      startEffects: []
+      chargeTurnEffects: []
+      resolveEffects: []
+      interruptIfPlayerBlockAtLeast: 0
+      interruptBossStunTurns: 0
+      interruptLine: 
+      interruptVoiceLine: {fileID: 0}
+      damage: 0
+      shield: 0
+      invulnerableTurns: 0
+      vulnerableTurns: 0
+    - actionId: dernier_repit
+      actionType: 5
+      bossLine: Le ciel commence a grincer.
+      bossVoiceLine: {fileID: 0}
+      chargeLine: 
+      chargeVoiceLine: {fileID: 0}
+      chargeTurns: 0
+      vulnerableWhileCharging: 0
+      startEffects: []
+      chargeTurnEffects: []
+      resolveEffects: []
+      interruptIfPlayerBlockAtLeast: 0
+      interruptBossStunTurns: 0
+      interruptLine: 
+      interruptVoiceLine: {fileID: 0}
+      damage: 0
+      shield: 0
+      invulnerableTurns: 0
+      vulnerableTurns: 0
+  - phaseId: dragon
+    displayName: Le Dragon de Corruption
+    startsWhenHpPercentAtOrBelow: 0
+    advanceAfterBossTurns: 10
+    advanceAfterPatternIterations: 0
+    deathEndsCombatBeforeNextPhase: 0
+    maxHpOverride: 135
+    healToHpPercentOnStart: 1
+    shieldOnStart: 0
+    invulnerableTurnsOnStart: 0
+    bossSprite: {fileID: -15277409059619420, guid: 3d780bdaa86f4ee4fbabf9f4e6162c43, type: 3}
+    bossVisualScale: 0
+    phaseStartSfx: {fileID: 0}
+    dialogueOnStart: Le ciel se fend. La pitie n'a pas eu le temps de mourir seule.
+    actions:
+    - actionId: morsure_corrompue
+      actionType: 0
+      bossLine: La chose devore le Novice comme si elle corrigeait une erreur.
+      bossVoiceLine: {fileID: 0}
+      chargeLine: 
+      chargeVoiceLine: {fileID: 0}
+      chargeTurns: 0
+      vulnerableWhileCharging: 0
+      startEffects: []
+      chargeTurnEffects: []
+      resolveEffects: []
+      interruptIfPlayerBlockAtLeast: 0
+      interruptBossStunTurns: 0
+      interruptLine: 
+      interruptVoiceLine: {fileID: 0}
+      damage: 15
+      shield: 0
+      invulnerableTurns: 0
+      vulnerableTurns: 0
+    - actionId: ecaille_pourrie
+      actionType: 1
+      bossLine: Ses ecailles tiennent par la maladie.
+      bossVoiceLine: {fileID: 0}
+      chargeLine: 
+      chargeVoiceLine: {fileID: 0}
+      chargeTurns: 0
+      vulnerableWhileCharging: 0
+      startEffects: []
+      chargeTurnEffects: []
+      resolveEffects: []
+      interruptIfPlayerBlockAtLeast: 0
+      interruptBossStunTurns: 0
+      interruptLine: 
+      interruptVoiceLine: {fileID: 0}
+      damage: 0
+      shield: 14
+      invulnerableTurns: 0
+      vulnerableTurns: 0
+    - actionId: chute
+      actionType: 0
+      bossLine: Ses ailes battent sans force.
+      bossVoiceLine: {fileID: 0}
+      chargeLine: Il monte a peine. Sa chute suffira.
+      chargeVoiceLine: {fileID: 0}
+      chargeTurns: 2
+      vulnerableWhileCharging: 1
+      startEffects: []
+      chargeTurnEffects: []
+      resolveEffects: []
+      interruptIfPlayerBlockAtLeast: 0
+      interruptBossStunTurns: 0
+      interruptLine: 
+      interruptVoiceLine: {fileID: 0}
+      damage: 34
+      shield: 0
+      invulnerableTurns: 0
+      vulnerableTurns: 0
+  - phaseId: immolation
+    displayName: L'Immolation
+    startsWhenHpPercentAtOrBelow: 0.25
+    advanceAfterBossTurns: 0
+    advanceAfterPatternIterations: 0
+    deathEndsCombatBeforeNextPhase: 0
+    maxHpOverride: 0
+    healToHpPercentOnStart: 0.5
+    shieldOnStart: 0
+    invulnerableTurnsOnStart: 0
+    bossSprite: {fileID: -15277409059619420, guid: 3d780bdaa86f4ee4fbabf9f4e6162c43, type: 3}
+    bossVisualScale: 0
+    phaseStartSfx: {fileID: 0}
+    dialogueOnStart: Il brule de l'interieur, incapable de finir sa propre agonie.
+    actions:
+    - actionId: brasier_final
+      actionType: 0
+      bossLine: Sa chair s'ouvre en flammes.
+      bossVoiceLine: {fileID: 0}
+      chargeLine: 
+      chargeVoiceLine: {fileID: 0}
+      chargeTurns: 0
+      vulnerableWhileCharging: 0
+      startEffects: []
+      chargeTurnEffects: []
+      resolveEffects:
+      - effectType: 2
+        value: 8
+        line: Le dragon se consume.
+        voiceLine: {fileID: 0}
+      - effectType: 0
+        value: 23
+        line: Le brasier te mord.
+        voiceLine: {fileID: 0}
+      interruptIfPlayerBlockAtLeast: 0
+      interruptBossStunTurns: 0
+      interruptLine: 
+      interruptVoiceLine: {fileID: 0}
+      damage: 0
+      shield: 0
+      invulnerableTurns: 0
+      vulnerableTurns: 0
+  rewardPickCount: 1
+  rewardCardIds: []
+  potionRewardCount: 1

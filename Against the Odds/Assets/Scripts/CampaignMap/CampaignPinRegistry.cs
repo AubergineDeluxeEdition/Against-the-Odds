@@ -11,6 +11,7 @@ namespace AgainstTheOdds.CampaignMap
     public static class CampaignPinRegistry
     {
         private static readonly Dictionary<int, BossPin> pinsParIndex = new Dictionary<int, BossPin>();
+        private static readonly List<BossPin> pinsBuffer = new List<BossPin>();
 
         // Unity conserve l'état statique entre deux Play si "Domain Reload" est désactivé : on force le reset.
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
@@ -47,6 +48,21 @@ namespace AgainstTheOdds.CampaignMap
         {
             pinsParIndex.TryGetValue(bossIndex, out var pin);
             return pin;
+        }
+
+        public static IReadOnlyList<BossPin> GetAllPins()
+        {
+            pinsBuffer.Clear();
+            foreach (BossPin pin in pinsParIndex.Values)
+            {
+                if (pin != null && pin.IsVisibleOnCampaign)
+                {
+                    pinsBuffer.Add(pin);
+                }
+            }
+
+            pinsBuffer.Sort((a, b) => a.BossIndex.CompareTo(b.BossIndex));
+            return pinsBuffer;
         }
     }
 }
