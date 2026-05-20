@@ -5,17 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Against the Odds, un jeu de cartes sombre où chaque décision peut sauver une run ou la condamner."
+      content="Against the Odds est un jeu de cartes solo où chaque combat demande de gérer sa main, ses ressources et les attaques du boss."
     />
     <meta property="og:title" content="Against the Odds" />
     <meta
       property="og:description"
-      content="Jeu de cartes sombre, boss impitoyables, mode hardcore et choix impossibles."
+      content="Un jeu de cartes sombre avec combats de boss, progression de campagne et mode hardcore."
     />
     <meta property="og:image" content="/assets/hero-background.jpg" />
     <title>Against the Odds</title>
     <link rel="preload" href="/assets/hero-loop.mp4?v=2" as="video" type="video/mp4" />
-    <link rel="stylesheet" href="/styles.css?v=4" />
+    <link rel="stylesheet" href="/styles.css?v=5" />
   </head>
   <body>
     <header class="site-header" aria-label="Navigation principale">
@@ -43,15 +43,15 @@
         ></video>
         <div class="hero__shade"></div>
         <div class="hero__content">
-          <p class="kicker">Jeu de cartes hardcore</p>
+          <p class="kicker">Jeu de cartes solo</p>
           <h1 id="hero-title">Against the Odds</h1>
           <p class="hero__lead">
-            Bâtis ta main dans les cendres, affronte des boss qui changent les règles,
-            et paie chaque victoire avec quelque chose que tu voulais garder.
+            Affronte une suite de boss, améliore ton paquet de cartes après chaque victoire
+            et essaie de terminer la campagne sans perdre ta partie.
           </p>
           <div class="hero__actions">
             <a class="button button--primary" href="#download">Télécharger le jeu</a>
-            <a class="button button--ghost" href="#combat">Voir le combat</a>
+            <a class="button button--ghost" href="#combat">Voir les combats</a>
           </div>
         </div>
       </section>
@@ -61,15 +61,17 @@
         <div class="feature__overlay"></div>
         <div class="feature__content">
           <p class="eyebrow">Combat</p>
-          <h2 id="combat-title">Lis. Frappe. Survis.</h2>
+          <h2 id="combat-title">Gère ta main à chaque tour</h2>
           <p>
-            Chaque tour oppose ta main, ta mana, ton bouclier et les intentions du boss.
-            Les cartes ne sont pas seulement des actions: ce sont des paris.
+            Tu joues tes cartes avec une quantité de mana limitée. Chaque tour,
+            le boss prépare une action: attaque, défense, effet spécial ou changement
+            de rythme. À toi de décider si tu encaisses, si tu bloques ou si tu prends
+            le risque d’attaquer.
           </p>
           <div class="stat-row">
-            <span>Deck évolutif</span>
-            <span>Boss scriptés</span>
-            <span>Runs tendues</span>
+            <span>Paquet évolutif</span>
+            <span>Boss à cycles</span>
+            <span>Mode hardcore</span>
           </div>
         </div>
       </section>
@@ -77,28 +79,28 @@
       <section id="mechanics" class="section mechanics" aria-labelledby="mechanics-title">
         <div class="section__heading">
           <p class="eyebrow">Mécaniques</p>
-          <h2 id="mechanics-title">Peu de ressources. Beaucoup de dégâts.</h2>
+          <h2 id="mechanics-title">Des ressources faciles à lire</h2>
         </div>
         <div class="mechanic-grid">
           <article>
             <img src="/assets/icon-burn.png" alt="" />
             <h3>Brûlure</h3>
-            <p>Accumule la pression, déclenche des synergies, mais laisse le feu te mordre en retour.</p>
+            <p>Certains effets appliquent de la brûlure pour infliger des dégâts sur la durée ou renforcer tes combos.</p>
           </article>
           <article>
             <img src="/assets/icon-shield.png" alt="" />
             <h3>Bouclier</h3>
-            <p>Absorbe l’impact quand tu n’as plus le luxe d’attaquer. Tenir est parfois un combo.</p>
+            <p>Le bouclier réduit les dégâts entrants. Il devient indispensable quand le boss annonce une grosse attaque.</p>
           </article>
           <article>
             <img src="/assets/icon-mana.png" alt="" />
             <h3>Mana</h3>
-            <p>Choisis ton tempo: vider ta main maintenant ou garder une réponse pour le prochain pattern.</p>
+            <p>Chaque carte a un coût. Dépenser toute ta mana peut finir un combat, ou te laisser sans défense au mauvais moment.</p>
           </article>
           <article>
             <img src="/assets/icon-potion.png" alt="" />
             <h3>Potions</h3>
-            <p>Une sécurité limitée, rare, et souvent gardée trop longtemps. Comme il se doit.</p>
+            <p>Les potions sont rares. Elles peuvent sauver une partie, mais il faut choisir le bon combat pour les utiliser.</p>
           </article>
         </div>
       </section>
@@ -109,10 +111,11 @@
         </div>
         <div class="showcase__copy">
           <p class="eyebrow">Campagne</p>
-          <h2 id="map-title">Choisis ta route.</h2>
+          <h2 id="map-title">Avance de boss en boss</h2>
           <p>
-            Traverse des régions de plus en plus dangereuses, choisis tes combats,
-            et prépare une réponse avant que le prochain adversaire ne t’impose la sienne.
+            La campagne est construite comme une progression de combats. Chaque victoire
+            te rapproche de la fin, mais les ennemis deviennent plus exigeants et ton paquet
+            doit suivre le rythme.
           </p>
         </div>
       </section>
@@ -122,10 +125,11 @@
         <div class="feature__overlay"></div>
         <div class="feature__content feature__content--right">
           <p class="eyebrow">Boss</p>
-          <h2 id="patterns-title">Chaque duel ment.</h2>
+          <h2 id="patterns-title">Apprends leurs cycles</h2>
           <p>
-            Certains boss punissent la défense. D’autres détestent tes cartes lentes.
-            Apprendre leurs cycles devient aussi important que piocher la bonne main.
+            Chaque boss a ses propres comportements. Certains punissent les paquets trop lents,
+            d’autres forcent à garder du bouclier ou à préparer une réponse précise.
+            Comprendre leurs tours est aussi important que jouer les bonnes cartes.
           </p>
         </div>
       </section>
@@ -133,7 +137,7 @@
       <section class="section cards" aria-labelledby="cards-title">
         <div class="section__heading">
           <p class="eyebrow">Cartes</p>
-          <h2 id="cards-title">Construis ton risque.</h2>
+          <h2 id="cards-title">Améliore ton paquet</h2>
         </div>
         <div class="card-rack" aria-label="Aperçu de cartes">
           <img src="/assets/card-judgement.png" alt="Carte Jugement du Bûcher" />
@@ -145,7 +149,7 @@
       <section id="bosses" class="section bosses" aria-labelledby="bosses-title">
         <div class="section__heading">
           <p class="eyebrow">Adversaires</p>
-          <h2 id="bosses-title">Ils t’attendent.</h2>
+          <h2 id="bosses-title">Des boss à battre en une seule partie</h2>
         </div>
         <div class="boss-grid">
           <article>
@@ -172,10 +176,10 @@
         <div class="feature__overlay feature__overlay--red"></div>
         <div class="feature__content">
           <p class="eyebrow">Ambiance</p>
-          <h2 id="tone-title">Rien n’est sauvé.</h2>
+          <h2 id="tone-title">Un univers sombre et lisible</h2>
           <p>
-            La direction artistique mélange liturgie, ruines, chair, cendres et lumière malade:
-            assez lisible pour jouer, assez noire pour rester en tête.
+            Le jeu mélange ruines, cendres, rituels et créatures grotesques,
+            avec une interface pensée pour rester claire pendant les combats.
           </p>
         </div>
       </section>
@@ -183,10 +187,10 @@
       <section id="download" class="download" aria-labelledby="download-title">
         <div class="download__inner">
           <p class="eyebrow">Build jouable</p>
-          <h2 id="download-title">Lance la run.</h2>
+          <h2 id="download-title">Télécharger la version Windows</h2>
           <p>
-            Récupère le dernier installateur Windows publié sur GitHub Releases.
-            Le téléchargement part directement de GitHub, sans passer par le serveur du site.
+            Le bouton télécharge le dernier installateur publié sur GitHub Releases.
+            Le fichier vient directement de GitHub et ne passe pas par le serveur du site.
           </p>
           <div class="download__actions">
             <a
@@ -195,7 +199,7 @@
             >
               Télécharger pour Windows
             </a>
-            <a class="button button--ghost" href="#top">Revoir le trailer</a>
+            <a class="button button--ghost" href="#top">Revoir l’accueil</a>
           </div>
           <dl class="download__meta">
             <div>
@@ -208,7 +212,7 @@
             </div>
             <div>
               <dt>Statut</dt>
-              <dd>Prototype</dd>
+              <dd>Prototype jouable</dd>
             </div>
           </dl>
         </div>
@@ -218,7 +222,7 @@
     <footer>
       <div>
         <strong>Against the Odds</strong>
-        <span>Jeu de cartes hardcore</span>
+        <span>Jeu de cartes solo hardcore</span>
       </div>
       <div>
         <a href="https://github.com/AubergineDeluxeEdition/Against-the-Odds">GitHub</a>

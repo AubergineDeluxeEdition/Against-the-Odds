@@ -1,6 +1,6 @@
 # Against the Odds Web
 
-Site statique officiel pour **Against the Odds**, un jeu de cartes sombre centré sur les runs hardcore, les combats de boss et la gestion de ressources sous pression.
+Site statique officiel pour **Against the Odds**, un jeu de cartes sombre centré sur les parties hardcore, les combats de boss et la gestion de ressources sous pression.
 
 Le site présente :
 
