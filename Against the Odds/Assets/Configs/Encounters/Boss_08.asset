@@ -30,12 +30,12 @@ MonoBehaviour:
     line: Pourquoi vos morts reviennent-ils toujours incomplets ?
     voiceLine: {fileID: 0}
   - triggerWhenHpPercentAtOrBelow: 0.38
-    line: Pourquoi ma main connaît-elle déjà la forme de ton cou ?
+    line: "Pourquoi ma main conna\xEEt-elle d\xE9j\xE0 la forme de ton cou ?"
     voiceLine: {fileID: 0}
-  deathDialogue: Mon amour... si tu reviens encore... passe sans me réveiller.
+  deathDialogue: "Mon amour... si tu reviens encore... passe sans me r\xE9veiller."
   deathVoiceLine: {fileID: 0}
-  defeatResultText: Elle te recoud contre elle sans comprendre pourquoi elle pleure.
-    Quand ton cœur ralentit, elle sourit enfin.
+  defeatResultText: "Elle te recoud contre elle sans comprendre pourquoi elle pleure.
+    Quand ton c\u0153ur ralentit, elle sourit enfin."
   victoryResultText: Elle ne t'a reconnu qu'au moment de te perdre. Le dernier lien
     qui te tirait vers le sommet vient de se rompre.
   bossDeathSfx: {fileID: 8300000, guid: fd318bafa5bd05040be0cf2bc5d86ab1, type: 3}
@@ -52,7 +52,7 @@ MonoBehaviour:
   finalVictoryScene: {fileID: 0}
   phases:
   - phaseId: reparatrice
-    displayName: La Réparatrice
+    displayName: "La R\xE9paratrice"
     startsWhenHpPercentAtOrBelow: 1
     advanceAfterBossTurns: 0
     advanceAfterPatternIterations: 0
@@ -64,7 +64,7 @@ MonoBehaviour:
     bossSprite: {fileID: 0}
     bossVisualScale: 0
     phaseStartSfx: {fileID: 0}
-    dialogueOnStart: Ne bouge pas. Les ouvertures s'élargissent quand on se débat.
+    dialogueOnStart: "Ne bouge pas. Les ouvertures s'\xE9largissent quand on se d\xE9bat."
     actions:
     - actionId: point_sous_la_peau
       actionType: 0
@@ -87,7 +87,7 @@ MonoBehaviour:
       vulnerableTurns: 0
     - actionId: table_d_argent
       actionType: 1
-      bossLine: Je peux arranger ça. Je peux tout arranger.
+      bossLine: "Je peux arranger \xE7a. Je peux tout arranger."
       bossVoiceLine: {fileID: 0}
       chargeLine: 
       chargeVoiceLine: {fileID: 0}
@@ -106,7 +106,7 @@ MonoBehaviour:
       vulnerableTurns: 0
     - actionId: mauvaise_couture
       actionType: 0
-      bossLine: Tu as été mal refermé.
+      bossLine: "Tu as \xE9t\xE9 mal referm\xE9."
       bossVoiceLine: {fileID: 0}
       chargeLine: 
       chargeVoiceLine: {fileID: 0}
@@ -136,7 +136,8 @@ MonoBehaviour:
     bossSprite: {fileID: 0}
     bossVisualScale: 0
     phaseStartSfx: {fileID: 0}
-    dialogueOnStart: Il y a quelque chose dans ta structure... une résistance ancienne.
+    dialogueOnStart: "Il y a quelque chose dans ta structure... une r\xE9sistance
+      ancienne."
     actions:
     - actionId: suture_profonde
       actionType: 0
@@ -213,7 +214,7 @@ MonoBehaviour:
     actions:
     - actionId: souvenir_brise
       actionType: 0
-      bossLine: Tu étais venu me chercher.
+      bossLine: "Tu \xE9tais venu me chercher."
       bossVoiceLine: {fileID: 0}
       chargeLine: 
       chargeVoiceLine: {fileID: 0}
@@ -251,9 +252,9 @@ MonoBehaviour:
       vulnerableTurns: 0
     - actionId: derniere_aiguille
       actionType: 0
-      bossLine: Reste. Même déchiré, reste.
+      bossLine: "Reste. M\xEAme d\xE9chir\xE9, reste."
       bossVoiceLine: {fileID: 0}
-      chargeLine: Sa main tremble pour la première fois.
+      chargeLine: "Sa main tremble pour la premi\xE8re fois."
       chargeVoiceLine: {fileID: 0}
       chargeTurns: 1
       vulnerableWhileCharging: 1
@@ -271,6 +272,6 @@ MonoBehaviour:
   rewardPickCount: 2
   rewardCardIds:
   - couronne_de_l_extinction
-  - fortification_sepulcrale
-  - presage_de_cendres
+  - apotheose_cendree
+  - jugement_du_bucher
   potionRewardCount: 0

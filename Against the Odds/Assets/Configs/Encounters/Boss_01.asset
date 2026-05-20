@@ -22,20 +22,20 @@ MonoBehaviour:
   combatMusic: {fileID: 8300000, guid: a7f569dfa16afc94d83e100ef0efb7d7, type: 3}
   fadeInCombatMusic: 1
   cardAudioProfile: {fileID: 11400000, guid: 6ec1711d07634374a801a8ad8cc27c81, type: 2}
-  defaultAttackDamage: 10
+  defaultAttackDamage: 5
   introDialogue: Tu remontes encore. La fosse n'a donc pas fini de te rendre.
   introVoiceLine: {fileID: 0}
   hpDialogues:
   - triggerWhenHpPercentAtOrBelow: 1
-    line: Je connais ce pas. Je l'ai déjà entendu mourir.
+    line: "Je connais ce pas. Je l'ai d\xE9j\xE0 entendu mourir."
     voiceLine: {fileID: 0}
   - triggerWhenHpPercentAtOrBelow: 0.6
     line: Tu crois ouvrir une sortie. Tu ne fais que remuer la plaie.
     voiceLine: {fileID: 0}
   deathDialogue: Tue-moi si tu veux. La fosse garde les noms au chaud.
   deathVoiceLine: {fileID: 0}
-  defeatResultText: Le Gardien te repousse dans la boue. Un instant plus tard, la
-    fosse recommence à respirer.
+  defeatResultText: "Le Gardien te repousse dans la boue. Un instant plus tard, la
+    fosse recommence \xE0 respirer."
   victoryResultText: Sous son casque, il n'y avait presque plus d'homme. Seulement
     un souvenir charge de garder le seuil, encore et encore.
   bossDeathSfx: {fileID: 8300000, guid: fd318bafa5bd05040be0cf2bc5d86ab1, type: 3}
@@ -64,7 +64,7 @@ MonoBehaviour:
     bossSprite: {fileID: 0}
     bossVisualScale: 0
     phaseStartSfx: {fileID: 0}
-    dialogueOnStart: Aucun mort ne quitte Rhodesia sans être reconnu.
+    dialogueOnStart: "Aucun mort ne quitte Rhodesia sans \xEAtre reconnu."
     actions:
     - actionId: 
       actionType: 0

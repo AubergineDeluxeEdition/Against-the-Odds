@@ -48,67 +48,13 @@ a {
   text-decoration: none;
 }
 
-.site-header {
-  position: fixed;
-  z-index: 20;
-  inset: 0 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  padding: 14px clamp(18px, 4vw, 58px);
-  background: linear-gradient(180deg, rgba(7, 5, 4, 0.92), rgba(7, 5, 4, 0.54));
-  border-bottom: 1px solid rgba(255, 232, 196, 0.12);
-  backdrop-filter: blur(16px);
-}
-
-.brand {
-  width: clamp(124px, 15vw, 190px);
-}
-
-.brand img {
-  filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.8));
-}
-
-nav {
-  display: flex;
-  align-items: center;
-  gap: clamp(14px, 2.2vw, 30px);
-  color: var(--ash);
-  font-size: 0.82rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-nav a {
-  position: relative;
-  padding: 10px 0;
-}
-
-nav a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 4px;
-  height: 1px;
-  background: var(--gold);
-  transform: scaleX(0);
-  transform-origin: center;
-  transition: transform 180ms ease;
-}
-
-nav a:hover::after {
-  transform: scaleX(1);
-}
-
 .hero {
   position: relative;
   min-height: 100vh;
+  min-height: 100svh;
   display: grid;
   align-items: end;
-  padding: 132px clamp(18px, 6vw, 88px) 78px;
+  padding: clamp(36px, 7vh, 76px) clamp(18px, 6vw, 88px) clamp(56px, 9vh, 92px);
   overflow: hidden;
   isolation: isolate;
 }
@@ -617,20 +563,9 @@ footer span {
 }
 
 @media (max-width: 760px) {
-  .site-header {
-    position: absolute;
-    align-items: flex-start;
-  }
-
-  nav {
-    flex-wrap: wrap;
-    justify-content: flex-end;
-    font-size: 0.72rem;
-  }
-
   .hero {
-    min-height: 92vh;
-    padding-top: 148px;
+    min-height: 100vh;
+    min-height: 100svh;
   }
 
   .hero__shade,
@@ -674,14 +609,6 @@ footer span {
 }
 
 @media (max-width: 520px) {
-  .site-header {
-    flex-direction: column;
-  }
-
-  nav {
-    justify-content: flex-start;
-  }
-
   h1 {
     font-size: clamp(3.25rem, 18vw, 5.2rem);
   }

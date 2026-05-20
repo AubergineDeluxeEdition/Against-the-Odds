@@ -15,21 +15,9 @@
     <meta property="og:image" content="/assets/hero-background.jpg" />
     <title>Against the Odds</title>
     <link rel="preload" href="/assets/hero-loop.mp4?v=2" as="video" type="video/mp4" />
-    <link rel="stylesheet" href="/styles.css?v=5" />
+    <link rel="stylesheet" href="/styles.css?v=6" />
   </head>
   <body>
-    <header class="site-header" aria-label="Navigation principale">
-      <a class="brand" href="#top" aria-label="Against the Odds">
-        <img src="/assets/logo.png" alt="" />
-      </a>
-      <nav>
-        <a href="#combat">Combat</a>
-        <a href="#mechanics">Mécaniques</a>
-        <a href="#bosses">Boss</a>
-        <a href="#download">Télécharger</a>
-      </nav>
-    </header>
-
     <main id="top">
       <section class="hero" aria-labelledby="hero-title">
         <video
@@ -43,11 +31,11 @@
         ></video>
         <div class="hero__shade"></div>
         <div class="hero__content">
-          <p class="kicker">Jeu de cartes solo</p>
+          <p class="kicker">Jeu de cartes solo hardcore</p>
           <h1 id="hero-title">Against the Odds</h1>
           <p class="hero__lead">
-            Affronte une suite de boss, améliore ton paquet de cartes après chaque victoire
-            et essaie de terminer la campagne sans perdre ta partie.
+            Affronte une suite de boss, améliore ton decks après chaque victoire.
+            Le seul moyen de gagner est de les vaincre un par un sans mourir. Bonne chance...
           </p>
           <div class="hero__actions">
             <a class="button button--primary" href="#download">Télécharger le jeu</a>
@@ -61,15 +49,15 @@
         <div class="feature__overlay"></div>
         <div class="feature__content">
           <p class="eyebrow">Combat</p>
-          <h2 id="combat-title">Gère ta main à chaque tour</h2>
+          <h2 id="combat-title">Gère ta main chaque tour</h2>
           <p>
-            Tu joues tes cartes avec une quantité de mana limitée. Chaque tour,
+            Joue tes cartes avec une quantité de mana limitée. Chaque tour,
             le boss prépare une action: attaque, défense, effet spécial ou changement
-            de rythme. À toi de décider si tu encaisses, si tu bloques ou si tu prends
-            le risque d’attaquer.
+            de rythme. Décide si tu encaisses, si tu te soignes et/ou si tu prends
+            le risque d’attaquer
           </p>
           <div class="stat-row">
-            <span>Paquet évolutif</span>
+            <span>Deck progressif</span>
             <span>Boss à cycles</span>
             <span>Mode hardcore</span>
           </div>
@@ -95,7 +83,7 @@
           <article>
             <img src="/assets/icon-mana.png" alt="" />
             <h3>Mana</h3>
-            <p>Chaque carte a un coût. Dépenser toute ta mana peut finir un combat, ou te laisser sans défense au mauvais moment.</p>
+            <p>Chaque carte a un coût. Dépenser toute ta mana peut finir un combat, ou servir à survivre jusqu'à la prochaine pioche.</p>
           </article>
           <article>
             <img src="/assets/icon-potion.png" alt="" />
@@ -114,8 +102,8 @@
           <h2 id="map-title">Avance de boss en boss</h2>
           <p>
             La campagne est construite comme une progression de combats. Chaque victoire
-            te rapproche de la fin, mais les ennemis deviennent plus exigeants et ton paquet
-            doit suivre le rythme.
+            te rapproche de la fin, mais les ennemis deviennent plus exigeants et ton deck
+            doit suivre le rythme. Ou pas. Mourrir fait partie du jeu.
           </p>
         </div>
       </section>
@@ -127,9 +115,9 @@
           <p class="eyebrow">Boss</p>
           <h2 id="patterns-title">Apprends leurs cycles</h2>
           <p>
-            Chaque boss a ses propres comportements. Certains punissent les paquets trop lents,
-            d’autres forcent à garder du bouclier ou à préparer une réponse précise.
-            Comprendre leurs tours est aussi important que jouer les bonnes cartes.
+            Chaque boss a ses propres comportements. Certains sont plus difficiles que d'autres,
+            ont plusieurs phases, ou réserve des surprises alors que vous pensez les avoir vaincus.
+            Anticiper leurs mouvements peut-être aussi important que de jouer les bonnes cartes.
           </p>
         </div>
       </section>
@@ -137,7 +125,7 @@
       <section class="section cards" aria-labelledby="cards-title">
         <div class="section__heading">
           <p class="eyebrow">Cartes</p>
-          <h2 id="cards-title">Améliore ton paquet</h2>
+          <h2 id="cards-title">Améliore ton deck à chaque victoire</h2>
         </div>
         <div class="card-rack" aria-label="Aperçu de cartes">
           <img src="/assets/card-judgement.png" alt="Carte Jugement du Bûcher" />
@@ -149,24 +137,24 @@
       <section id="bosses" class="section bosses" aria-labelledby="bosses-title">
         <div class="section__heading">
           <p class="eyebrow">Adversaires</p>
-          <h2 id="bosses-title">Des boss à battre en une seule partie</h2>
+          <h2 id="bosses-title">Atteint le sommet de la forteresse</h2>
         </div>
         <div class="boss-grid">
           <article>
             <img src="/assets/boss-grave.png" alt="Boss de la première zone" />
-            <span>Grave of the Unyielding</span>
+            <span>Le Gardien de la Fosse</span>
           </article>
           <article>
             <img src="/assets/boss-butcher.png" alt="Boss boucher" />
-            <span>The Compassionate Butcher</span>
+            <span>L'Inhumateur des Cris</span>
           </article>
           <article>
             <img src="/assets/boss-thread.png" alt="Boss de la quatrième zone" />
-            <span>The Final Thread</span>
+            <span>L'Inquisiteur des Larmes</span>
           </article>
           <article>
             <img src="/assets/boss-final.png" alt="Boss final" />
-            <span>No Odds Left</span>
+            <span>La Volonté Maudite</span>
           </article>
         </div>
       </section>
@@ -189,8 +177,7 @@
           <p class="eyebrow">Build jouable</p>
           <h2 id="download-title">Télécharger la version Windows</h2>
           <p>
-            Le bouton télécharge le dernier installateur publié sur GitHub Releases.
-            Le fichier vient directement de GitHub et ne passe pas par le serveur du site.
+            Le bouton télécharge la dernière version du jeu publiée sur notre GitHub.
           </p>
           <div class="download__actions">
             <a
@@ -211,8 +198,8 @@
               <dd>Solo hardcore</dd>
             </div>
             <div>
-              <dt>Statut</dt>
-              <dd>Prototype jouable</dd>
+              <dt>Disponibilité</dt>
+              <dd>Disponible dès maintenant</dd>
             </div>
           </dl>
         </div>

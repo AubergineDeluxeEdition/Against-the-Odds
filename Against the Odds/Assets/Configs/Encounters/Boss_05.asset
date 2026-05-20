@@ -23,23 +23,23 @@ MonoBehaviour:
   fadeInCombatMusic: 1
   cardAudioProfile: {fileID: 11400000, guid: 6ec1711d07634374a801a8ad8cc27c81, type: 2}
   defaultAttackDamage: 10
-  introDialogue: 'Te voilà enfin. Celui qui monte pour rendre aux hommes leur vieille
-    lâcheté : la fin.'
+  introDialogue: "Te voil\xE0 enfin. Celui qui monte pour rendre aux hommes leur
+    vieille l\xE2chet\xE9 : la fin."
   introVoiceLine: {fileID: 0}
   hpDialogues:
   - triggerWhenHpPercentAtOrBelow: 0.8
-    line: Le Roi distribue le sang. Il ne crée pas l'obstination.
+    line: "Le Roi distribue le sang. Il ne cr\xE9e pas l'obstination."
     voiceLine: {fileID: 0}
   - triggerWhenHpPercentAtOrBelow: 0.45
-    line: Tu portes la clé dans la plaie et tu demandes qui a ouvert la porte.
+    line: "Tu portes la cl\xE9 dans la plaie et tu demandes qui a ouvert la porte."
     voiceLine: {fileID: 0}
-  deathDialogue: Si tu réussis... ils t'appelleront libérateur. Ils ne sauront jamais
-    ce que tu leur as repris.
+  deathDialogue: "Si tu r\xE9ussis... ils t'appelleront lib\xE9rateur. Ils ne sauront
+    jamais ce que tu leur as repris."
   deathVoiceLine: {fileID: 0}
-  defeatResultText: Il te bénit sans joie. Ton corps se relève avant que la prière
-    soit terminée.
-  victoryResultText: Le Cardinal n'adorait pas la douleur. Il adorait la continuité.
-    Pour lui, ta quête n'était pas un salut, mais une profanation.
+  defeatResultText: "Il te b\xE9nit sans joie. Ton corps se rel\xE8ve avant que la
+    pri\xE8re soit termin\xE9e."
+  victoryResultText: "Le Cardinal n'adorait pas la douleur. Il adorait la continuit\xE9.
+    Pour lui, ta qu\xEAte n'\xE9tait pas un salut, mais une profanation."
   bossDeathSfx: {fileID: 8300000, guid: fd318bafa5bd05040be0cf2bc5d86ab1, type: 3}
   victorySfx: {fileID: 8300000, guid: a5a4fc7157527324f9a1233dc68e70f7, type: 3}
   defeatSfx: {fileID: 8300000, guid: 0ed4cba76ba954b4d9f9098ed17d1114, type: 3}
@@ -54,7 +54,7 @@ MonoBehaviour:
   finalVictoryScene: {fileID: 0}
   phases:
   - phaseId: grace
-    displayName: La Grâce Ininterrompue
+    displayName: "La Gr\xE2ce Ininterrompue"
     startsWhenHpPercentAtOrBelow: 1
     advanceAfterBossTurns: 0
     advanceAfterPatternIterations: 3
@@ -70,7 +70,8 @@ MonoBehaviour:
     actions:
     - actionId: encens_noir
       actionType: 1
-      bossLine: Tu appelles cela une prison parce que tu as oublié le dernier souffle.
+      bossLine: "Tu appelles cela une prison parce que tu as oubli\xE9 le dernier
+        souffle."
       bossVoiceLine: {fileID: 0}
       chargeLine: 
       chargeVoiceLine: {fileID: 0}
@@ -89,7 +90,7 @@ MonoBehaviour:
       vulnerableTurns: 0
     - actionId: sentence
       actionType: 0
-      bossLine: Une hérésie doit être instruite avant d'être punie.
+      bossLine: "Une h\xE9r\xE9sie doit \xEAtre instruite avant d'\xEAtre punie."
       bossVoiceLine: {fileID: 0}
       chargeLine: 
       chargeVoiceLine: {fileID: 0}
@@ -108,7 +109,7 @@ MonoBehaviour:
       vulnerableTurns: 0
     - actionId: priere_saturee
       actionType: 0
-      bossLine: Les fidèles prêtent leur voix.
+      bossLine: "Les fid\xE8les pr\xEAtent leur voix."
       bossVoiceLine: {fileID: 0}
       chargeLine: Le choeur enfle sans respirer.
       chargeVoiceLine: {fileID: 0}
@@ -138,12 +139,12 @@ MonoBehaviour:
     bossSprite: {fileID: 0}
     bossVisualScale: 0
     phaseStartSfx: {fileID: 0}
-    dialogueOnStart: Je ne défends pas le Roi. Je défends ce que tu maintiens malgré
-      toi.
+    dialogueOnStart: "Je ne d\xE9fends pas le Roi. Je d\xE9fends ce que tu maintiens
+      malgr\xE9 toi."
     actions:
     - actionId: dogme_tranchant
       actionType: 0
-      bossLine: Tu n'es pas venu tuer un prêtre. Tu es venu contredire une loi.
+      bossLine: "Tu n'es pas venu tuer un pr\xEAtre. Tu es venu contredire une loi."
       bossVoiceLine: {fileID: 0}
       chargeLine: 
       chargeVoiceLine: {fileID: 0}
@@ -162,7 +163,7 @@ MonoBehaviour:
       vulnerableTurns: 0
     - actionId: consume_faith
       actionType: 0
-      bossLine: Il brûle ses fidèles dans une lumière sans chaleur.
+      bossLine: "Il br\xFBle ses fid\xE8les dans une lumi\xE8re sans chaleur."
       bossVoiceLine: {fileID: 0}
       chargeLine: 
       chargeVoiceLine: {fileID: 0}
@@ -173,7 +174,7 @@ MonoBehaviour:
       resolveEffects:
       - effectType: 2
         value: 5
-        line: La grâce lui coûte sa propre chair.
+        line: "La gr\xE2ce lui co\xFBte sa propre chair."
         voiceLine: {fileID: 0}
       - effectType: 0
         value: 24
@@ -191,5 +192,5 @@ MonoBehaviour:
   rewardCardIds:
   - presage_de_cendres
   - communion_profane
-  - rite_de_l_ascension
+  - morsure_du_foyer
   potionRewardCount: 1

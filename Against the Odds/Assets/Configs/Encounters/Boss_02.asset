@@ -23,20 +23,20 @@ MonoBehaviour:
   fadeInCombatMusic: 1
   cardAudioProfile: {fileID: 11400000, guid: 6ec1711d07634374a801a8ad8cc27c81, type: 2}
   defaultAttackDamage: 10
-  introDialogue: La bête s'arrête. Une seconde, elle semble te reconnaître.
+  introDialogue: "La b\xEAte s'arr\xEAte. Une seconde, elle semble te reconna\xEEtre."
   introVoiceLine: {fileID: 0}
   hpDialogues:
   - triggerWhenHpPercentAtOrBelow: 0.8
-    line: Sous la rage, un vieux réflexe cherche encore ta main.
+    line: "Sous la rage, un vieux r\xE9flexe cherche encore ta main."
     voiceLine: {fileID: 0}
   - triggerWhenHpPercentAtOrBelow: 0.35
     line: Elle geint avant de mordre, comme si quelque chose en elle refusait encore.
     voiceLine: {fileID: 0}
-  deathDialogue: Son dernier souffle ressemble presque à ton nom.
+  deathDialogue: "Son dernier souffle ressemble presque \xE0 ton nom."
   deathVoiceLine: {fileID: 0}
-  defeatResultText: Ses crocs se referment sur ta gorge. Quelque chose en elle pleure
-    en même temps qu'elle mord.
-  victoryResultText: Sous la chair malade, un collier usé attendait encore.
+  defeatResultText: "Ses crocs se referment sur ta gorge. Quelque chose en elle pleure
+    en m\xEAme temps qu'elle mord."
+  victoryResultText: "Sous la chair malade, un collier us\xE9 attendait encore."
   bossDeathSfx: {fileID: 8300000, guid: fd318bafa5bd05040be0cf2bc5d86ab1, type: 3}
   victorySfx: {fileID: 8300000, guid: a5a4fc7157527324f9a1233dc68e70f7, type: 3}
   defeatSfx: {fileID: 8300000, guid: 0ed4cba76ba954b4d9f9098ed17d1114, type: 3}
@@ -63,7 +63,7 @@ MonoBehaviour:
     bossSprite: {fileID: 0}
     bossVisualScale: 0
     phaseStartSfx: {fileID: 0}
-    dialogueOnStart: La bête recule d'un pas, confuse.
+    dialogueOnStart: "La b\xEAte recule d'un pas, confuse."
     actions:
     - actionId: 1
       actionType: 5
@@ -97,7 +97,7 @@ MonoBehaviour:
     bossSprite: {fileID: 0}
     bossVisualScale: 0
     phaseStartSfx: {fileID: 8300000, guid: 54cbda08e1e05514184e6556635093ae, type: 3}
-    dialogueOnStart: La confusion cède. La faim reprend.
+    dialogueOnStart: "La confusion c\xE8de. La faim reprend."
     actions:
     - actionId: 1
       actionType: 0
@@ -131,7 +131,7 @@ MonoBehaviour:
     bossSprite: {fileID: 0}
     bossVisualScale: 0
     phaseStartSfx: {fileID: 8300000, guid: 44177386258a5f0488fb9fc2980cad95, type: 3}
-    dialogueOnStart: "*le chien vous regarde, comme s'il était trahi*"
+    dialogueOnStart: "*le chien vous regarde, comme s'il \xE9tait trahi*"
     actions:
     - actionId: "attaque enrag\xE9e"
       actionType: 0
@@ -148,7 +148,7 @@ MonoBehaviour:
       interruptBossStunTurns: 0
       interruptLine: 
       interruptVoiceLine: {fileID: 0}
-      damage: 16
+      damage: 12
       shield: 0
       invulnerableTurns: 0
       vulnerableTurns: 0

@@ -4,6 +4,7 @@ using AgainstTheOdds.Core;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 namespace AgainstTheOdds.CampaignMap
 {
@@ -36,6 +37,9 @@ namespace AgainstTheOdds.CampaignMap
         [SerializeField] private GameObject previousPageArrow;
         [SerializeField] private GameObject nextPageArrow;
         [SerializeField] private bool autoFindPageArrows = true;
+        [SerializeField] private bool anchorPageArrowsToCamera = true;
+        [SerializeField] private Vector2 previousArrowViewportPosition = new Vector2(0.08f, 0.5f);
+        [SerializeField] private Vector2 nextArrowViewportPosition = new Vector2(0.92f, 0.5f);
         [SerializeField] private float arrowClickMoveTolerancePixels = 12f;
 
         [Header("Render Order")]
@@ -56,8 +60,11 @@ namespace AgainstTheOdds.CampaignMap
         private Collider2D previousPageCollider;
         private Collider2D nextPageCollider;
         private PageArrow pressedArrow;
+        private PageArrow hoveredArrow;
         private Vector2 arrowPressScreenPosition;
         private CombatRewardCardView hoveredSlot;
+        private readonly Dictionary<GameObject, Vector3> arrowBaseScales = new Dictionary<GameObject, Vector3>();
+        private readonly Dictionary<GameObject, Color> arrowBaseColors = new Dictionary<GameObject, Color>();
         private readonly Dictionary<TMP_Text, Vector3> countTextBaseScales = new Dictionary<TMP_Text, Vector3>();
         private readonly Dictionary<TMP_Text, Vector3> countTextBasePositions = new Dictionary<TMP_Text, Vector3>();
 
@@ -201,6 +208,7 @@ namespace AgainstTheOdds.CampaignMap
             if (!isOpen) return;
 
             ReadCardHover();
+            ReadArrowHover();
             ReadArrowClicks();
         }
 
@@ -606,13 +614,23 @@ namespace AgainstTheOdds.CampaignMap
                 nextPageArrow = FindArrow(root, false);
             }
 
+            if (previousPageArrow == null)
+            {
+                previousPageArrow = FindArrowInActiveScene(true);
+            }
+
+            if (nextPageArrow == null)
+            {
+                nextPageArrow = FindArrowInActiveScene(false);
+            }
+
             CacheArrowColliders();
         }
 
         private void CacheArrowColliders()
         {
-            previousPageCollider = previousPageArrow != null ? previousPageArrow.GetComponentInChildren<Collider2D>(true) : null;
-            nextPageCollider = nextPageArrow != null ? nextPageArrow.GetComponentInChildren<Collider2D>(true) : null;
+            previousPageCollider = EnsureArrowCollider(previousPageArrow);
+            nextPageCollider = EnsureArrowCollider(nextPageArrow);
         }
 
         private static GameObject FindArrow(Transform root, bool previous)
@@ -635,6 +653,39 @@ namespace AgainstTheOdds.CampaignMap
             return null;
         }
 
+        private static GameObject FindArrowInActiveScene(bool previous)
+        {
+            Scene activeScene = SceneManager.GetActiveScene();
+            foreach (GameObject rootObject in activeScene.GetRootGameObjects())
+            {
+                GameObject arrow = FindArrow(rootObject.transform, previous);
+                if (arrow != null)
+                {
+                    return arrow;
+                }
+            }
+
+            return null;
+        }
+
+        private static Collider2D EnsureArrowCollider(GameObject arrow)
+        {
+            if (arrow == null) return null;
+
+            Collider2D collider = arrow.GetComponentInChildren<Collider2D>(true);
+            if (collider != null) return collider;
+
+            SpriteRenderer spriteRenderer = arrow.GetComponentInChildren<SpriteRenderer>(true);
+            BoxCollider2D boxCollider = arrow.AddComponent<BoxCollider2D>();
+            if (spriteRenderer != null && spriteRenderer.sprite != null)
+            {
+                boxCollider.size = spriteRenderer.sprite.bounds.size;
+                boxCollider.offset = spriteRenderer.sprite.bounds.center;
+            }
+
+            return boxCollider;
+        }
+
         private void SetArrowVisibility()
         {
             bool showPrevious = isOpen && totalPageCount > 1 && currentPageIndex > 0;
@@ -642,6 +693,37 @@ namespace AgainstTheOdds.CampaignMap
 
             SetActive(previousPageArrow, showPrevious);
             SetActive(nextPageArrow, showNext);
+            PositionPageArrows();
+            if (!showPrevious && hoveredArrow == PageArrow.Previous)
+            {
+                SetHoveredArrow(PageArrow.None);
+            }
+
+            if (!showNext && hoveredArrow == PageArrow.Next)
+            {
+                SetHoveredArrow(PageArrow.None);
+            }
+        }
+
+        private void PositionPageArrows()
+        {
+            if (!anchorPageArrowsToCamera || !isOpen) return;
+
+            PositionArrowInViewport(previousPageArrow, previousArrowViewportPosition);
+            PositionArrowInViewport(nextPageArrow, nextArrowViewportPosition);
+        }
+
+        private static void PositionArrowInViewport(GameObject arrow, Vector2 viewportPosition)
+        {
+            if (arrow == null || !arrow.activeSelf) return;
+
+            Camera camera = Camera.main;
+            if (camera == null) return;
+
+            Vector3 currentPosition = arrow.transform.position;
+            float distanceFromCamera = Mathf.Abs(currentPosition.z - camera.transform.position.z);
+            Vector3 worldPosition = camera.ViewportToWorldPoint(new Vector3(viewportPosition.x, viewportPosition.y, distanceFromCamera));
+            arrow.transform.position = new Vector3(worldPosition.x, worldPosition.y, currentPosition.z);
         }
 
         private static void SetActive(GameObject target, bool active)
@@ -683,6 +765,12 @@ namespace AgainstTheOdds.CampaignMap
             {
                 NextPage();
             }
+        }
+
+        private void ReadArrowHover()
+        {
+            Mouse mouse = Mouse.current;
+            SetHoveredArrow(mouse != null ? GetArrowUnderPointer(mouse.position.ReadValue()) : PageArrow.None);
         }
 
         private void ReadCardHover()
@@ -828,6 +916,48 @@ namespace AgainstTheOdds.CampaignMap
             }
 
             return PageArrow.None;
+        }
+
+        private void SetHoveredArrow(PageArrow arrow)
+        {
+            if (hoveredArrow == arrow) return;
+
+            ApplyArrowHoverVisual(previousPageArrow, false);
+            ApplyArrowHoverVisual(nextPageArrow, false);
+            hoveredArrow = arrow;
+
+            if (hoveredArrow == PageArrow.Previous)
+            {
+                ApplyArrowHoverVisual(previousPageArrow, true);
+            }
+            else if (hoveredArrow == PageArrow.Next)
+            {
+                ApplyArrowHoverVisual(nextPageArrow, true);
+            }
+        }
+
+        private void ApplyArrowHoverVisual(GameObject arrow, bool hovered)
+        {
+            if (arrow == null) return;
+
+            if (!arrowBaseScales.ContainsKey(arrow))
+            {
+                arrowBaseScales[arrow] = arrow.transform.localScale;
+            }
+
+            arrow.transform.localScale = arrowBaseScales[arrow] * (hovered ? 1.12f : 1f);
+
+            foreach (SpriteRenderer spriteRenderer in arrow.GetComponentsInChildren<SpriteRenderer>(true))
+            {
+                if (!arrowBaseColors.ContainsKey(spriteRenderer.gameObject))
+                {
+                    arrowBaseColors[spriteRenderer.gameObject] = spriteRenderer.color;
+                }
+
+                Color baseColor = arrowBaseColors[spriteRenderer.gameObject];
+                spriteRenderer.color = hovered ? Color.Lerp(baseColor, Color.white, 0.35f) : baseColor;
+                spriteRenderer.sortingOrder = arrowSortingOrder;
+            }
         }
     }
 }

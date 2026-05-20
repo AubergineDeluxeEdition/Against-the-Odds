@@ -58,6 +58,8 @@ public class CombatResultOverlay : MonoBehaviour
     private Coroutine showRoutine;
     private Coroutine animationRoutine;
     private Vector3 overlayInitialScale = Vector3.one;
+    private readonly List<string> pendingRewardCardIds = new List<string>();
+    private bool rewardCardsCommitted;
 
     public bool IsShowingResult => showingResult;
     public bool IsVictory => showingResult && victory;
@@ -172,6 +174,8 @@ public class CombatResultOverlay : MonoBehaviour
         showingResult = true;
         victory = didWin;
         selectedCards.Clear();
+        pendingRewardCardIds.Clear();
+        rewardCardsCommitted = false;
         RefreshResultButtonReferences();
 
         if (AudioManager.Instance != null)
@@ -227,6 +231,8 @@ public class CombatResultOverlay : MonoBehaviour
 
         showingResult = false;
         selectedCards.Clear();
+        pendingRewardCardIds.Clear();
+        rewardCardsCommitted = false;
         RefreshResultButtonReferences();
 
         SetActive(potionRewardRoot, false);
@@ -366,6 +372,13 @@ public class CombatResultOverlay : MonoBehaviour
     {
         if (victoryCardsStepActive)
         {
+            CaptureSelectedRewardCardIds();
+            if (!CommitRewardCardsIfNeeded())
+            {
+                Debug.LogError("[CombatResultOverlay] Victory reward commit failed. Campaign progression is blocked to avoid losing picked cards.");
+                return;
+            }
+
             victoryCardsStepActive = false;
             SetVisualActive(cardRewardsRoot, false);
             HideRewardCards();
@@ -381,16 +394,12 @@ public class CombatResultOverlay : MonoBehaviour
         bool campaignComplete = false;
         if (GameManager.Instance != null)
         {
-            var ids = new List<string>();
-            foreach (CombatRewardCardView cardView in selectedCards)
+            if (!CommitRewardCardsIfNeeded())
             {
-                if (cardView?.Card != null)
-                {
-                    ids.Add(cardView.Card.id);
-                }
+                Debug.LogError("[CombatResultOverlay] Victory reward commit failed before boss progression.");
+                return;
             }
 
-            GameManager.Instance.AddRewardCards(ids);
             campaignComplete = GameManager.Instance.AdvanceToNextBoss();
         }
 
@@ -411,6 +420,42 @@ public class CombatResultOverlay : MonoBehaviour
         }
 
         LoadScene(nextScene);
+    }
+
+    private void CaptureSelectedRewardCardIds()
+    {
+        pendingRewardCardIds.Clear();
+        foreach (CombatRewardCardView cardView in selectedCards)
+        {
+            string cardId = cardView?.Card != null ? cardView.Card.id : string.Empty;
+            if (!string.IsNullOrWhiteSpace(cardId))
+            {
+                pendingRewardCardIds.Add(cardId);
+            }
+        }
+    }
+
+    private bool CommitRewardCardsIfNeeded()
+    {
+        if (rewardCardsCommitted)
+        {
+            return true;
+        }
+
+        if (GameManager.Instance == null)
+        {
+            return false;
+        }
+
+        if (!allowContinueWithoutAllRewardPicks && pendingRewardCardIds.Count < requiredPickCount)
+        {
+            Debug.LogError($"[CombatResultOverlay] Expected {requiredPickCount} reward cards, got {pendingRewardCardIds.Count}.");
+            return false;
+        }
+
+        GameManager.Instance.AddRewardCards(pendingRewardCardIds);
+        rewardCardsCommitted = true;
+        return true;
     }
 
     private bool ShowVictoryLoreIfAny()

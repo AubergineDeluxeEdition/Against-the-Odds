@@ -47,6 +47,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/05_CinematicUndyingCity.unity
     guid: 5917b04dd0a7ed84ab3e8a30beda56f2
+  - enabled: 1
+    path: Assets/Scenes/05_CinematicWife.unity
+    guid: 0642311e6bc56894782c7f53bf5754c6
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

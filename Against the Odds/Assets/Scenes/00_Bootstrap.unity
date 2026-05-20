@@ -528,6 +528,7 @@ MonoBehaviour:
   isInRun: 0
   potionCount: 0
   runRewardCardIds: []
+  initialPotionCount: 0
   cardDatabaseResourcePath: Data/Deck
   initialDeck:
   - cardId: entaille_de_braise
@@ -537,11 +538,31 @@ MonoBehaviour:
   - cardId: rempart_des_cendres
     quantity: 1
   - cardId: offrande_impie
-    quantity: 1
+    quantity: 2
   - cardId: cendres_voraces
     quantity: 2
   - cardId: jugement_du_bucher
-    quantity: 2
+    quantity: 1
+  - cardId: fournaise_du_martyr
+    quantity: 1
+  - cardId: saignee_ardente
+    quantity: 1
+  - cardId: morsure_du_foyer
+    quantity: 1
+  - cardId: armure_calcinee
+    quantity: 1
+  - cardId: fortification_sepulcrale
+    quantity: 1
+  - cardId: autel_des_cendres
+    quantity: 1
+  - cardId: rite_de_l_ascension
+    quantity: 1
+  - cardId: dernier_souffle
+    quantity: 1
+  - cardId: champ_de_braises
+    quantity: 1
+  - cardId: forteresse_de_cendres
+    quantity: 1
 --- !u!114 &872842955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -558,6 +579,7 @@ MonoBehaviour:
   dureeFonduDemarrage: 0.5
   cardDatabaseResourcePath: Data/Deck
   initialDeck: []
+  initialPotionCount: 0
 --- !u!4 &872842956
 Transform:
   m_ObjectHideFlags: 0

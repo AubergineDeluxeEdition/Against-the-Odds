@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Boss_09
   m_EditorClassIdentifier: 
   bossIndex: 8
-  bossDisplayName: Le Roi-Mécanisme
+  bossDisplayName: "Le Roi-M\xE9canisme"
   playerStartHP: 100
   bossStartHP: 205
   cardDatabaseResourcePath: 
@@ -23,22 +23,22 @@ MonoBehaviour:
   fadeInCombatMusic: 1
   cardAudioProfile: {fileID: 11400000, guid: 6ec1711d07634374a801a8ad8cc27c81, type: 2}
   defaultAttackDamage: 10
-  introDialogue: Tu es arrivé au cœur. C'est ce que tu crois.
+  introDialogue: "Tu es arriv\xE9 au c\u0153ur. C'est ce que tu crois."
   introVoiceLine: {fileID: 0}
   hpDialogues:
   - triggerWhenHpPercentAtOrBelow: 0.72
-    line: Je pompe. Je redistribue. Je ne décide rien.
+    line: "Je pompe. Je redistribue. Je ne d\xE9cide rien."
     voiceLine: {fileID: 0}
   - triggerWhenHpPercentAtOrBelow: 0.38
     line: Tu veux un coupable avec une couronne. C'est plus simple.
     voiceLine: {fileID: 0}
-  deathDialogue: Je n'étais qu'une bouche. Le souffle venait d'ailleurs.
+  deathDialogue: "Je n'\xE9tais qu'une bouche. Le souffle venait d'ailleurs."
   deathVoiceLine: {fileID: 0}
-  defeatResultText: La machine boit ton sang et le recrache dans la ville. Au loin,
-    la fosse tousse déjà ton nom.
-  victoryResultText: Le Roi tombe. Les pistons s'arrêtent. Puis, dans les rues, les
-    morts remuent encore. Le cycle ne venait pas du trône. Il suivait celui qui refusait
-    de finir.
+  defeatResultText: "La machine boit ton sang et le recrache dans la ville. Au loin,
+    la fosse tousse d\xE9j\xE0 ton nom."
+  victoryResultText: "Le Roi tombe. Les pistons s'arr\xEAtent. Puis, dans les rues,
+    les morts remuent encore. Le cycle ne venait pas du tr\xF4ne. Il suivait celui
+    qui refusait de finir."
   bossDeathSfx: {fileID: 8300000, guid: 2884d48ef356cf24cb85f65f134173e9, type: 3}
   victorySfx: {fileID: 8300000, guid: a5a4fc7157527324f9a1233dc68e70f7, type: 3}
   defeatSfx: {fileID: 8300000, guid: 0ed4cba76ba954b4d9f9098ed17d1114, type: 3}
@@ -119,11 +119,11 @@ MonoBehaviour:
       resolveEffects:
       - effectType: 2
         value: 5
-        line: La tête desséchée se vide un peu.
+        line: "La t\xEAte dess\xE9ch\xE9e se vide un peu."
         voiceLine: {fileID: 0}
       - effectType: 1
         value: 28
-        line: La machine se blinde de sang coagulé.
+        line: "La machine se blinde de sang coagul\xE9."
         voiceLine: {fileID: 0}
       interruptIfPlayerBlockAtLeast: 0
       interruptBossStunTurns: 0
@@ -135,7 +135,7 @@ MonoBehaviour:
       vulnerableTurns: 0
   rewardPickCount: 2
   rewardCardIds:
-  - couronne_de_l_extinction
-  - armure_calcinee
+  - jugement_du_bucher
+  - fortification_sepulcrale
   - communion_profane
   potionRewardCount: 1

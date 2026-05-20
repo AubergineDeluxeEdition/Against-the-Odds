@@ -23,20 +23,20 @@ MonoBehaviour:
   fadeInCombatMusic: 1
   cardAudioProfile: {fileID: 11400000, guid: 6ec1711d07634374a801a8ad8cc27c81, type: 2}
   defaultAttackDamage: 10
-  introDialogue: Chaque douleur laisse une preuve. La tienne manque à mon registre.
+  introDialogue: "Chaque douleur laisse une preuve. La tienne manque \xE0 mon registre."
   introVoiceLine: {fileID: 0}
   hpDialogues:
   - triggerWhenHpPercentAtOrBelow: 0.7
-    line: Tu as promis quelque chose au pied d'un autel. Tu l'as oublié, mais pas
-      moi.
+    line: "Tu as promis quelque chose au pied d'un autel. Tu l'as oubli\xE9, mais
+      pas moi."
     voiceLine: {fileID: 0}
   - triggerWhenHpPercentAtOrBelow: 0.35
-    line: Elle criait ton nom quand les cloches sont tombées.
+    line: "Elle criait ton nom quand les cloches sont tomb\xE9es."
     voiceLine: {fileID: 0}
-  deathDialogue: Prends-le. Ce papier pèse plus que ma cuirasse.
+  deathDialogue: "Prends-le. Ce papier p\xE8se plus que ma cuirasse."
   deathVoiceLine: {fileID: 0}
-  defeatResultText: Il ajoute ton anneau absent à sa collection. L'emplacement était
-    déjà prévu.
+  defeatResultText: "Il ajoute ton anneau absent \xE0 sa collection. L'emplacement
+    \xE9tait d\xE9j\xE0 pr\xE9vu."
   victoryResultText: Dans sa cuirasse, ton acte de mariage. Le nom de ta femme revient
     avant son visage.
   bossDeathSfx: {fileID: 8300000, guid: fd318bafa5bd05040be0cf2bc5d86ab1, type: 3}
@@ -137,14 +137,14 @@ MonoBehaviour:
     bossSprite: {fileID: 0}
     bossVisualScale: 0
     phaseStartSfx: {fileID: 0}
-    dialogueOnStart: Tu montes pour la sauver ? Non. Tu montes parce que tu ne sais
-      pas t'arrêter.
+    dialogueOnStart: "Tu montes pour la sauver ? Non. Tu montes parce que tu ne sais
+      pas t'arr\xEAter."
     actions:
     - actionId: charge_des_noms
       actionType: 0
-      bossLine: Il récite des noms jusqu'à couvrir le tien.
+      bossLine: "Il r\xE9cite des noms jusqu'\xE0 couvrir le tien."
       bossVoiceLine: {fileID: 0}
-      chargeLine: Toutes les bagues tremblent à la fois.
+      chargeLine: "Toutes les bagues tremblent \xE0 la fois."
       chargeVoiceLine: {fileID: 0}
       chargeTurns: 1
       vulnerableWhileCharging: 0
@@ -253,6 +253,6 @@ MonoBehaviour:
   rewardPickCount: 2
   rewardCardIds:
   - apotheose_cendree
-  - rempart_des_cendres
-  - dernier_souffle
+  - couronne_de_l_extinction
+  - communion_profane
   potionRewardCount: 1

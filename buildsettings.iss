@@ -5,7 +5,7 @@
 #define MyAppName "Against the Odds"
 #define MyAppVersion "1.0"
 #define MyAppPublisher "AubergineStudio"
-#define MyAppURL "https://www.against-the-odds.amorisetti.ch/"
+#define MyAppURL "https://against-the-odds.amorisetti.ch/"
 #define MyAppExeName "Against the Odds.exe"
 
 [Setup]

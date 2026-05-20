@@ -23,22 +23,22 @@ MonoBehaviour:
   fadeInCombatMusic: 1
   cardAudioProfile: {fileID: 11400000, guid: 6ec1711d07634374a801a8ad8cc27c81, type: 2}
   defaultAttackDamage: 10
-  introDialogue: Halte. Qui marche ? Un mort ? Un traître ? Un roi ?
+  introDialogue: "Halte. Qui marche ? Un mort ? Un tra\xEEtre ? Un roi ?"
   introVoiceLine: {fileID: 0}
   hpDialogues:
   - triggerWhenHpPercentAtOrBelow: 0.7
-    line: Tu n'es pas celui d'hier... pourtant ton pas est le même.
+    line: "Tu n'es pas celui d'hier... pourtant ton pas est le m\xEAme."
     voiceLine: {fileID: 0}
   - triggerWhenHpPercentAtOrBelow: 0.35
-    line: Je me souviens. Ce n'était pas l'ennemi devant les murs. C'était quelque
-      chose dedans.
+    line: "Je me souviens. Ce n'\xE9tait pas l'ennemi devant les murs. C'\xE9tait
+      quelque chose dedans."
     voiceLine: {fileID: 0}
   deathDialogue: Je gardais la porte... contre toi ? Non... contre ton retour.
   deathVoiceLine: {fileID: 0}
   defeatResultText: Il plante sa lame dans ton ventre et salue ton cadavre comme
     un vieux camarade.
-  victoryResultText: Il n'a jamais gardé Rhodesia contre les envahisseurs. Il gardait
-    la ville contre la repetition.
+  victoryResultText: "Il n'a jamais gard\xE9 Rhodesia contre les envahisseurs. Il
+    gardait la ville contre la repetition."
   bossDeathSfx: {fileID: 8300000, guid: fd318bafa5bd05040be0cf2bc5d86ab1, type: 3}
   victorySfx: {fileID: 8300000, guid: a5a4fc7157527324f9a1233dc68e70f7, type: 3}
   defeatSfx: {fileID: 8300000, guid: 0ed4cba76ba954b4d9f9098ed17d1114, type: 3}
@@ -53,7 +53,7 @@ MonoBehaviour:
   finalVictoryScene: {fileID: 0}
   phases:
   - phaseId: demence
-    displayName: La Démence
+    displayName: "La D\xE9mence"
     startsWhenHpPercentAtOrBelow: 1
     advanceAfterBossTurns: 0
     advanceAfterPatternIterations: 0
@@ -82,7 +82,7 @@ MonoBehaviour:
       interruptBossStunTurns: 0
       interruptLine: 
       interruptVoiceLine: {fileID: 0}
-      damage: 7
+      damage: 8
       shield: 0
       invulnerableTurns: 0
       vulnerableTurns: 0
@@ -107,9 +107,9 @@ MonoBehaviour:
       vulnerableTurns: 0
     - actionId: charge_colossale
       actionType: 0
-      bossLine: Ne bouge pas. Je sais encore faire ça.
+      bossLine: "Ne bouge pas. Je sais encore faire \xE7a."
       bossVoiceLine: {fileID: 0}
-      chargeLine: Il lève sa lame trop haut, presque maladroitement.
+      chargeLine: "Il l\xE8ve sa lame trop haut, presque maladroitement."
       chargeVoiceLine: {fileID: 0}
       chargeTurns: 1
       vulnerableWhileCharging: 1
@@ -120,7 +120,7 @@ MonoBehaviour:
       interruptBossStunTurns: 0
       interruptLine: 
       interruptVoiceLine: {fileID: 0}
-      damage: 19
+      damage: 15
       shield: 0
       invulnerableTurns: 0
       vulnerableTurns: 0
@@ -137,7 +137,7 @@ MonoBehaviour:
     bossSprite: {fileID: 0}
     bossVisualScale: 0
     phaseStartSfx: {fileID: 0}
-    dialogueOnStart: Rhodesia est tombée de l'intérieur.
+    dialogueOnStart: "Rhodesia est tomb\xE9e de l'int\xE9rieur."
     actions:
     - actionId: taille_precise
       actionType: 0
@@ -192,13 +192,13 @@ MonoBehaviour:
       interruptBossStunTurns: 0
       interruptLine: 
       interruptVoiceLine: {fileID: 0}
-      damage: 15
+      damage: 19
       shield: 0
       invulnerableTurns: 0
       vulnerableTurns: 0
   rewardPickCount: 2
   rewardCardIds:
   - trone_des_restes
-  - autel_profane
+  - fournaise_du_martyr
   - autel_des_cendres
   potionRewardCount: 0
