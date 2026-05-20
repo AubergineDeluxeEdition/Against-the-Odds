@@ -133,6 +133,9 @@ MonoBehaviour:
       shield: 0
       invulnerableTurns: 0
       vulnerableTurns: 0
-  rewardPickCount: 1
-  rewardCardIds: []
+  rewardPickCount: 2
+  rewardCardIds:
+  - couronne_de_l_extinction
+  - armure_calcinee
+  - communion_profane
   potionRewardCount: 1

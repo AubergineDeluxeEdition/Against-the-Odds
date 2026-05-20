@@ -268,9 +268,9 @@ MonoBehaviour:
       shield: 0
       invulnerableTurns: 0
       vulnerableTurns: 0
-  rewardPickCount: 1
+  rewardPickCount: 2
   rewardCardIds:
-  - trone_des_restes
-  - jugement_du_bucher
-  - rite_de_l_ascension
+  - couronne_de_l_extinction
+  - fortification_sepulcrale
+  - presage_de_cendres
   potionRewardCount: 0

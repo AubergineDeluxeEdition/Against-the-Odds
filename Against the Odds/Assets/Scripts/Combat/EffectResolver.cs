@@ -124,13 +124,13 @@ public class EffectResolver
 
             case "gain_max_mana":
                 state.PermanentManaBonus += effect.value;
-                state.MaxMana += effect.value;
-                state.CurrentMana += effect.value;
+                state.MaxMana = Mathf.Min(TurnManager.ManaCap, state.BaseMana + state.PermanentManaBonus);
+                state.CurrentMana = Mathf.Min(state.CurrentMana, TurnManager.ManaCap);
                 Log($"Mana max augmente a {state.MaxMana}");
                 break;
 
             case "gain_temporary_mana":
-                state.CurrentMana += effect.value;
+                state.CurrentMana = Mathf.Min(TurnManager.ManaCap, state.CurrentMana + effect.value);
                 Log($"Gagne {effect.value} mana temporaire");
                 break;
 
@@ -195,7 +195,7 @@ public class EffectResolver
                 int mana = state.ActiveTerrain.terrainEffect.firstRitualEachTurnGainMana;
                 if (mana > 0)
                 {
-                    state.CurrentMana += mana;
+                    state.CurrentMana = Mathf.Min(TurnManager.ManaCap, state.CurrentMana + mana);
                     Log($"Autel Profane : gagne {mana} mana");
                 }
 
