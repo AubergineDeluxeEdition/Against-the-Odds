@@ -30,11 +30,21 @@ public class CombatWorldRenderOrder : MonoBehaviour
 
         foreach (SpriteRenderer spriteRenderer in GetComponentsInChildren<SpriteRenderer>(true))
         {
+            if (spriteRenderer.GetComponentInParent<CombatWorldCardView>() != null)
+            {
+                continue;
+            }
+
             spriteRenderer.sortingOrder = baseSortingOrder;
         }
 
         foreach (TMP_Text text in GetComponentsInChildren<TMP_Text>(true))
         {
+            if (text.GetComponentInParent<CombatWorldCardView>() != null)
+            {
+                continue;
+            }
+
             Renderer textRenderer = text.GetComponent<Renderer>();
             if (textRenderer != null)
             {

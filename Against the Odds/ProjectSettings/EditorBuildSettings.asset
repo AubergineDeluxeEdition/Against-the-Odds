@@ -32,6 +32,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/04_Combat_Zone5.unity
     guid: 9e81a6ef6e28e484b94f11241842707b
+  - enabled: 1
+    path: Assets/Scenes/05_CinematicCredits.unity
+    guid: c9fb4b0c477b8c14a95186fce8daf5a7
+  - enabled: 1
+    path: Assets/Scenes/05_CinematicIntro.unity
+    guid: 633a29321ef58a749a5843c3e27d233c
+  - enabled: 1
+    path: Assets/Scenes/05_CinematicDog.unity
+    guid: 71b86486ee8af934386467f6f5cd71ee
+  - enabled: 1
+    path: Assets/Scenes/05_CinematicRealisation.unity
+    guid: 1ba15bdc2a7cd5649947b1f4879e3202
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

@@ -3,6 +3,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace AgainstTheOdds.MainMenu
 {
@@ -20,6 +23,12 @@ namespace AgainstTheOdds.MainMenu
         [SerializeField] private ActionBouton action = ActionBouton.ChargerScene;
         [SerializeField] private string sceneACharger = "03_CampaignMap";
         [SerializeField] private string defaultDeckId = "default";
+
+        [Header("Intro nouvelle partie")]
+        [SerializeField] private string introSceneName;
+#if UNITY_EDITOR
+        [SerializeField] private SceneAsset introScene;
+#endif
 
         [Header("Sauvegarde")]
         [SerializeField] private bool masquerSiAucuneSauvegarde = true;
@@ -104,6 +113,13 @@ namespace AgainstTheOdds.MainMenu
                 GameManager.Instance.StartNewRun(defaultDeckId);
             }
 
+            if (!string.IsNullOrWhiteSpace(introSceneName))
+            {
+                GameManager.Instance?.SetPendingCinematicNextScene(GetSceneToLoad());
+                LoadScene(introSceneName);
+                return;
+            }
+
             ChargerSceneConfiguree();
         }
 
@@ -135,14 +151,19 @@ namespace AgainstTheOdds.MainMenu
 
         private void ChargerSceneConfiguree()
         {
-            if (string.IsNullOrWhiteSpace(sceneACharger))
-            {
-                sceneACharger = "03_CampaignMap";
-            }
+            LoadScene(GetSceneToLoad());
+        }
 
+        private string GetSceneToLoad()
+        {
+            return string.IsNullOrWhiteSpace(sceneACharger) ? "03_CampaignMap" : sceneACharger;
+        }
+
+        private static void LoadScene(string sceneName)
+        {
             if (SceneLoader.Instance != null)
             {
-                SceneLoader.Instance.LoadScene(sceneACharger);
+                SceneLoader.Instance.LoadScene(sceneName);
             }
             else
             {
@@ -166,5 +187,15 @@ namespace AgainstTheOdds.MainMenu
             Application.Quit();
 #endif
         }
+
+#if UNITY_EDITOR
+        private void OnValidate()
+        {
+            if (introScene == null) return;
+
+            string scenePath = AssetDatabase.GetAssetPath(introScene);
+            introSceneName = System.IO.Path.GetFileNameWithoutExtension(scenePath);
+        }
+#endif
     }
 }

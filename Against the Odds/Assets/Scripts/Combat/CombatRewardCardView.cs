@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class CombatRewardCardView : MonoBehaviour
 {
     private const float ClickMoveTolerancePixels = 12f;
+    private const float MinimumHoverScale = 2f;
 
     [SerializeField] private TMP_Text nameText;
     [SerializeField] private TMP_Text costText;
@@ -19,8 +20,9 @@ public class CombatRewardCardView : MonoBehaviour
     [SerializeField] private Color selectedColor = new Color(1f, 0.86f, 0.45f, 1f);
     [SerializeField] private Color hoverColor = new Color(1f, 0.95f, 0.72f, 1f);
     [SerializeField] private Color dimmedColor = new Color(0.55f, 0.55f, 0.55f, 0.7f);
-    [SerializeField] private float hoverScale = 1.08f;
+    [SerializeField] private float hoverScale = MinimumHoverScale;
     [SerializeField] private int sortingOrder = 10020;
+    [SerializeField] private int hoverSortingBoost = 2000;
 
     private CardDefinition card;
     private Action<CombatRewardCardView> clicked;
@@ -29,6 +31,7 @@ public class CombatRewardCardView : MonoBehaviour
     private bool interactable;
     private bool selectionContextActive;
     private bool hovered;
+    private bool externalHoverMode;
     private bool pressStartedOnCard;
     private Vector2 pressScreenPosition;
     private Vector3 restScale;
@@ -46,12 +49,21 @@ public class CombatRewardCardView : MonoBehaviour
     {
         cardCollider = GetComponent<Collider2D>();
         restScale = transform.localScale;
+        hoverScale = Mathf.Max(hoverScale, MinimumHoverScale);
         AutoBindMissingReferences();
         ApplySorting();
     }
 
+#if UNITY_EDITOR
+    private void OnValidate()
+    {
+        hoverScale = Mathf.Max(hoverScale, MinimumHoverScale);
+    }
+#endif
+
     private void Update()
     {
+        if (externalHoverMode) return;
         if (!interactable || card == null || cardCollider == null) return;
 
         Mouse mouse = Mouse.current;
@@ -126,9 +138,57 @@ public class CombatRewardCardView : MonoBehaviour
         RefreshVisual();
     }
 
+    public void SetExternalHoverMode(bool value)
+    {
+        externalHoverMode = value;
+        if (!externalHoverMode) return;
+
+        pressStartedOnCard = false;
+    }
+
+    public void SetHoveredFromOwner(bool value)
+    {
+        if (hovered == value) return;
+
+        hovered = value;
+        RefreshVisual();
+    }
+
+    public bool ContainsScreenPoint(Vector2 screenPosition)
+    {
+        if (!interactable || card == null || cardCollider == null) return false;
+
+        Camera camera = Camera.main;
+        if (camera == null) return false;
+
+        Vector3 worldPosition = camera.ScreenToWorldPoint(screenPosition);
+        return cardCollider.OverlapPoint(new Vector2(worldPosition.x, worldPosition.y));
+    }
+
+    public float GetScreenPickScore(Vector2 screenPosition)
+    {
+        Camera camera = Camera.main;
+        if (camera == null) return float.NegativeInfinity;
+
+        Vector3 worldPosition = camera.ScreenToWorldPoint(screenPosition);
+        float horizontalDistance = Mathf.Abs(worldPosition.x - transform.position.x);
+        float verticalDistance = Mathf.Abs(worldPosition.y - transform.position.y) * 0.25f;
+        return -(horizontalDistance + verticalDistance) + sortingOrder * 0.0001f;
+    }
+
+    public float CurrentScaleMultiplier
+    {
+        get
+        {
+            if (Mathf.Approximately(restScale.x, 0f)) return 1f;
+            return transform.localScale.x / restScale.x;
+        }
+    }
+
     private void RefreshVisual()
     {
         transform.localScale = restScale * (hovered ? hoverScale : 1f);
+        ApplySorting();
 
         if (selectedRenderer != null)
         {
@@ -172,6 +232,12 @@ public class CombatRewardCardView : MonoBehaviour
 
         foreach (TMP_Text text in GetComponentsInChildren<TMP_Text>(true))
         {
+            string objectName = text.name.ToLowerInvariant();
+            if (objectName.Contains("count") || objectName.Contains("quantity"))
+            {
+                continue;
+            }
+
             Color textColor = text.color;
             textColor.a = Mathf.Clamp01(tint.a);
             text.color = textColor;
@@ -202,24 +268,39 @@ public class CombatRewardCardView : MonoBehaviour
     {
         SpriteRenderer root = GetComponent<SpriteRenderer>();
         int sortingLayerId = root != null ? root.sortingLayerID : 0;
+        int currentSortingOrder = hovered ? sortingOrder + hoverSortingBoost : sortingOrder;
+
         if (root != null)
         {
-            root.sortingOrder = sortingOrder;
+            root.sortingOrder = currentSortingOrder + 2;
         }
 
         foreach (SpriteRenderer spriteRenderer in GetComponentsInChildren<SpriteRenderer>(true))
         {
             spriteRenderer.sortingLayerID = sortingLayerId;
-            if (spriteRenderer != root)
+            if (spriteRenderer == root)
             {
-                spriteRenderer.sortingOrder = sortingOrder + 1;
+                continue;
+            }
+
+            if (spriteRenderer == artworkRenderer)
+            {
+                spriteRenderer.sortingOrder = currentSortingOrder;
+            }
+            else if (spriteRenderer == selectedRenderer || spriteRenderer == unavailableRenderer)
+            {
+                spriteRenderer.sortingOrder = currentSortingOrder + 8;
+            }
+            else
+            {
+                spriteRenderer.sortingOrder = currentSortingOrder + 2;
             }
         }
 
         foreach (MeshRenderer meshRenderer in GetComponentsInChildren<MeshRenderer>(true))
         {
             meshRenderer.sortingLayerID = sortingLayerId;
-            meshRenderer.sortingOrder = sortingOrder + textOrderOffset;
+            meshRenderer.sortingOrder = currentSortingOrder + Mathf.Max(10, textOrderOffset);
         }
     }
 

@@ -27,21 +27,29 @@ MonoBehaviour:
   introVoiceLine: {fileID: 0}
   hpDialogues:
   - triggerWhenHpPercentAtOrBelow: 0.75
-    line: Tu hurlais plus fort la premiere fois.
+    line: Tu hurlais plus fort la première fois.
     voiceLine: {fileID: 0}
   - triggerWhenHpPercentAtOrBelow: 0.45
-    line: Je t'avais ferme les plaies. Qui t'a rendu a la route ?
+    line: Je t'avais fermé les plaies. Qui t'a rendu à la route ?
     voiceLine: {fileID: 0}
-  deathDialogue: Ton nom... je l'avais ecrit avec les cas sans espoir.
+  deathDialogue: Ton nom... je l'avais écrit avec les cas sans espoir.
   deathVoiceLine: {fileID: 0}
   defeatResultText: Il t'endort avec des gestes tendres. C'est presque pire que la
     violence.
-  victoryResultText: Dans son registre, ton nom apparait rature. Il t'avait soigne
+  victoryResultText: Dans son registre, ton nom apparaît raturé. Il t'avait soigné
     avant que la ville ne te recrache dans la fosse.
   bossDeathSfx: {fileID: 8300000, guid: fd318bafa5bd05040be0cf2bc5d86ab1, type: 3}
   victorySfx: {fileID: 8300000, guid: a5a4fc7157527324f9a1233dc68e70f7, type: 3}
   defeatSfx: {fileID: 8300000, guid: 0ed4cba76ba954b4d9f9098ed17d1114, type: 3}
   defeatButtonSfx: {fileID: 8300000, guid: 87ae847158639d4468acae75a0cfe2c6, type: 3}
+  preCombatSceneName: 
+  postVictorySceneName: 
+  postDefeatSceneName: 
+  finalVictorySceneName: 
+  preCombatScene: {fileID: 0}
+  postVictoryScene: {fileID: 0}
+  postDefeatScene: {fileID: 0}
+  finalVictoryScene: {fileID: 0}
   phases:
   - phaseId: rassembleur
     displayName: Le Rassembleur
@@ -56,7 +64,7 @@ MonoBehaviour:
     bossSprite: {fileID: 0}
     bossVisualScale: 0
     phaseStartSfx: {fileID: 0}
-    dialogueOnStart: Les cris doivent etre ranges avant de devenir des prieres.
+    dialogueOnStart: Les cris doivent être rangés avant de devenir des prières.
     actions:
     - actionId: chaines
       actionType: 0
@@ -79,7 +87,7 @@ MonoBehaviour:
       vulnerableTurns: 0
     - actionId: pansement_de_fer
       actionType: 1
-      bossLine: Je maintiens ce qui se defait.
+      bossLine: Je maintiens ce qui se défait.
       bossVoiceLine: {fileID: 0}
       chargeLine: 
       chargeVoiceLine: {fileID: 0}
@@ -128,8 +136,8 @@ MonoBehaviour:
     bossSprite: {fileID: 0}
     bossVisualScale: 0
     phaseStartSfx: {fileID: 0}
-    dialogueOnStart: Il se refugie dans la pile de chair. Toute la salle commence
-      a respirer.
+    dialogueOnStart: Il se réfugie dans la pile de chair. Toute la salle commence
+      à respirer.
     actions:
     - actionId: masse_de_membres
       actionType: 0
@@ -171,7 +179,7 @@ MonoBehaviour:
       vulnerableTurns: 0
     - actionId: chirurgie_finale
       actionType: 0
-      bossLine: Je vais t'anesthesier pour de bon.
+      bossLine: Je vais t'anesthésier pour de bon.
       bossVoiceLine: {fileID: 0}
       chargeLine: Les aiguilles cherchent les anciennes coutures.
       chargeVoiceLine: {fileID: 0}
@@ -193,4 +201,4 @@ MonoBehaviour:
   - forteresse_de_cendres
   - rite_de_l_ascension
   - fortification_sepulcrale
-  potionRewardCount: 1
+  potionRewardCount: 0

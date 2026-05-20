@@ -57,7 +57,8 @@ public class CombatResultButton : MonoBehaviour
         }
 
         Vector2 pointerPosition = mouse.position.ReadValue();
-        bool pointerOverButton = IsPointerOverButton(pointerPosition);
+        bool pointerBlockedByRewardCard = resultOverlay != null && resultOverlay.IsPointerOverRewardCard(pointerPosition);
+        bool pointerOverButton = !pointerBlockedByRewardCard && IsPointerOverButton(pointerPosition);
         UpdateVisual(interactable, pointerOverButton);
 
         if (!interactable) return;

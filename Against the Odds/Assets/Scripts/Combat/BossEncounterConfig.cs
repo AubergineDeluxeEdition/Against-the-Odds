@@ -1,4 +1,7 @@
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 [CreateAssetMenu(fileName = "BossEncounterConfig", menuName = "Against the Odds/Combat/Boss Encounter")]
 public class BossEncounterConfig : ScriptableObject
@@ -48,6 +51,22 @@ public class BossEncounterConfig : ScriptableObject
     [Tooltip("Played when pressing the defeat/end adventure button.")]
     public AudioClip defeatButtonSfx;
 
+    [Header("Cinematics")]
+    [Tooltip("Optional scene played after clicking the campaign pin and before the combat scene.")]
+    public string preCombatSceneName;
+    [Tooltip("Optional scene played after victory, before returning to the campaign map.")]
+    public string postVictorySceneName;
+    [Tooltip("Optional scene played after defeat instead of returning directly to the main menu.")]
+    public string postDefeatSceneName;
+    [Tooltip("Optional scene played when this victory completes the campaign.")]
+    public string finalVictorySceneName;
+#if UNITY_EDITOR
+    [SerializeField] private SceneAsset preCombatScene;
+    [SerializeField] private SceneAsset postVictoryScene;
+    [SerializeField] private SceneAsset postDefeatScene;
+    [SerializeField] private SceneAsset finalVictoryScene;
+#endif
+
     [Header("Advanced Boss Sequences")]
     public BossPhaseConfig[] phases;
 
@@ -58,6 +77,24 @@ public class BossEncounterConfig : ScriptableObject
     public string[] rewardCardIds;
     [Tooltip("How many potions are gained after this boss is defeated.")]
     public int potionRewardCount = 1;
+
+#if UNITY_EDITOR
+    private void OnValidate()
+    {
+        preCombatSceneName = GetSceneName(preCombatScene, preCombatSceneName);
+        postVictorySceneName = GetSceneName(postVictoryScene, postVictorySceneName);
+        postDefeatSceneName = GetSceneName(postDefeatScene, postDefeatSceneName);
+        finalVictorySceneName = GetSceneName(finalVictoryScene, finalVictorySceneName);
+    }
+
+    private static string GetSceneName(SceneAsset scene, string currentValue)
+    {
+        if (scene == null) return currentValue;
+
+        string scenePath = AssetDatabase.GetAssetPath(scene);
+        return System.IO.Path.GetFileNameWithoutExtension(scenePath);
+    }
+#endif
 }
 
 [System.Serializable]

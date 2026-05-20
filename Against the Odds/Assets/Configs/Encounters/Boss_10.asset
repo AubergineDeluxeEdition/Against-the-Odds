@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Boss_10
   m_EditorClassIdentifier: 
   bossIndex: 9
-  bossDisplayName: L'Ultime Penitence
+  bossDisplayName: "La Volont\xE9 Maudite"
   playerStartHP: 100
   bossStartHP: 165
   cardDatabaseResourcePath: 
@@ -23,24 +23,33 @@ MonoBehaviour:
   fadeInCombatMusic: 1
   cardAudioProfile: {fileID: 11400000, guid: 6ec1711d07634374a801a8ad8cc27c81, type: 2}
   defaultAttackDamage: 10
-  introDialogue: Il n'y a plus personne a tuer.
+  introDialogue: "Il n'y a plus personne \xE0 tuer."
   introVoiceLine: {fileID: 0}
   hpDialogues:
   - triggerWhenHpPercentAtOrBelow: 0.75
-    line: Tu as appele ca courage parce que le mot etait plus doux que malediction.
+    line: "Tu as appel\xE9 \xE7a courage parce que le mot \xE9tait plus doux que
+      mal\xE9diction."
     voiceLine: {fileID: 0}
   - triggerWhenHpPercentAtOrBelow: 0.4
-    line: Chaque pas vers elle a releve la ville entiere.
+    line: "Chaque pas vers elle a relev\xE9 la ville enti\xE8re."
     voiceLine: {fileID: 0}
   deathDialogue: Enfin.
   deathVoiceLine: {fileID: 0}
-  defeatResultText: Tu refuses. Tres bien. La fosse t'attend, et tous les autres
-    avec elle.
-  victoryResultText: Pour la premiere fois, Rhodesia ne respire plus.
+  defeatResultText: "Tu refuses. Tr\xE8s bien. La fosse t'attend, et tous les autres
+    avec elle."
+  victoryResultText: "Les \xE2mes de Rhodesia commencent enfin \xE0 se taire..."
   bossDeathSfx: {fileID: 8300000, guid: 69bb2c927b1f3d54e828f08f7542dfaf, type: 3}
   victorySfx: {fileID: 8300000, guid: a5a4fc7157527324f9a1233dc68e70f7, type: 3}
   defeatSfx: {fileID: 8300000, guid: 0ed4cba76ba954b4d9f9098ed17d1114, type: 3}
   defeatButtonSfx: {fileID: 8300000, guid: 87ae847158639d4468acae75a0cfe2c6, type: 3}
+  preCombatSceneName: 
+  postVictorySceneName: 
+  postDefeatSceneName: 
+  finalVictorySceneName: 05_CinematicCredits
+  preCombatScene: {fileID: 0}
+  postVictoryScene: {fileID: 0}
+  postDefeatScene: {fileID: 0}
+  finalVictoryScene: {fileID: 102900000, guid: c9fb4b0c477b8c14a95186fce8daf5a7, type: 3}
   phases:
   - phaseId: refus
     displayName: Le Refus
@@ -60,7 +69,7 @@ MonoBehaviour:
     actions:
     - actionId: reflexe_survie
       actionType: 1
-      bossLine: Ton instinct leve un rempart avant ta pensee.
+      bossLine: "Ton instinct l\xE8ve un rempart avant ta pens\xE9e."
       bossVoiceLine: {fileID: 0}
       chargeLine: 
       chargeVoiceLine: {fileID: 0}
@@ -79,7 +88,7 @@ MonoBehaviour:
       vulnerableTurns: 0
     - actionId: coup_retourne
       actionType: 0
-      bossLine: La lame revient par le meme chemin.
+      bossLine: "La lame revient par le m\xEAme chemin."
       bossVoiceLine: {fileID: 0}
       chargeLine: 
       chargeVoiceLine: {fileID: 0}
@@ -116,7 +125,7 @@ MonoBehaviour:
       invulnerableTurns: 0
       vulnerableTurns: 0
   - phaseId: volonte
-    displayName: La Volonte
+    displayName: "La Volont\xE9"
     startsWhenHpPercentAtOrBelow: 0.7
     advanceAfterBossTurns: 0
     advanceAfterPatternIterations: 0
@@ -128,11 +137,11 @@ MonoBehaviour:
     bossSprite: {fileID: 0}
     bossVisualScale: 0
     phaseStartSfx: {fileID: 0}
-    dialogueOnStart: Tu peux encore survivre. C'est precisement le probleme.
+    dialogueOnStart: "Tu peux encore survivre. C'est pr\xE9cis\xE9ment le probl\xE8me."
     actions:
     - actionId: ancre
       actionType: 1
-      bossLine: La ville s'accroche a ton refus.
+      bossLine: "La ville s'accroche \xE0 ton refus."
       bossVoiceLine: {fileID: 0}
       chargeLine: 
       chargeVoiceLine: {fileID: 0}
@@ -151,7 +160,7 @@ MonoBehaviour:
       vulnerableTurns: 0
     - actionId: memoire_des_morts
       actionType: 0
-      bossLine: Toutes les voix que tu as liberees reviennent une seconde.
+      bossLine: "Toutes les voix que tu as lib\xE9r\xE9es reviennent une seconde."
       bossVoiceLine: {fileID: 0}
       chargeLine: 
       chargeVoiceLine: {fileID: 0}
@@ -172,7 +181,7 @@ MonoBehaviour:
       actionType: 0
       bossLine: Rhodesia respire par ta poitrine.
       bossVoiceLine: {fileID: 0}
-      chargeLine: Le silence entier attend ta decision.
+      chargeLine: "Le silence entier attend ta d\xE9cision."
       chargeVoiceLine: {fileID: 0}
       chargeTurns: 1
       vulnerableWhileCharging: 0
@@ -188,7 +197,7 @@ MonoBehaviour:
       invulnerableTurns: 0
       vulnerableTurns: 0
   - phaseId: acceptation
-    displayName: La Fin Acceptee
+    displayName: "La Fin Accept\xE9e"
     startsWhenHpPercentAtOrBelow: 0.35
     advanceAfterBossTurns: 0
     advanceAfterPatternIterations: 0
@@ -204,7 +213,7 @@ MonoBehaviour:
     actions:
     - actionId: se_defaire
       actionType: 0
-      bossLine: La volonte se fend.
+      bossLine: "La volont\xE9 se fend."
       bossVoiceLine: {fileID: 0}
       chargeLine: 
       chargeVoiceLine: {fileID: 0}
@@ -229,6 +238,6 @@ MonoBehaviour:
       shield: 0
       invulnerableTurns: 0
       vulnerableTurns: 0
-  rewardPickCount: 1
+  rewardPickCount: 0
   rewardCardIds: []
-  potionRewardCount: 1
+  potionRewardCount: 0

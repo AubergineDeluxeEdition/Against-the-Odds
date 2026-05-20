@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Boss_09
   m_EditorClassIdentifier: 
   bossIndex: 8
-  bossDisplayName: Le Roi-Mecanisme
+  bossDisplayName: Le Roi-Mécanisme
   playerStartHP: 100
   bossStartHP: 205
   cardDatabaseResourcePath: 
@@ -23,26 +23,34 @@ MonoBehaviour:
   fadeInCombatMusic: 1
   cardAudioProfile: {fileID: 11400000, guid: 6ec1711d07634374a801a8ad8cc27c81, type: 2}
   defaultAttackDamage: 10
-  introDialogue: Tu es arrive au coeur. C'est ce que tu crois.
+  introDialogue: Tu es arrivé au cœur. C'est ce que tu crois.
   introVoiceLine: {fileID: 0}
   hpDialogues:
   - triggerWhenHpPercentAtOrBelow: 0.72
-    line: Je pompe. Je redistribue. Je ne decide rien.
+    line: Je pompe. Je redistribue. Je ne décide rien.
     voiceLine: {fileID: 0}
   - triggerWhenHpPercentAtOrBelow: 0.38
     line: Tu veux un coupable avec une couronne. C'est plus simple.
     voiceLine: {fileID: 0}
-  deathDialogue: Je n'etais qu'une bouche. Le souffle venait d'ailleurs.
+  deathDialogue: Je n'étais qu'une bouche. Le souffle venait d'ailleurs.
   deathVoiceLine: {fileID: 0}
   defeatResultText: La machine boit ton sang et le recrache dans la ville. Au loin,
-    la fosse tousse deja ton nom.
-  victoryResultText: Le Roi tombe. Les pistons s'arretent. Puis, dans les rues, les
-    morts remuent encore. Le cycle ne venait pas du trone. Il suivait celui qui refusait
+    la fosse tousse déjà ton nom.
+  victoryResultText: Le Roi tombe. Les pistons s'arrêtent. Puis, dans les rues, les
+    morts remuent encore. Le cycle ne venait pas du trône. Il suivait celui qui refusait
     de finir.
   bossDeathSfx: {fileID: 8300000, guid: 2884d48ef356cf24cb85f65f134173e9, type: 3}
   victorySfx: {fileID: 8300000, guid: a5a4fc7157527324f9a1233dc68e70f7, type: 3}
   defeatSfx: {fileID: 8300000, guid: 0ed4cba76ba954b4d9f9098ed17d1114, type: 3}
   defeatButtonSfx: {fileID: 8300000, guid: 87ae847158639d4468acae75a0cfe2c6, type: 3}
+  preCombatSceneName: 
+  postVictorySceneName: 05_CinematicRealisation
+  postDefeatSceneName: 
+  finalVictorySceneName: 
+  preCombatScene: {fileID: 0}
+  postVictoryScene: {fileID: 102900000, guid: 1ba15bdc2a7cd5649947b1f4879e3202, type: 3}
+  postDefeatScene: {fileID: 0}
+  finalVictoryScene: {fileID: 0}
   phases:
   - phaseId: pompe
     displayName: Pompe Royale
@@ -111,11 +119,11 @@ MonoBehaviour:
       resolveEffects:
       - effectType: 2
         value: 5
-        line: La tete dessechee se vide un peu.
+        line: La tête desséchée se vide un peu.
         voiceLine: {fileID: 0}
       - effectType: 1
         value: 28
-        line: La machine se blinde de sang coagule.
+        line: La machine se blinde de sang coagulé.
         voiceLine: {fileID: 0}
       interruptIfPlayerBlockAtLeast: 0
       interruptBossStunTurns: 0

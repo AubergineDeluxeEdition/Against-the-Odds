@@ -40,6 +40,8 @@ namespace AgainstTheOdds.Core
         public IReadOnlyList<DeckEntry> InitialDeck => initialDeck;
         public IReadOnlyList<string> RunRewardCardIds => runRewardCardIds;
         public global::BossEncounterConfig SelectedEncounter { get; private set; }
+        public string SelectedCombatSceneName { get; private set; }
+        public string PendingCinematicNextSceneName { get; private set; }
 
         private void Awake()
         {
@@ -61,6 +63,8 @@ namespace AgainstTheOdds.Core
             potionCount = initialPotionCount;
             runRewardCardIds.Clear();
             SelectedEncounter = null;
+            SelectedCombatSceneName = string.Empty;
+            PendingCinematicNextSceneName = string.Empty;
             Debug.Log($"[GameManager] New run started (deck='{deckId}').");
             SaveManager.Instance?.SaveRun(this);
         }
@@ -81,6 +85,8 @@ namespace AgainstTheOdds.Core
                 ? new List<string>(saveData.runRewardCardIds.Where(cardId => !string.IsNullOrWhiteSpace(cardId)))
                 : new List<string>();
             SelectedEncounter = null;
+            SelectedCombatSceneName = string.Empty;
+            PendingCinematicNextSceneName = string.Empty;
 
             SaveManager.Instance?.SetCurrentData(saveData);
             Debug.Log($"[GameManager] Run loaded at boss #{currentBossIndex} (deck='{selectedDeckId}').");
@@ -160,13 +166,33 @@ namespace AgainstTheOdds.Core
             SaveManager.Instance?.SaveRun(this);
         }
 
-        public void SelectEncounter(global::BossEncounterConfig encounter)
+        public void SelectEncounter(global::BossEncounterConfig encounter, string combatSceneName = null)
         {
             SelectedEncounter = encounter;
+            SelectedCombatSceneName = string.IsNullOrWhiteSpace(combatSceneName)
+                ? string.Empty
+                : combatSceneName;
             if (encounter == null) return;
 
             isInRun = true;
             Debug.Log($"[GameManager] Encounter selected: {encounter.bossDisplayName} (run boss #{currentBossIndex}, encounter boss #{encounter.bossIndex}).");
+        }
+
+        public void SetPendingCinematicNextScene(string sceneName)
+        {
+            PendingCinematicNextSceneName = string.IsNullOrWhiteSpace(sceneName)
+                ? string.Empty
+                : sceneName;
+        }
+
+        public string ConsumePendingCinematicNextScene(string fallbackSceneName)
+        {
+            string sceneName = !string.IsNullOrWhiteSpace(PendingCinematicNextSceneName)
+                ? PendingCinematicNextSceneName
+                : fallbackSceneName;
+
+            PendingCinematicNextSceneName = string.Empty;
+            return sceneName;
         }
 
         public void EndRun()
@@ -174,15 +200,17 @@ namespace AgainstTheOdds.Core
             Debug.Log($"[GameManager] Run ended at boss #{currentBossIndex}.");
             isInRun = false;
             SelectedEncounter = null;
+            SelectedCombatSceneName = string.Empty;
+            PendingCinematicNextSceneName = string.Empty;
             SaveManager.Instance?.DeleteSave();
         }
 
-        public void AdvanceToNextBoss()
+        public bool AdvanceToNextBoss()
         {
             if (!isInRun)
             {
                 Debug.LogWarning("[GameManager] AdvanceToNextBoss called without an active run.");
-                return;
+                return false;
             }
 
             currentBossIndex++;
@@ -192,10 +220,11 @@ namespace AgainstTheOdds.Core
             {
                 Debug.Log("[GameManager] Campaign complete.");
                 EndRun();
-                return;
+                return true;
             }
 
             SaveManager.Instance?.SaveRun(this);
+            return false;
         }
     }
 }

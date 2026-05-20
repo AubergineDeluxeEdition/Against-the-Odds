@@ -680,13 +680,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12
-  m_fontSizeBase: 12
+  m_fontSize: 8
+  m_fontSizeBase: 8
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 16
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -857,6 +857,42 @@ PrefabInstance:
       propertyPath: encounterConfig
       value: 
       objectReference: {fileID: 11400000, guid: 26103b460577a944cb66f4e3d5910126, type: 2}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPulseSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPinTintColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPinTintColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPinTintColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPulseAmplitude
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverHighlightColor.a
+      value: 0.3764706
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverHighlightColor.b
+      value: 0.19999999
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverHighlightColor.g
+      value: 0.20266397
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPinBreathAmplitude
+      value: 0.04
+      objectReference: {fileID: 0}
     - target: {fileID: 3313842534663340359, guid: e7717cd86082ea54681c465acc56c431, type: 3}
       propertyPath: m_SortingOrder
       value: 32767
@@ -965,6 +1001,42 @@ PrefabInstance:
       propertyPath: encounterConfig
       value: 
       objectReference: {fileID: 11400000, guid: 3ebeca3e1b76bac44a6784d27e373e7e, type: 2}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPulseSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPinTintColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPinTintColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPinTintColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPulseAmplitude
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverHighlightColor.a
+      value: 0.3764706
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverHighlightColor.b
+      value: 0.19999999
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverHighlightColor.g
+      value: 0.20266397
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPinBreathAmplitude
+      value: 0.04
+      objectReference: {fileID: 0}
     - target: {fileID: 8224325842344375828, guid: e7717cd86082ea54681c465acc56c431, type: 3}
       propertyPath: m_Name
       value: pin (5)
@@ -1250,6 +1322,42 @@ PrefabInstance:
       propertyPath: encounterConfig
       value: 
       objectReference: {fileID: 11400000, guid: 478311ca34f12224c8bbe72a20fe495a, type: 2}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPulseSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPinTintColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPinTintColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPinTintColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPulseAmplitude
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverHighlightColor.a
+      value: 0.3764706
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverHighlightColor.b
+      value: 0.19999999
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverHighlightColor.g
+      value: 0.20266397
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPinBreathAmplitude
+      value: 0.04
+      objectReference: {fileID: 0}
     - target: {fileID: 8224325842344375828, guid: e7717cd86082ea54681c465acc56c431, type: 3}
       propertyPath: m_Name
       value: pin (4)
@@ -3328,8 +3436,9 @@ MonoBehaviour:
   selectedColor: {r: 1, g: 0.86, b: 0.45, a: 1}
   hoverColor: {r: 1, g: 0.95, b: 0.72, a: 1}
   dimmedColor: {r: 0.55, g: 0.55, b: 0.55, a: 0.7}
-  hoverScale: 1.08
+  hoverScale: 2
   sortingOrder: 10020
+  hoverSortingBoost: 2000
 --- !u!1 &868253849
 GameObject:
   m_ObjectHideFlags: 0
@@ -3697,6 +3806,42 @@ PrefabInstance:
       propertyPath: encounterConfig
       value: 
       objectReference: {fileID: 11400000, guid: ef9c1767a8739464ab8c254e41f08511, type: 2}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPulseSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPinTintColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPinTintColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPinTintColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPulseAmplitude
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverHighlightColor.a
+      value: 0.3764706
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverHighlightColor.b
+      value: 0.19999999
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverHighlightColor.g
+      value: 0.20266397
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPinBreathAmplitude
+      value: 0.04
+      objectReference: {fileID: 0}
     - target: {fileID: 8224325842344375828, guid: e7717cd86082ea54681c465acc56c431, type: 3}
       propertyPath: m_Name
       value: pin (1)
@@ -4741,8 +4886,9 @@ MonoBehaviour:
   selectedColor: {r: 1, g: 0.86, b: 0.45, a: 1}
   hoverColor: {r: 1, g: 0.95, b: 0.72, a: 1}
   dimmedColor: {r: 0.55, g: 0.55, b: 0.55, a: 0.7}
-  hoverScale: 1.08
+  hoverScale: 2
   sortingOrder: 10020
+  hoverSortingBoost: 2000
 --- !u!1 &1171264801
 GameObject:
   m_ObjectHideFlags: 0
@@ -4873,6 +5019,42 @@ PrefabInstance:
       propertyPath: encounterConfig
       value: 
       objectReference: {fileID: 11400000, guid: a24c9de9ea90c8a4782a6010c9c0c49c, type: 2}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPulseSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPinTintColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPinTintColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPinTintColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPulseAmplitude
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverHighlightColor.a
+      value: 0.3764706
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverHighlightColor.b
+      value: 0.19999999
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverHighlightColor.g
+      value: 0.20266397
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPinBreathAmplitude
+      value: 0.04
+      objectReference: {fileID: 0}
     - target: {fileID: 8224325842344375828, guid: e7717cd86082ea54681c465acc56c431, type: 3}
       propertyPath: m_Name
       value: pin (3)
@@ -5648,6 +5830,42 @@ PrefabInstance:
       propertyPath: encounterConfig
       value: 
       objectReference: {fileID: 11400000, guid: d52e52b866d3ad4428c328704b57cdea, type: 2}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPulseSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPinTintColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPinTintColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPinTintColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPulseAmplitude
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverHighlightColor.a
+      value: 0.3764706
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverHighlightColor.b
+      value: 0.19999999
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverHighlightColor.g
+      value: 0.20266397
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPinBreathAmplitude
+      value: 0.04
+      objectReference: {fileID: 0}
     - target: {fileID: 3313842534663340359, guid: e7717cd86082ea54681c465acc56c431, type: 3}
       propertyPath: m_SortingOrder
       value: 32767
@@ -6924,7 +7142,43 @@ PrefabInstance:
     - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
       propertyPath: encounterConfig
       value: 
-      objectReference: {fileID: 11400000, guid: 26103b460577a944cb66f4e3d5910126, type: 2}
+      objectReference: {fileID: 11400000, guid: 315293ce9743bc4408e90d60eff792c6, type: 2}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPulseSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPinTintColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPinTintColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPinTintColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPulseAmplitude
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverHighlightColor.a
+      value: 0.3764706
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverHighlightColor.b
+      value: 0.19999999
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverHighlightColor.g
+      value: 0.20266397
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPinBreathAmplitude
+      value: 0.04
+      objectReference: {fileID: 0}
     - target: {fileID: 3313842534663340359, guid: e7717cd86082ea54681c465acc56c431, type: 3}
       propertyPath: m_SortingOrder
       value: 200
@@ -7755,8 +8009,9 @@ MonoBehaviour:
   selectedColor: {r: 1, g: 0.86, b: 0.45, a: 1}
   hoverColor: {r: 1, g: 0.95, b: 0.72, a: 1}
   dimmedColor: {r: 0.55, g: 0.55, b: 0.55, a: 0.7}
-  hoverScale: 1.08
+  hoverScale: 2
   sortingOrder: 10020
+  hoverSortingBoost: 2000
 --- !u!1001 &1797500042
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7837,6 +8092,42 @@ PrefabInstance:
       propertyPath: encounterConfig
       value: 
       objectReference: {fileID: 11400000, guid: 7dab312645dd0044c94ac5a69432fa27, type: 2}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPulseSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPinTintColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPinTintColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPinTintColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPulseAmplitude
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverHighlightColor.a
+      value: 0.3764706
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverHighlightColor.b
+      value: 0.19999999
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverHighlightColor.g
+      value: 0.20266397
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPinBreathAmplitude
+      value: 0.04
+      objectReference: {fileID: 0}
     - target: {fileID: 8224325842344375828, guid: e7717cd86082ea54681c465acc56c431, type: 3}
       propertyPath: m_Name
       value: pin (2)
@@ -8029,8 +8320,9 @@ MonoBehaviour:
   selectedColor: {r: 1, g: 0.86, b: 0.45, a: 1}
   hoverColor: {r: 1, g: 0.95, b: 0.72, a: 1}
   dimmedColor: {r: 0.55, g: 0.55, b: 0.55, a: 0.7}
-  hoverScale: 1.08
+  hoverScale: 2
   sortingOrder: 10020
+  hoverSortingBoost: 2000
 --- !u!1 &1880412757
 GameObject:
   m_ObjectHideFlags: 0
@@ -8472,7 +8764,43 @@ PrefabInstance:
     - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
       propertyPath: encounterConfig
       value: 
-      objectReference: {fileID: 11400000, guid: d52e52b866d3ad4428c328704b57cdea, type: 2}
+      objectReference: {fileID: 11400000, guid: d2c12f7f63daeaa4aa3ce4268d4dcdbc, type: 2}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPulseSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPinTintColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPinTintColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPinTintColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPulseAmplitude
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverHighlightColor.a
+      value: 0.3764706
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverHighlightColor.b
+      value: 0.19999999
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverHighlightColor.g
+      value: 0.20266397
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPinBreathAmplitude
+      value: 0.04
+      objectReference: {fileID: 0}
     - target: {fileID: 3313842534663340359, guid: e7717cd86082ea54681c465acc56c431, type: 3}
       propertyPath: m_SortingOrder
       value: 200
@@ -9032,8 +9360,9 @@ MonoBehaviour:
   selectedColor: {r: 1, g: 0.86, b: 0.45, a: 1}
   hoverColor: {r: 1, g: 0.95, b: 0.72, a: 1}
   dimmedColor: {r: 0.55, g: 0.55, b: 0.55, a: 0.7}
-  hoverScale: 1.08
+  hoverScale: 2
   sortingOrder: 10020
+  hoverSortingBoost: 2000
 --- !u!1 &2021142274
 GameObject:
   m_ObjectHideFlags: 0
@@ -9196,6 +9525,7 @@ MonoBehaviour:
   cardSortingOrder: 12100
   textSortingOrder: 12300
   arrowSortingOrder: 12450
+  focusedCardTextSortingOrder: 30000
 --- !u!1 &2091545023
 GameObject:
   m_ObjectHideFlags: 0
@@ -9587,6 +9917,42 @@ PrefabInstance:
       propertyPath: clickSfx
       value: 
       objectReference: {fileID: 8300000, guid: d6ca092c3ee83124d9dccd149cccb7ff, type: 3}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPulseSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPinTintColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPinTintColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPinTintColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPulseAmplitude
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverHighlightColor.a
+      value: 0.3764706
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverHighlightColor.b
+      value: 0.19999999
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverHighlightColor.g
+      value: 0.20266397
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439626493834619533, guid: e7717cd86082ea54681c465acc56c431, type: 3}
+      propertyPath: hoverPinBreathAmplitude
+      value: 0.04
+      objectReference: {fileID: 0}
     - target: {fileID: 8224325842344375828, guid: e7717cd86082ea54681c465acc56c431, type: 3}
       propertyPath: m_Name
       value: pin

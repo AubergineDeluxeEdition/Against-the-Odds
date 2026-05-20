@@ -23,24 +23,32 @@ MonoBehaviour:
   fadeInCombatMusic: 1
   cardAudioProfile: {fileID: 11400000, guid: 6ec1711d07634374a801a8ad8cc27c81, type: 2}
   defaultAttackDamage: 10
-  introDialogue: La fosse respire encore.
+  introDialogue: La bête s'arrête. Une seconde, elle semble te reconnaître.
   introVoiceLine: {fileID: 0}
   hpDialogues:
   - triggerWhenHpPercentAtOrBelow: 0.8
-    line: "*le canid\xE9 vous regarde, on dirait qu'il lutte int\xE9rieurement*"
+    line: Sous la rage, un vieux réflexe cherche encore ta main.
     voiceLine: {fileID: 0}
   - triggerWhenHpPercentAtOrBelow: 0.35
-    line: ARFFFFF ARRRRG ARFFFFF
+    line: Elle geint avant de mordre, comme si quelque chose en elle refusait encore.
     voiceLine: {fileID: 0}
-  deathDialogue: Bark.. bark.. bar...k...
+  deathDialogue: Son dernier souffle ressemble presque à ton nom.
   deathVoiceLine: {fileID: 0}
-  defeatResultText: "Par un simple toutou ? S\xE9rieux ?"
-  victoryResultText: "Bien que l'animal semblait vous rappeler vaguement votre pass\xE9,
-    vous continuez votre chemin."
+  defeatResultText: Ses crocs se referment sur ta gorge. Quelque chose en elle pleure
+    en même temps qu'elle mord.
+  victoryResultText: Sous la chair malade, un collier usé attendait encore.
   bossDeathSfx: {fileID: 8300000, guid: fd318bafa5bd05040be0cf2bc5d86ab1, type: 3}
   victorySfx: {fileID: 8300000, guid: a5a4fc7157527324f9a1233dc68e70f7, type: 3}
   defeatSfx: {fileID: 8300000, guid: 0ed4cba76ba954b4d9f9098ed17d1114, type: 3}
   defeatButtonSfx: {fileID: 8300000, guid: 87ae847158639d4468acae75a0cfe2c6, type: 3}
+  preCombatSceneName: 
+  postVictorySceneName: 05_CinematicDog
+  postDefeatSceneName: 
+  finalVictorySceneName: 
+  preCombatScene: {fileID: 0}
+  postVictoryScene: {fileID: 102900000, guid: 71b86486ee8af934386467f6f5cd71ee, type: 3}
+  postDefeatScene: {fileID: 0}
+  finalVictoryScene: {fileID: 0}
   phases:
   - phaseId: Phase 1 - Observations
     displayName: "Abomination Canid\xE9e"
@@ -55,7 +63,7 @@ MonoBehaviour:
     bossSprite: {fileID: 0}
     bossVisualScale: 0
     phaseStartSfx: {fileID: 0}
-    dialogueOnStart: Waf waf ?
+    dialogueOnStart: La bête recule d'un pas, confuse.
     actions:
     - actionId: 1
       actionType: 5
@@ -89,7 +97,7 @@ MonoBehaviour:
     bossSprite: {fileID: 0}
     bossVisualScale: 0
     phaseStartSfx: {fileID: 8300000, guid: 54cbda08e1e05514184e6556635093ae, type: 3}
-    dialogueOnStart: Waf waf ?
+    dialogueOnStart: La confusion cède. La faim reprend.
     actions:
     - actionId: 1
       actionType: 0
@@ -123,7 +131,7 @@ MonoBehaviour:
     bossSprite: {fileID: 0}
     bossVisualScale: 0
     phaseStartSfx: {fileID: 8300000, guid: 44177386258a5f0488fb9fc2980cad95, type: 3}
-    dialogueOnStart: "*le chien vous regarde, comme s'il \xE9tait trahis*"
+    dialogueOnStart: "*le chien vous regarde, comme s'il était trahi*"
     actions:
     - actionId: "attaque enrag\xE9e"
       actionType: 0
