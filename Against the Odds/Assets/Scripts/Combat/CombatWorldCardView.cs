@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 [RequireComponent(typeof(Collider2D))]
 public class CombatWorldCardView : MonoBehaviour
@@ -28,11 +29,18 @@ public class CombatWorldCardView : MonoBehaviour
     private bool pressStartedOnCard;
     private Vector2 pressScreenPosition;
     private Collider2D cardCollider;
+    private SortingGroup sortingGroup;
     private bool previewOnly;
 
     private void Awake()
     {
         cardCollider = GetComponent<Collider2D>();
+        sortingGroup = GetComponent<SortingGroup>();
+        if (sortingGroup == null)
+        {
+            sortingGroup = gameObject.AddComponent<SortingGroup>();
+        }
+
         AutoAssignMissingReferences();
     }
 
@@ -76,6 +84,20 @@ public class CombatWorldCardView : MonoBehaviour
                     nameText = text;
                     break;
                 }
+            }
+        }
+
+        foreach (SpriteRenderer spriteRenderer in GetComponentsInChildren<SpriteRenderer>(true))
+        {
+            if (artworkRenderer == null && LooksLikeArtworkRenderer(spriteRenderer))
+            {
+                artworkRenderer = spriteRenderer;
+                continue;
+            }
+
+            if (highlightRenderer == null && LooksLikeHighlightRenderer(spriteRenderer))
+            {
+                highlightRenderer = spriteRenderer;
             }
         }
     }
@@ -133,6 +155,11 @@ public class CombatWorldCardView : MonoBehaviour
 
     private void ApplyArtwork(string artResourcePath)
     {
+        if (artworkRenderer == null)
+        {
+            AutoAssignMissingReferences();
+        }
+
         if (artworkRenderer == null) return;
 
         if (string.IsNullOrWhiteSpace(artResourcePath))
@@ -148,8 +175,13 @@ public class CombatWorldCardView : MonoBehaviour
             return;
         }
 
-        artworkRenderer.color = Color.white;
-        artworkRenderer.sprite = artwork;
+        foreach (SpriteRenderer spriteRenderer in GetComponentsInChildren<SpriteRenderer>(true))
+        {
+            if (!IsArtworkRenderer(spriteRenderer)) continue;
+
+            spriteRenderer.color = Color.white;
+            spriteRenderer.sprite = artwork;
+        }
     }
 
     private static Sprite LoadArtworkSprite(string artResourcePath)
@@ -195,6 +227,8 @@ public class CombatWorldCardView : MonoBehaviour
 
     private void Update()
     {
+        if (HasHandOwner()) return;
+
         Mouse mouse = Mouse.current;
         if (mouse == null || cardCollider == null || card == null || previewOnly) return;
 
@@ -226,7 +260,70 @@ public class CombatWorldCardView : MonoBehaviour
 
     private void SetHovered(bool hovered)
     {
-        if (isHovered == hovered) return;
+        SetHoveredState(hovered, false);
+    }
+
+    public void SetHoveredFromHand(bool hovered)
+    {
+        SetHoveredState(hovered, true);
+    }
+
+    public bool ContainsScreenPoint(Vector2 screenPosition)
+    {
+        if (cardCollider == null || card == null || previewOnly) return false;
+
+        Camera camera = Camera.main;
+        if (camera == null) return false;
+
+        Vector3 worldPosition = camera.ScreenToWorldPoint(screenPosition);
+        return cardCollider.OverlapPoint(new Vector2(worldPosition.x, worldPosition.y));
+    }
+
+    public float GetHandPickScore(Vector2 screenPosition)
+    {
+        Camera camera = Camera.main;
+        if (camera == null) return float.NegativeInfinity;
+
+        Vector3 worldPosition = camera.ScreenToWorldPoint(screenPosition);
+        return GetPointerPickScore(new Vector2(worldPosition.x, worldPosition.y));
+    }
+
+    public void PressFromHand(Vector2 screenPosition)
+    {
+        pressStartedOnCard = true;
+        pressScreenPosition = screenPosition;
+    }
+
+    public void ReleaseFromHand(Vector2 screenPosition)
+    {
+        bool isClick = pressStartedOnCard
+            && ContainsScreenPoint(screenPosition)
+            && Vector2.Distance(pressScreenPosition, screenPosition) <= ClickMoveTolerancePixels;
+
+        pressStartedOnCard = false;
+
+        if (isClick && controller != null)
+        {
+            controller.TryPlayCard(card);
+        }
+    }
+
+    public void CancelPressFromHand()
+    {
+        pressStartedOnCard = false;
+    }
+
+    public void SetWorldDepthFromHand(float worldZ)
+    {
+        Vector3 position = transform.position;
+        position.z = worldZ;
+        transform.position = position;
+        NormalizeChildDepths();
+    }
+
+    private void SetHoveredState(bool hovered, bool forceRefresh)
+    {
+        if (isHovered == hovered && !forceRefresh) return;
 
         isHovered = hovered;
         if (isHovered)
@@ -241,6 +338,11 @@ public class CombatWorldCardView : MonoBehaviour
         }
     }
 
+    private bool HasHandOwner()
+    {
+        return transform.parent != null && transform.parent.GetComponentInParent<CombatWorldHandView>() != null;
+    }
+
     private void RestoreVisualState()
     {
         if (isHovered) return;
@@ -252,24 +354,94 @@ public class CombatWorldCardView : MonoBehaviour
 
     private void SetSortingOrder(int sortingOrder)
     {
+        NormalizeChildDepths();
+
         SpriteRenderer rootSpriteRenderer = GetComponent<SpriteRenderer>();
+        int sortingLayerId = rootSpriteRenderer != null ? rootSpriteRenderer.sortingLayerID : 0;
+
+        if (sortingGroup != null)
+        {
+            sortingGroup.sortingLayerID = sortingLayerId;
+            sortingGroup.sortingOrder = sortingOrder;
+        }
+
         if (rootSpriteRenderer != null)
         {
-            rootSpriteRenderer.sortingOrder = sortingOrder;
+            rootSpriteRenderer.sortingOrder = sortingOrder + 2;
         }
 
         foreach (SpriteRenderer spriteRenderer in GetComponentsInChildren<SpriteRenderer>(true))
         {
-            if (spriteRenderer != rootSpriteRenderer)
+            spriteRenderer.sortingLayerID = sortingLayerId;
+            if (spriteRenderer == rootSpriteRenderer)
             {
-                spriteRenderer.sortingOrder = sortingOrder + 1;
+                continue;
+            }
+
+            if (IsArtworkRenderer(spriteRenderer))
+            {
+                spriteRenderer.sortingOrder = sortingOrder;
+            }
+            else if (IsHighlightRenderer(spriteRenderer))
+            {
+                spriteRenderer.sortingOrder = sortingOrder + 8;
+            }
+            else
+            {
+                spriteRenderer.sortingOrder = sortingOrder + 2;
             }
         }
 
         foreach (MeshRenderer meshRenderer in GetComponentsInChildren<MeshRenderer>(true))
         {
-            meshRenderer.sortingOrder = sortingOrder + 2;
+            meshRenderer.sortingLayerID = sortingLayerId;
+            meshRenderer.sortingOrder = sortingOrder + 10;
         }
+    }
+
+    private void NormalizeChildDepths()
+    {
+        foreach (Transform child in GetComponentsInChildren<Transform>(true))
+        {
+            if (child == transform) continue;
+
+            Vector3 localPosition = child.localPosition;
+            localPosition.z = 0f;
+            child.localPosition = localPosition;
+        }
+    }
+
+    private bool IsArtworkRenderer(SpriteRenderer spriteRenderer)
+    {
+        return spriteRenderer == artworkRenderer || LooksLikeArtworkRenderer(spriteRenderer);
+    }
+
+    private bool IsHighlightRenderer(SpriteRenderer spriteRenderer)
+    {
+        return spriteRenderer == highlightRenderer || LooksLikeHighlightRenderer(spriteRenderer);
+    }
+
+    private static bool LooksLikeArtworkRenderer(SpriteRenderer spriteRenderer)
+    {
+        if (spriteRenderer == null) return false;
+
+        string objectName = spriteRenderer.gameObject.name.ToLowerInvariant();
+        return objectName.Contains("cardimage")
+            || objectName.Contains("card_image")
+            || objectName.Contains("rwcardimage")
+            || objectName.Contains("artwork")
+            || objectName.Contains("illustration");
+    }
+
+    private static bool LooksLikeHighlightRenderer(SpriteRenderer spriteRenderer)
+    {
+        if (spriteRenderer == null) return false;
+
+        string objectName = spriteRenderer.gameObject.name.ToLowerInvariant();
+        return objectName.Contains("highlight")
+            || objectName.Contains("selected")
+            || objectName.Contains("unavailable")
+            || objectName.Contains("overlay");
     }
 
     private bool IsPointerOverTopmostCard(Vector2 screenPosition)
@@ -282,26 +454,41 @@ public class CombatWorldCardView : MonoBehaviour
         if (!cardCollider.OverlapPoint(worldPoint)) return false;
 
         Collider2D[] hits = Physics2D.OverlapPointAll(worldPoint);
-        int ownSortingOrder = GetSortingOrder();
+        CombatWorldCardView pickedCard = null;
+        float pickedScore = float.NegativeInfinity;
 
         foreach (Collider2D hit in hits)
         {
-            if (hit == null || hit == cardCollider) continue;
+            if (hit == null) continue;
 
             CombatWorldCardView otherCard = hit.GetComponentInParent<CombatWorldCardView>();
-            if (otherCard != null && otherCard.GetSortingOrder() > ownSortingOrder)
+            if (otherCard == null || otherCard.previewOnly || otherCard.card == null)
             {
-                return false;
+                continue;
+            }
+
+            float score = otherCard.GetPointerPickScore(worldPoint);
+            if (score > pickedScore)
+            {
+                pickedScore = score;
+                pickedCard = otherCard;
             }
         }
 
-        return true;
+        return pickedCard == this;
     }
 
     private int GetSortingOrder()
     {
-        SpriteRenderer rootSpriteRenderer = GetComponent<SpriteRenderer>();
-        return rootSpriteRenderer != null ? rootSpriteRenderer.sortingOrder : restSortingOrder;
+        return sortingGroup != null ? sortingGroup.sortingOrder : restSortingOrder;
+    }
+
+    private float GetPointerPickScore(Vector2 worldPoint)
+    {
+        float horizontalDistance = Mathf.Abs(worldPoint.x - transform.position.x);
+        float verticalDistance = Mathf.Abs(worldPoint.y - transform.position.y) * 0.25f;
+
+        return -(horizontalDistance + verticalDistance) + restSortingOrder * 0.0001f;
     }
 
     private static string LocalizeType(string type)

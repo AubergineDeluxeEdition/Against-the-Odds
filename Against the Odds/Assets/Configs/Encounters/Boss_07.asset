@@ -23,26 +23,34 @@ MonoBehaviour:
   fadeInCombatMusic: 1
   cardAudioProfile: {fileID: 11400000, guid: 6ec1711d07634374a801a8ad8cc27c81, type: 2}
   defaultAttackDamage: 10
-  introDialogue: Chaque douleur laisse une preuve. La tienne manque a mon registre.
+  introDialogue: Chaque douleur laisse une preuve. La tienne manque à mon registre.
   introVoiceLine: {fileID: 0}
   hpDialogues:
   - triggerWhenHpPercentAtOrBelow: 0.7
-    line: Tu as promis quelque chose au pied d'un autel. Tu l'as oublie, mais pas
+    line: Tu as promis quelque chose au pied d'un autel. Tu l'as oublié, mais pas
       moi.
     voiceLine: {fileID: 0}
   - triggerWhenHpPercentAtOrBelow: 0.35
-    line: Elle criait ton nom quand les cloches sont tombees.
+    line: Elle criait ton nom quand les cloches sont tombées.
     voiceLine: {fileID: 0}
-  deathDialogue: Prends-le. Ce papier pese plus que ma cuirasse.
+  deathDialogue: Prends-le. Ce papier pèse plus que ma cuirasse.
   deathVoiceLine: {fileID: 0}
-  defeatResultText: Il ajoute ton anneau absent a sa collection. L'emplacement etait
-    deja prevu.
+  defeatResultText: Il ajoute ton anneau absent à sa collection. L'emplacement était
+    déjà prévu.
   victoryResultText: Dans sa cuirasse, ton acte de mariage. Le nom de ta femme revient
     avant son visage.
   bossDeathSfx: {fileID: 8300000, guid: fd318bafa5bd05040be0cf2bc5d86ab1, type: 3}
   victorySfx: {fileID: 8300000, guid: a5a4fc7157527324f9a1233dc68e70f7, type: 3}
   defeatSfx: {fileID: 8300000, guid: 0ed4cba76ba954b4d9f9098ed17d1114, type: 3}
   defeatButtonSfx: {fileID: 8300000, guid: 87ae847158639d4468acae75a0cfe2c6, type: 3}
+  preCombatSceneName: 
+  postVictorySceneName: 
+  postDefeatSceneName: 
+  finalVictorySceneName: 
+  preCombatScene: {fileID: 0}
+  postVictoryScene: {fileID: 0}
+  postDefeatScene: {fileID: 0}
+  finalVictoryScene: {fileID: 0}
   phases:
   - phaseId: comptable
     displayName: Le Comptable
@@ -130,13 +138,13 @@ MonoBehaviour:
     bossVisualScale: 0
     phaseStartSfx: {fileID: 0}
     dialogueOnStart: Tu montes pour la sauver ? Non. Tu montes parce que tu ne sais
-      pas t'arreter.
+      pas t'arrêter.
     actions:
     - actionId: charge_des_noms
       actionType: 0
-      bossLine: Il recite des noms jusqu'a couvrir le tien.
+      bossLine: Il récite des noms jusqu'à couvrir le tien.
       bossVoiceLine: {fileID: 0}
-      chargeLine: Toutes les bagues tremblent a la fois.
+      chargeLine: Toutes les bagues tremblent à la fois.
       chargeVoiceLine: {fileID: 0}
       chargeTurns: 1
       vulnerableWhileCharging: 0

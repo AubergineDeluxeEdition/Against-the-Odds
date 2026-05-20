@@ -303,16 +303,31 @@ public class CombatActiveTerrainView : MonoBehaviour
 
         foreach (SpriteRenderer spriteRenderer in root.GetComponentsInChildren<SpriteRenderer>(true))
         {
+            if (spriteRenderer.GetComponentInParent<CombatWorldCardView>() != null)
+            {
+                continue;
+            }
+
             spriteRenderer.sortingOrder = sortingOrder;
         }
 
         foreach (MeshRenderer meshRenderer in root.GetComponentsInChildren<MeshRenderer>(true))
         {
+            if (meshRenderer.GetComponentInParent<CombatWorldCardView>() != null)
+            {
+                continue;
+            }
+
             meshRenderer.sortingOrder = sortingOrder + 10;
         }
 
         foreach (TMP_Text text in root.GetComponentsInChildren<TMP_Text>(true))
         {
+            if (text.GetComponentInParent<CombatWorldCardView>() != null)
+            {
+                continue;
+            }
+
             if (text.TryGetComponent(out Renderer textRenderer))
             {
                 textRenderer.sortingOrder = sortingOrder + 30;

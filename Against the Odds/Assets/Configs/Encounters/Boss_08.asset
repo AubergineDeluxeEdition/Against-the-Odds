@@ -30,21 +30,29 @@ MonoBehaviour:
     line: Pourquoi vos morts reviennent-ils toujours incomplets ?
     voiceLine: {fileID: 0}
   - triggerWhenHpPercentAtOrBelow: 0.38
-    line: Pourquoi ma main connait-elle deja la forme de ton cou ?
+    line: Pourquoi ma main connaît-elle déjà la forme de ton cou ?
     voiceLine: {fileID: 0}
-  deathDialogue: Mon amour... si tu reviens encore... passe sans me reveiller.
+  deathDialogue: Mon amour... si tu reviens encore... passe sans me réveiller.
   deathVoiceLine: {fileID: 0}
   defeatResultText: Elle te recoud contre elle sans comprendre pourquoi elle pleure.
-    Quand ton coeur ralentit, elle sourit enfin.
+    Quand ton cœur ralentit, elle sourit enfin.
   victoryResultText: Elle ne t'a reconnu qu'au moment de te perdre. Le dernier lien
     qui te tirait vers le sommet vient de se rompre.
   bossDeathSfx: {fileID: 8300000, guid: fd318bafa5bd05040be0cf2bc5d86ab1, type: 3}
   victorySfx: {fileID: 8300000, guid: a5a4fc7157527324f9a1233dc68e70f7, type: 3}
   defeatSfx: {fileID: 8300000, guid: 0ed4cba76ba954b4d9f9098ed17d1114, type: 3}
   defeatButtonSfx: {fileID: 8300000, guid: 87ae847158639d4468acae75a0cfe2c6, type: 3}
+  preCombatSceneName: 
+  postVictorySceneName: 05_CinematicWife
+  postDefeatSceneName: 
+  finalVictorySceneName: 
+  preCombatScene: {fileID: 0}
+  postVictoryScene: {fileID: 102900000, guid: 0642311e6bc56894782c7f53bf5754c6, type: 3}
+  postDefeatScene: {fileID: 0}
+  finalVictoryScene: {fileID: 0}
   phases:
   - phaseId: reparatrice
-    displayName: La Reparatrice
+    displayName: La Réparatrice
     startsWhenHpPercentAtOrBelow: 1
     advanceAfterBossTurns: 0
     advanceAfterPatternIterations: 0
@@ -56,7 +64,7 @@ MonoBehaviour:
     bossSprite: {fileID: 0}
     bossVisualScale: 0
     phaseStartSfx: {fileID: 0}
-    dialogueOnStart: Ne bouge pas. Les ouvertures s'elargissent quand on se debat.
+    dialogueOnStart: Ne bouge pas. Les ouvertures s'élargissent quand on se débat.
     actions:
     - actionId: point_sous_la_peau
       actionType: 0
@@ -79,7 +87,7 @@ MonoBehaviour:
       vulnerableTurns: 0
     - actionId: table_d_argent
       actionType: 1
-      bossLine: Je peux arranger ca. Je peux tout arranger.
+      bossLine: Je peux arranger ça. Je peux tout arranger.
       bossVoiceLine: {fileID: 0}
       chargeLine: 
       chargeVoiceLine: {fileID: 0}
@@ -98,7 +106,7 @@ MonoBehaviour:
       vulnerableTurns: 0
     - actionId: mauvaise_couture
       actionType: 0
-      bossLine: Tu as ete mal referme.
+      bossLine: Tu as été mal refermé.
       bossVoiceLine: {fileID: 0}
       chargeLine: 
       chargeVoiceLine: {fileID: 0}
@@ -128,7 +136,7 @@ MonoBehaviour:
     bossSprite: {fileID: 0}
     bossVisualScale: 0
     phaseStartSfx: {fileID: 0}
-    dialogueOnStart: Il y a quelque chose dans ta structure... une resistance ancienne.
+    dialogueOnStart: Il y a quelque chose dans ta structure... une résistance ancienne.
     actions:
     - actionId: suture_profonde
       actionType: 0
@@ -205,7 +213,7 @@ MonoBehaviour:
     actions:
     - actionId: souvenir_brise
       actionType: 0
-      bossLine: Tu etais venu me chercher.
+      bossLine: Tu étais venu me chercher.
       bossVoiceLine: {fileID: 0}
       chargeLine: 
       chargeVoiceLine: {fileID: 0}
@@ -243,9 +251,9 @@ MonoBehaviour:
       vulnerableTurns: 0
     - actionId: derniere_aiguille
       actionType: 0
-      bossLine: Reste. Meme dechire, reste.
+      bossLine: Reste. Même déchiré, reste.
       bossVoiceLine: {fileID: 0}
-      chargeLine: Sa main tremble pour la premiere fois.
+      chargeLine: Sa main tremble pour la première fois.
       chargeVoiceLine: {fileID: 0}
       chargeTurns: 1
       vulnerableWhileCharging: 1

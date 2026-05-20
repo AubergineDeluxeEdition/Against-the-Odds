@@ -397,6 +397,8 @@ MonoBehaviour:
   action: 2
   sceneACharger: 
   defaultDeckId: default
+  introSceneName: 
+  introScene: {fileID: 0}
   masquerSiAucuneSauvegarde: 1
   avertirAvantEcrasement: 1
   delaiConfirmationEcrasement: 3
@@ -1185,6 +1187,8 @@ MonoBehaviour:
   action: 1
   sceneACharger: 
   defaultDeckId: default
+  introSceneName: 
+  introScene: {fileID: 0}
   masquerSiAucuneSauvegarde: 1
   avertirAvantEcrasement: 1
   delaiConfirmationEcrasement: 3
@@ -1408,6 +1412,8 @@ MonoBehaviour:
   action: 0
   sceneACharger: 03_CampaignMap
   defaultDeckId: default
+  introSceneName: 05_CinematicIntro
+  introScene: {fileID: 102900000, guid: 633a29321ef58a749a5843c3e27d233c, type: 3}
   masquerSiAucuneSauvegarde: 1
   avertirAvantEcrasement: 1
   delaiConfirmationEcrasement: 3

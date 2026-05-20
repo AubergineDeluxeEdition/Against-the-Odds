@@ -8,6 +8,7 @@ public class CombatEndTurnButton : MonoBehaviour
     private const float ClickMoveTolerancePixels = 12f;
 
     [SerializeField] private CombatWorldController controller;
+    [SerializeField] private CombatWorldHandView handView;
     [SerializeField] private SpriteRenderer targetRenderer;
     [SerializeField] private TMP_Text labelText;
     [SerializeField] private string playerTurnLabel = "Fin du tour";
@@ -33,6 +34,11 @@ public class CombatEndTurnButton : MonoBehaviour
             controller = FindAnyObjectByType<CombatWorldController>();
         }
 
+        if (handView == null)
+        {
+            handView = FindAnyObjectByType<CombatWorldHandView>();
+        }
+
         if (targetRenderer == null)
         {
             targetRenderer = GetComponent<SpriteRenderer>();
@@ -55,7 +61,8 @@ public class CombatEndTurnButton : MonoBehaviour
         if (mouse == null || buttonCollider == null || !canEndTurn) return;
 
         Vector2 pointerPosition = mouse.position.ReadValue();
-        bool pointerOverButton = IsPointerOverButton(pointerPosition);
+        bool pointerBlockedByCard = handView != null && handView.IsPointerOverAnyCard(pointerPosition);
+        bool pointerOverButton = !pointerBlockedByCard && IsPointerOverButton(pointerPosition);
         isHovered = pointerOverButton;
 
         if (mouse.leftButton.wasPressedThisFrame)

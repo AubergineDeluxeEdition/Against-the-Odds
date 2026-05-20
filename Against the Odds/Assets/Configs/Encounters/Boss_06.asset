@@ -27,19 +27,27 @@ MonoBehaviour:
   introVoiceLine: {fileID: 0}
   hpDialogues:
   - triggerWhenHpPercentAtOrBelow: 0.75
-    line: Je t'ai deja vu passer. Tu ne m'avais pas regarde.
+    line: Je t'ai déjà vu passer. Tu ne m'avais pas regardé.
     voiceLine: {fileID: 0}
   - triggerWhenHpPercentAtOrBelow: 0.4
-    line: S'il descend, ferme les yeux. ca fait moins peur.
+    line: S'il descend, ferme les yeux. Ça fait moins peur.
     voiceLine: {fileID: 0}
   deathDialogue: Merci... ou pardon... je ne sais plus.
   deathVoiceLine: {fileID: 0}
-  defeatResultText: Le Novice disparait dans sa gorge. Tu le suis.
-  victoryResultText: Meme la pitie a ete dressee ici pour devenir une arme.
+  defeatResultText: Le Novice disparaît dans sa gorge. Tu le suis.
+  victoryResultText: Même la pitié a été dressée ici pour devenir une arme.
   bossDeathSfx: {fileID: 8300000, guid: 2884d48ef356cf24cb85f65f134173e9, type: 3}
   victorySfx: {fileID: 8300000, guid: a5a4fc7157527324f9a1233dc68e70f7, type: 3}
   defeatSfx: {fileID: 8300000, guid: 0ed4cba76ba954b4d9f9098ed17d1114, type: 3}
   defeatButtonSfx: {fileID: 8300000, guid: 87ae847158639d4468acae75a0cfe2c6, type: 3}
+  preCombatSceneName: 
+  postVictorySceneName: 
+  postDefeatSceneName: 
+  finalVictorySceneName: 
+  preCombatScene: {fileID: 0}
+  postVictoryScene: {fileID: 0}
+  postDefeatScene: {fileID: 0}
+  finalVictoryScene: {fileID: 0}
   phases:
   - phaseId: novice
     displayName: Le Novice Aveugle
@@ -54,11 +62,11 @@ MonoBehaviour:
     bossSprite: {fileID: 0}
     bossVisualScale: 0
     phaseStartSfx: {fileID: 0}
-    dialogueOnStart: Il reste la, trop faible pour lever les mains.
+    dialogueOnStart: Il reste là, trop faible pour lever les mains.
     actions:
     - actionId: supplication
       actionType: 5
-      bossLine: Ne me regarde pas comme si j'etais un choix.
+      bossLine: Ne me regarde pas comme si j'étais un choix.
       bossVoiceLine: {fileID: 0}
       chargeLine: 
       chargeVoiceLine: {fileID: 0}
@@ -77,7 +85,7 @@ MonoBehaviour:
       vulnerableTurns: 0
     - actionId: tremblement
       actionType: 5
-      bossLine: Il vient toujours quand quelqu'un hesite.
+      bossLine: Il vient toujours quand quelqu'un hésite.
       bossVoiceLine: {fileID: 0}
       chargeLine: 
       chargeVoiceLine: {fileID: 0}
@@ -96,7 +104,7 @@ MonoBehaviour:
       vulnerableTurns: 0
     - actionId: dernier_repit
       actionType: 5
-      bossLine: Le ciel commence a grincer.
+      bossLine: Le ciel commence à grincer.
       bossVoiceLine: {fileID: 0}
       chargeLine: 
       chargeVoiceLine: {fileID: 0}
@@ -126,11 +134,11 @@ MonoBehaviour:
     bossSprite: {fileID: -15277409059619420, guid: 3d780bdaa86f4ee4fbabf9f4e6162c43, type: 3}
     bossVisualScale: 0
     phaseStartSfx: {fileID: 0}
-    dialogueOnStart: Le ciel se fend. La pitie n'a pas eu le temps de mourir seule.
+    dialogueOnStart: Le ciel se fend. La pitié n'a pas eu le temps de mourir seule.
     actions:
     - actionId: morsure_corrompue
       actionType: 0
-      bossLine: La chose devore le Novice comme si elle corrigeait une erreur.
+      bossLine: La chose dévore le Novice comme si elle corrigeait une erreur.
       bossVoiceLine: {fileID: 0}
       chargeLine: 
       chargeVoiceLine: {fileID: 0}
@@ -149,7 +157,7 @@ MonoBehaviour:
       vulnerableTurns: 0
     - actionId: ecaille_pourrie
       actionType: 1
-      bossLine: Ses ecailles tiennent par la maladie.
+      bossLine: Ses écailles tiennent par la maladie.
       bossVoiceLine: {fileID: 0}
       chargeLine: 
       chargeVoiceLine: {fileID: 0}
@@ -170,7 +178,7 @@ MonoBehaviour:
       actionType: 0
       bossLine: Ses ailes battent sans force.
       bossVoiceLine: {fileID: 0}
-      chargeLine: Il monte a peine. Sa chute suffira.
+      chargeLine: Il monte à peine. Sa chute suffira.
       chargeVoiceLine: {fileID: 0}
       chargeTurns: 2
       vulnerableWhileCharging: 1
@@ -198,7 +206,7 @@ MonoBehaviour:
     bossSprite: {fileID: -15277409059619420, guid: 3d780bdaa86f4ee4fbabf9f4e6162c43, type: 3}
     bossVisualScale: 0
     phaseStartSfx: {fileID: 0}
-    dialogueOnStart: Il brule de l'interieur, incapable de finir sa propre agonie.
+    dialogueOnStart: Il brûle de l'intérieur, incapable de finir sa propre agonie.
     actions:
     - actionId: brasier_final
       actionType: 0
@@ -229,4 +237,4 @@ MonoBehaviour:
       vulnerableTurns: 0
   rewardPickCount: 1
   rewardCardIds: []
-  potionRewardCount: 1
+  potionRewardCount: 0

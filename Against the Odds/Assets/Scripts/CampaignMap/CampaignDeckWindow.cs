@@ -44,6 +44,7 @@ namespace AgainstTheOdds.CampaignMap
         [SerializeField] private int cardSortingOrder = 12100;
         [SerializeField] private int textSortingOrder = 12300;
         [SerializeField] private int arrowSortingOrder = 12450;
+        [SerializeField] private int focusedCardTextSortingOrder = 30000;
 
         private DeckDefinition cardDatabase;
         private readonly List<GameObject> generatedRows = new List<GameObject>();
@@ -56,6 +57,9 @@ namespace AgainstTheOdds.CampaignMap
         private Collider2D nextPageCollider;
         private PageArrow pressedArrow;
         private Vector2 arrowPressScreenPosition;
+        private CombatRewardCardView hoveredSlot;
+        private readonly Dictionary<TMP_Text, Vector3> countTextBaseScales = new Dictionary<TMP_Text, Vector3>();
+        private readonly Dictionary<TMP_Text, Vector3> countTextBasePositions = new Dictionary<TMP_Text, Vector3>();
 
         private enum PageArrow
         {
@@ -157,6 +161,8 @@ namespace AgainstTheOdds.CampaignMap
                     slot.Bind(card, null);
                     slot.SetInteractable(card != null);
                     slot.SetSelectionContext(false);
+                    slot.SetExternalHoverMode(true);
+                    slot.SetHoveredFromOwner(false);
                     int slotSortingOrder = cardSortingOrder + i * 10;
                     slot.ForceSortingOrder(slotSortingOrder, Mathf.Max(2, textSortingOrder - slotSortingOrder));
                 }
@@ -166,6 +172,7 @@ namespace AgainstTheOdds.CampaignMap
                     bool hasCard = card != null;
                     countTexts[i].gameObject.SetActive(hasCard);
                     countTexts[i].text = hasCard ? string.Format(countFormat, counts[card.id]) : string.Empty;
+                    CacheCountTextBaseScale(countTexts[i]);
                 }
             }
 
@@ -193,6 +200,7 @@ namespace AgainstTheOdds.CampaignMap
         {
             if (!isOpen) return;
 
+            ReadCardHover();
             ReadArrowClicks();
         }
 
@@ -349,10 +357,12 @@ namespace AgainstTheOdds.CampaignMap
 
         private void HideSlots()
         {
+            hoveredSlot = null;
             foreach (CombatRewardCardView slot in cardSlots)
             {
                 if (slot != null)
                 {
+                    slot.SetHoveredFromOwner(false);
                     slot.gameObject.SetActive(false);
                 }
             }
@@ -512,11 +522,26 @@ namespace AgainstTheOdds.CampaignMap
                     ApplyTextRenderOrder(slot.gameObject, textSortingOrder + Mathf.Max(0, slotIndex) * 10);
                 }
             }
+
+            ApplyCountTextVisuals();
+        }
+
+        private void LateUpdate()
+        {
+            if (!isOpen) return;
+
+            ApplyDeckCardTextVisuals();
+            ApplyCountTextVisuals();
         }
 
         private void ApplyRootRenderOrder(GameObject root, int spriteOrder)
         {
             if (root == null)
+            {
+                return;
+            }
+
+            if (root.GetComponent<CombatRewardCardView>() != null)
             {
                 return;
             }
@@ -658,6 +683,126 @@ namespace AgainstTheOdds.CampaignMap
             {
                 NextPage();
             }
+        }
+
+        private void ReadCardHover()
+        {
+            Mouse mouse = Mouse.current;
+            if (mouse == null)
+            {
+                SetHoveredSlot(null);
+                return;
+            }
+
+            CombatRewardCardView bestSlot = FindBestSlotAt(mouse.position.ReadValue());
+            SetHoveredSlot(bestSlot);
+            ApplyCountTextVisuals();
+        }
+
+        private CombatRewardCardView FindBestSlotAt(Vector2 screenPosition)
+        {
+            CombatRewardCardView bestSlot = null;
+            float bestScore = float.NegativeInfinity;
+
+            foreach (CombatRewardCardView slot in cardSlots)
+            {
+                if (slot == null || !slot.ContainsScreenPoint(screenPosition))
+                {
+                    continue;
+                }
+
+                float score = slot.GetScreenPickScore(screenPosition);
+                if (score > bestScore)
+                {
+                    bestScore = score;
+                    bestSlot = slot;
+                }
+            }
+
+            return bestSlot;
+        }
+
+        private void SetHoveredSlot(CombatRewardCardView slot)
+        {
+            if (hoveredSlot == slot) return;
+
+            if (hoveredSlot != null)
+            {
+                hoveredSlot.SetHoveredFromOwner(false);
+            }
+
+            hoveredSlot = slot;
+
+            if (hoveredSlot != null)
+            {
+                hoveredSlot.SetHoveredFromOwner(true);
+            }
+        }
+
+        private void CacheCountTextBaseScale(TMP_Text countText)
+        {
+            if (countText == null) return;
+
+            if (!countTextBaseScales.ContainsKey(countText))
+            {
+                countTextBaseScales[countText] = countText.transform.localScale;
+            }
+
+            if (!countTextBasePositions.ContainsKey(countText))
+            {
+                countTextBasePositions[countText] = countText.transform.localPosition;
+            }
+        }
+
+        private void ApplyCountTextVisuals()
+        {
+            for (int i = 0; i < countTexts.Length; i++)
+            {
+                TMP_Text countText = countTexts[i];
+                if (countText == null) continue;
+
+                CacheCountTextBaseScale(countText);
+                Vector3 baseScale = countTextBaseScales[countText];
+                Vector3 basePosition = countTextBasePositions[countText];
+                float parentScale = 1f;
+                if (i < cardSlots.Length && cardSlots[i] != null)
+                {
+                    parentScale = Mathf.Max(0.001f, cardSlots[i].CurrentScaleMultiplier);
+                }
+
+                countText.transform.localScale = baseScale / parentScale;
+                countText.transform.localPosition = basePosition / parentScale;
+                ApplyTextRendererOrder(countText, textSortingOrder + 500 + i);
+            }
+        }
+
+        private void ApplyDeckCardTextVisuals()
+        {
+            for (int i = 0; i < cardSlots.Length; i++)
+            {
+                CombatRewardCardView slot = cardSlots[i];
+                if (slot == null) continue;
+
+                int order = slot == hoveredSlot
+                    ? focusedCardTextSortingOrder + i
+                    : textSortingOrder + i * 10;
+
+                foreach (TMP_Text text in slot.GetComponentsInChildren<TMP_Text>(true))
+                {
+                    if (IsCountText(text)) continue;
+
+                    text.richText = true;
+                    ApplyTextRendererOrder(text, order);
+                }
+            }
+        }
+
+        private static bool IsCountText(TMP_Text text)
+        {
+            if (text == null) return false;
+
+            string objectName = text.name.ToLowerInvariant();
+            return objectName.Contains("count") || objectName.Contains("quantity");
         }
 
         private PageArrow GetArrowUnderPointer(Vector2 screenPosition)

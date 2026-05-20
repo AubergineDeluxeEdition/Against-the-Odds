@@ -411,19 +411,21 @@ public class CombatLogView : MonoBehaviour
         SpriteRenderer[] spriteRenderers = cardPreviewRoot.GetComponentsInChildren<SpriteRenderer>(true);
         for (int i = 0; i < spriteRenderers.Length; i++)
         {
-            spriteRenderers[i].sortingOrder = previewSortingOrder + i;
+            spriteRenderers[i].sortingOrder = spriteRenderers[i] == previewArtworkRenderer
+                ? previewSortingOrder - 1
+                : previewSortingOrder + i + 1;
         }
 
         TMP_Text[] textRenderers = cardPreviewRoot.GetComponentsInChildren<TMP_Text>(true);
         foreach (TMP_Text textRenderer in textRenderers)
         {
-            ApplyTextSorting(textRenderer, previewSortingOrder + spriteRenderers.Length + 10);
+            ApplyTextSorting(textRenderer, previewSortingOrder + 30);
         }
 
-        ApplyTextSorting(previewNameText, previewSortingOrder + spriteRenderers.Length + 11);
-        ApplyTextSorting(previewCostText, previewSortingOrder + spriteRenderers.Length + 12);
-        ApplyTextSorting(previewTypeText, previewSortingOrder + spriteRenderers.Length + 13);
-        ApplyTextSorting(previewDescriptionText, previewSortingOrder + spriteRenderers.Length + 20);
+        ApplyTextSorting(previewNameText, previewSortingOrder + 31);
+        ApplyTextSorting(previewCostText, previewSortingOrder + 32);
+        ApplyTextSorting(previewTypeText, previewSortingOrder + 33);
+        ApplyTextSorting(previewDescriptionText, previewSortingOrder + 40);
     }
 
     private void EnsurePreviewVisible()

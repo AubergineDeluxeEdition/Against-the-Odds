@@ -27,19 +27,29 @@ MonoBehaviour:
   introVoiceLine: {fileID: 0}
   hpDialogues:
   - triggerWhenHpPercentAtOrBelow: 1
-    line: Je connais ce pas. Je l'ai deja entendu mourir.
+    line: Je connais ce pas. Je l'ai déjà entendu mourir.
     voiceLine: {fileID: 0}
   - triggerWhenHpPercentAtOrBelow: 0.6
     line: Tu crois ouvrir une sortie. Tu ne fais que remuer la plaie.
     voiceLine: {fileID: 0}
   deathDialogue: Tue-moi si tu veux. La fosse garde les noms au chaud.
   deathVoiceLine: {fileID: 0}
-  defeatResultText: Le Gardien te repousse dans la boue. Un instant plus tard, la fosse recommence a respirer.
-  victoryResultText: Sous son casque, il n'y avait presque plus d'homme. Seulement un souvenir charge de garder le seuil, encore et encore.
+  defeatResultText: Le Gardien te repousse dans la boue. Un instant plus tard, la
+    fosse recommence à respirer.
+  victoryResultText: Sous son casque, il n'y avait presque plus d'homme. Seulement
+    un souvenir charge de garder le seuil, encore et encore.
   bossDeathSfx: {fileID: 8300000, guid: fd318bafa5bd05040be0cf2bc5d86ab1, type: 3}
   victorySfx: {fileID: 8300000, guid: a5a4fc7157527324f9a1233dc68e70f7, type: 3}
   defeatSfx: {fileID: 8300000, guid: 0ed4cba76ba954b4d9f9098ed17d1114, type: 3}
   defeatButtonSfx: {fileID: 8300000, guid: 87ae847158639d4468acae75a0cfe2c6, type: 3}
+  preCombatSceneName: 
+  postVictorySceneName: 
+  postDefeatSceneName: 
+  finalVictorySceneName: 
+  preCombatScene: {fileID: 0}
+  postVictoryScene: {fileID: 0}
+  postDefeatScene: {fileID: 0}
+  finalVictoryScene: {fileID: 0}
   phases:
   - phaseId: 
     displayName: 
@@ -54,7 +64,7 @@ MonoBehaviour:
     bossSprite: {fileID: 0}
     bossVisualScale: 0
     phaseStartSfx: {fileID: 0}
-    dialogueOnStart: Aucun mort ne quitte Rhodesia sans etre reconnu.
+    dialogueOnStart: Aucun mort ne quitte Rhodesia sans être reconnu.
     actions:
     - actionId: 
       actionType: 0

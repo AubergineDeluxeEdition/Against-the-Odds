@@ -115,6 +115,21 @@ public class CombatResultOverlay : MonoBehaviour
         }
     }
 
+    public bool IsPointerOverRewardCard(Vector2 screenPosition)
+    {
+        if (!showingResult || !victory || rewardCards == null) return false;
+
+        foreach (CombatRewardCardView rewardCard in rewardCards)
+        {
+            if (rewardCard != null && rewardCard.ContainsScreenPoint(screenPosition))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public void UseButton(CombatResultButton.ResultButtonAction action)
     {
         if (!CanUseButton(action)) return;
@@ -362,6 +377,8 @@ public class CombatResultOverlay : MonoBehaviour
             }
         }
 
+        BossEncounterConfig encounter = combatManager != null ? combatManager.Encounter : null;
+        bool campaignComplete = false;
         if (GameManager.Instance != null)
         {
             var ids = new List<string>();
@@ -374,11 +391,26 @@ public class CombatResultOverlay : MonoBehaviour
             }
 
             GameManager.Instance.AddRewardCards(ids);
-            GameManager.Instance.AdvanceToNextBoss();
+            campaignComplete = GameManager.Instance.AdvanceToNextBoss();
         }
 
         AudioManager.Instance?.RestoreMusic(resultMusicDuckDuration);
-        SceneManager.LoadScene(campaignSceneName);
+
+        string nextScene = campaignSceneName;
+        if (campaignComplete)
+        {
+            nextScene = !string.IsNullOrWhiteSpace(encounter?.finalVictorySceneName)
+                ? encounter.finalVictorySceneName
+                : defeatSceneName;
+            GameManager.Instance?.SetPendingCinematicNextScene(defeatSceneName);
+        }
+        else if (!string.IsNullOrWhiteSpace(encounter?.postVictorySceneName))
+        {
+            nextScene = encounter.postVictorySceneName;
+            GameManager.Instance?.SetPendingCinematicNextScene(campaignSceneName);
+        }
+
+        LoadScene(nextScene);
     }
 
     private bool ShowVictoryLoreIfAny()
@@ -406,7 +438,30 @@ public class CombatResultOverlay : MonoBehaviour
         }
 
         AudioManager.Instance?.RestoreMusic(resultMusicDuckDuration);
-        SceneManager.LoadScene(defeatSceneName);
+
+        BossEncounterConfig encounter = combatManager != null ? combatManager.Encounter : null;
+        string nextScene = !string.IsNullOrWhiteSpace(encounter?.postDefeatSceneName)
+            ? encounter.postDefeatSceneName
+            : defeatSceneName;
+
+        if (!string.IsNullOrWhiteSpace(encounter?.postDefeatSceneName))
+        {
+            GameManager.Instance?.SetPendingCinematicNextScene(defeatSceneName);
+        }
+
+        LoadScene(nextScene);
+    }
+
+    private static void LoadScene(string sceneName)
+    {
+        if (SceneLoader.Instance != null)
+        {
+            SceneLoader.Instance.LoadScene(sceneName);
+        }
+        else
+        {
+            SceneManager.LoadScene(sceneName);
+        }
     }
 
     private void PlayDefeatButtonSfx()
@@ -744,10 +799,18 @@ public class CombatResultOverlay : MonoBehaviour
     {
         if (root == null) return startIndex;
 
+        CombatRewardCardView rewardCard = root.GetComponent<CombatRewardCardView>();
+        if (rewardCard != null)
+        {
+            rewardCard.ForceSortingOrder(sortingOrder + startIndex * 10, 30);
+            return startIndex + 1;
+        }
+
         int index = startIndex;
         SpriteRenderer[] spriteRenderers = root.GetComponentsInChildren<SpriteRenderer>(true);
         for (int i = 0; i < spriteRenderers.Length; i++)
         {
+            if (spriteRenderers[i].GetComponentInParent<CombatRewardCardView>() != null) continue;
             spriteRenderers[i].sortingOrder = sortingOrder + index;
             index++;
         }
@@ -755,6 +818,7 @@ public class CombatResultOverlay : MonoBehaviour
         TMP_Text[] textRenderers = root.GetComponentsInChildren<TMP_Text>(true);
         foreach (TMP_Text textRenderer in textRenderers)
         {
+            if (textRenderer.GetComponentInParent<CombatRewardCardView>() != null) continue;
             if (textRenderer.TryGetComponent(out Renderer renderer))
             {
                 renderer.sortingOrder = sortingOrder + index + 10;

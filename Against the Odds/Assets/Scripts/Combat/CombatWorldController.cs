@@ -60,6 +60,13 @@ public class CombatWorldController : MonoBehaviour
     [SerializeField] private float bossDeathFlickerInterval = 0.08f;
     [SerializeField] private float bossDeathShrinkMultiplier = 0.08f;
 
+    [Header("Boss Damage Feedback")]
+    [SerializeField] private float bossDamageFeedbackDuration = 0.18f;
+    [SerializeField] private float bossDamageFlickerInterval = 0.04f;
+    [SerializeField] private float bossDamageShakeAmount = 0.08f;
+    [SerializeField] private float bossDamageScalePunch = 0.96f;
+    [SerializeField] private Color bossDamageFlashColor = new Color(1f, 0.35f, 0.28f, 1f);
+
     private readonly List<CombatWorldCardView> cardViews = new List<CombatWorldCardView>();
     private Vector3 bossHpInitialScale;
     private Vector3 bossHpInitialPosition;
@@ -72,6 +79,11 @@ public class CombatWorldController : MonoBehaviour
     private Vector3 manaFillInitialPosition;
     private bool combatLogHandledByDedicatedView;
     private Coroutine bossDeathRoutine;
+    private Coroutine bossDamageRoutine;
+    private Color bossDamageStartColor = Color.white;
+    private Vector3 bossDamageStartPosition;
+    private Vector3 bossDamageStartScale = Vector3.one;
+    private int lastEnemyHp = -1;
 
     private void Awake()
     {
@@ -223,6 +235,11 @@ public class CombatWorldController : MonoBehaviour
         if (combatManager == null || combatManager.State == null) return;
 
         CombatState state = combatManager.State;
+        bool bossTookDamage = lastEnemyHp >= 0
+            && state.EnemyHP < lastEnemyHp
+            && bossSpriteRenderer != null
+            && bossSpriteRenderer.enabled
+            && bossSpriteRenderer.sprite != null;
 
         SetAnchoredBar(bossHpFill, bossHpInitialScale, bossHpInitialPosition, state.EnemyHP, state.EnemyMaxHP, bossHpAxis, bossHpAnchor);
         SetAnchoredBar(playerHpFill, playerHpInitialScale, playerHpInitialPosition, state.PlayerHP, state.PlayerMaxHP, playerHpAxis, playerHpAnchor);
@@ -264,6 +281,13 @@ public class CombatWorldController : MonoBehaviour
 
         RebuildHand(state);
         ApplyPlayerHudSorting();
+
+        if (bossTookDamage)
+        {
+            PlayBossDamageFeedback();
+        }
+
+        lastEnemyHp = state.EnemyHP;
     }
 
     private void RebuildHand(CombatState state)
@@ -516,6 +540,8 @@ public class CombatWorldController : MonoBehaviour
     {
         if (bossSpriteRenderer == null) return;
 
+        StopBossDamageFeedback(true);
+
         if (bossDeathRoutine != null)
         {
             StopCoroutine(bossDeathRoutine);
@@ -532,12 +558,69 @@ public class CombatWorldController : MonoBehaviour
     {
         if (bossSpriteRenderer == null || bossSpriteRenderer.sprite == null) return;
 
+        StopBossDamageFeedback(true);
+
         if (bossDeathRoutine != null)
         {
             StopCoroutine(bossDeathRoutine);
         }
 
         bossDeathRoutine = StartCoroutine(BossDeathDisappearanceRoutine());
+    }
+
+    private void PlayBossDamageFeedback()
+    {
+        if (bossSpriteRenderer == null || bossSpriteRenderer.sprite == null) return;
+        if (bossDeathRoutine != null) return;
+
+        StopBossDamageFeedback(true);
+        bossDamageRoutine = StartCoroutine(BossDamageFeedbackRoutine());
+    }
+
+    private void StopBossDamageFeedback(bool restoreVisual)
+    {
+        bool hadRoutine = bossDamageRoutine != null;
+        if (bossDamageRoutine != null)
+        {
+            StopCoroutine(bossDamageRoutine);
+            bossDamageRoutine = null;
+        }
+
+        if (!restoreVisual || !hadRoutine || bossSpriteRenderer == null) return;
+
+        bossSpriteRenderer.color = bossDamageStartColor;
+        bossSpriteRenderer.transform.localPosition = bossDamageStartPosition;
+        bossSpriteRenderer.transform.localScale = bossDamageStartScale;
+    }
+
+    private IEnumerator BossDamageFeedbackRoutine()
+    {
+        bossDamageStartColor = bossSpriteRenderer.color;
+        bossDamageStartPosition = bossSpriteRenderer.transform.localPosition;
+        bossDamageStartScale = bossSpriteRenderer.transform.localScale;
+
+        Vector3 punchedScale = bossDamageStartScale * Mathf.Clamp(bossDamageScalePunch, 0.01f, 1f);
+        float duration = Mathf.Max(0.01f, bossDamageFeedbackDuration);
+        float flicker = Mathf.Max(0.01f, bossDamageFlickerInterval);
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / duration);
+            bool flashFrame = Mathf.FloorToInt(elapsed / flicker) % 2 == 0;
+            float shake = Mathf.Sin(t * Mathf.PI * 8f) * bossDamageShakeAmount * (1f - t);
+
+            bossSpriteRenderer.color = flashFrame ? bossDamageFlashColor : bossDamageStartColor;
+            bossSpriteRenderer.transform.localPosition = bossDamageStartPosition + Vector3.right * shake;
+            bossSpriteRenderer.transform.localScale = Vector3.Lerp(punchedScale, bossDamageStartScale, t);
+            yield return null;
+        }
+
+        bossSpriteRenderer.color = bossDamageStartColor;
+        bossSpriteRenderer.transform.localPosition = bossDamageStartPosition;
+        bossSpriteRenderer.transform.localScale = bossDamageStartScale;
+        bossDamageRoutine = null;
     }
 
     private IEnumerator BossDeathDisappearanceRoutine()
