@@ -9,14 +9,14 @@ Le site présente :
 - les mécaniques principales: brûlure, bouclier, mana, potions ;
 - la carte de campagne ;
 - une galerie de boss et de cartes ;
-- un bouton de téléchargement direct vers la release GitHub `latest-build`.
+- un bouton de téléchargement direct vers la dernière release GitHub.
 
 ## Pré-requis public
 
 Le bouton de téléchargement pointe vers :
 
 ```text
-https://github.com/AubergineDeluxeEdition/Against-the-Odds/releases/download/latest-build/AgainstTheOdds-setup.exe
+https://github.com/AubergineDeluxeEdition/Against-the-Odds/releases/latest/download/AgainstTheOdds-setup.exe
 ```
 
 Pour que ce lien fonctionne chez les visiteurs sans authentification, le repository GitHub doit être public. Une release attachée à un repository privé reste privée.
@@ -95,22 +95,11 @@ curl -s https://against-the-odds.amorisetti.ch/?nocache=$(date +%s) | grep "Gèr
 
 ## Publier un nouveau build
 
-Depuis la machine de dev, après export Unity de `Output/AgainstTheOdds-setup.exe` :
+Depuis le Pi, pour pull le dernier `main`, créer une nouvelle release GitHub avec l'installer tracké dans Git, puis redéployer le site :
 
 ```bash
-gh release upload latest-build Output/AgainstTheOdds-setup.exe \
-  --repo AubergineDeluxeEdition/Against-the-Odds \
-  --clobber
-```
-
-Si la release n’existe pas encore :
-
-```bash
-gh release create latest-build Output/AgainstTheOdds-setup.exe \
-  --repo AubergineDeluxeEdition/Against-the-Odds \
-  --target main \
-  --title "Latest Against the Odds build" \
-  --notes "Latest Windows installer."
+cd /mnt/san/against-the-odds-site-repo/web
+bash release-and-deploy-pi.sh
 ```
 
 ## Structure
@@ -122,6 +111,7 @@ gh release create latest-build Output/AgainstTheOdds-setup.exe \
 - `docker-compose.yml`: lancement local avec port `8080`.
 - `compose.pi.yml`: lancement serveur derrière Cloudflare Tunnel.
 - `deploy-pi.sh`: pull puis relance Docker.
+- `release-and-deploy-pi.sh`: pull, crée une nouvelle release avec `gh`, puis relance Docker.
 
 ## Crédits
 
