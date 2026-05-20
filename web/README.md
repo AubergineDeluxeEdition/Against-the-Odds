@@ -51,12 +51,6 @@ Trouver le network Docker de `cloudflared` :
 docker inspect cloudflared --format '{{range $name, $_ := .NetworkSettings.Networks}}{{println $name}}{{end}}'
 ```
 
-Installer GitHub CLI et se connecter une fois. C'est necessaire si le repository ou la release est privee :
-
-```bash
-gh auth login
-```
-
 Lancer le deploiement :
 
 ```bash
@@ -78,13 +72,13 @@ cd ~/sites/against-the-odds-site-repo/web
 ./deploy-pi.sh
 ```
 
-Le script fait `git pull`, telecharge `AgainstTheOdds-setup.exe` depuis la derniere GitHub Release, puis relance le container.
+Le script fait `git pull`, puis relance le container. Le bouton de telechargement pointe directement vers GitHub Releases.
 
 ## Ajouter le build du jeu
 
 1. Exporter le jeu.
-2. Placer l'archive ou l'installateur dans `downloads/`, par exemple `downloads/AgainstTheOdds-setup.exe`.
-3. Verifier le lien dans `index.html`.
+2. Publier `Output/AgainstTheOdds-setup.exe` dans la release GitHub `latest-build`.
+3. Verifier que le lien dans `index.html` pointe vers `https://github.com/AubergineDeluxeEdition/Against-the-Odds/releases/download/latest-build/AgainstTheOdds-setup.exe`.
 
 ## Publier l'installer sur GitHub Release
 
@@ -106,7 +100,7 @@ gh release upload latest-build Output/AgainstTheOdds-setup.exe \
   --clobber
 ```
 
-Sur le serveur, mettre `GITHUB_RELEASE_TAG=latest-build` dans `.env` pour telecharger cette release precise.
+Pour que le bouton fonctionne chez les visiteurs sans authentification, la release doit etre accessible publiquement. Une release dans un repository prive reste privee.
 
 ## Structure
 
@@ -117,4 +111,4 @@ Sur le serveur, mettre `GITHUB_RELEASE_TAG=latest-build` dans `.env` pour telech
 - `Caddyfile`: serveur statique.
 - `docker-compose.yml`: lancement Caddy via Docker.
 - `compose.pi.yml`: lancement Caddy derriere un Cloudflare Tunnel Docker.
-- `deploy-pi.sh`: pull, telechargement de l'installer GitHub Release, puis relance Docker.
+- `deploy-pi.sh`: pull, puis relance Docker.
