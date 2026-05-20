@@ -22,6 +22,6 @@ git pull --ff-only
 cd "$SCRIPT_DIR"
 
 echo "Starting site container..."
-CLOUDFLARED_NETWORK="$CLOUDFLARED_NETWORK" docker compose -f compose.pi.yml up -d
+CLOUDFLARED_NETWORK="$CLOUDFLARED_NETWORK" docker compose -f compose.pi.yml up -d --force-recreate
 
 echo "Done. Cloudflare Tunnel service should target: http://against-the-odds-site:8080"

@@ -84,7 +84,14 @@ cd /mnt/san/against-the-odds-site-repo/web
 bash deploy-pi.sh
 ```
 
-Le script fait `git pull --ff-only`, puis relance le container. Le téléchargement du jeu ne transite pas par le serveur: le client télécharge directement l’asset GitHub Release.
+Le script fait `git pull --ff-only`, puis recrée le container pour forcer Caddy à repartir sur les fichiers à jour. Le téléchargement du jeu ne transite pas par le serveur: le client télécharge directement l’asset GitHub Release.
+
+Vérifier que le container sert bien la nouvelle page :
+
+```bash
+docker exec against-the-odds-site grep -n "Gère ta main" /usr/share/caddy/index.html
+curl -s https://against-the-odds.amorisetti.ch/?nocache=$(date +%s) | grep "Gère ta main"
+```
 
 ## Publier un nouveau build
 
