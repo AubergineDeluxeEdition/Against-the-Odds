@@ -5,17 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Against the Odds, un deckbuilder sombre ou chaque decision peut sauver une run ou la condamner."
+      content="Against the Odds, un jeu de cartes sombre où chaque décision peut sauver une run ou la condamner."
     />
     <meta property="og:title" content="Against the Odds" />
     <meta
       property="og:description"
-      content="Deckbuilder narratif, combats de boss, sacrifices, brulures et choix impossibles."
+      content="Jeu de cartes sombre, boss impitoyables, mode hardcore et choix impossibles."
     />
     <meta property="og:image" content="/assets/hero-background.jpg" />
     <title>Against the Odds</title>
-    <link rel="preload" href="/assets/hero-loop.mp4" as="video" type="video/mp4" />
-    <link rel="stylesheet" href="/styles.css?v=3" />
+    <link rel="preload" href="/assets/hero-loop.mp4?v=2" as="video" type="video/mp4" />
+    <link rel="stylesheet" href="/styles.css?v=4" />
   </head>
   <body>
     <header class="site-header" aria-label="Navigation principale">
@@ -24,9 +24,9 @@
       </a>
       <nav>
         <a href="#combat">Combat</a>
-        <a href="#mechanics">Mecaniques</a>
+        <a href="#mechanics">Mécaniques</a>
         <a href="#bosses">Boss</a>
-        <a href="#download">Telecharger</a>
+        <a href="#download">Télécharger</a>
       </nav>
     </header>
 
@@ -34,7 +34,7 @@
       <section class="hero" aria-labelledby="hero-title">
         <video
           class="hero__video"
-          src="/assets/hero-loop.mp4"
+          src="/assets/hero-loop.mp4?v=2"
           autoplay
           muted
           loop
@@ -43,32 +43,32 @@
         ></video>
         <div class="hero__shade"></div>
         <div class="hero__content">
-          <p class="kicker">Dark fantasy deckbuilder</p>
+          <p class="kicker">Jeu de cartes hardcore</p>
           <h1 id="hero-title">Against the Odds</h1>
           <p class="hero__lead">
-            Forge un deck dans les cendres, affronte des boss qui changent les
-            regles, et paie chaque victoire avec quelque chose que tu voulais garder.
+            Bâtis ta main dans les cendres, affronte des boss qui changent les règles,
+            et paie chaque victoire avec quelque chose que tu voulais garder.
           </p>
           <div class="hero__actions">
-            <a class="button button--primary" href="#download">Telecharger le jeu</a>
-            <a class="button button--ghost" href="#combat">Explorer les mecaniques</a>
+            <a class="button button--primary" href="#download">Télécharger le jeu</a>
+            <a class="button button--ghost" href="#combat">Voir le combat</a>
           </div>
         </div>
       </section>
 
       <section id="combat" class="feature feature--embers" aria-labelledby="combat-title">
-        <video class="feature__media" src="/assets/zone-embers.mp4" autoplay muted loop playsinline></video>
+        <video class="feature__media" src="/assets/zone-embers.mp4?v=2" autoplay muted loop playsinline></video>
         <div class="feature__overlay"></div>
         <div class="feature__content">
-          <p class="eyebrow">Systeme de combat</p>
-          <h2 id="combat-title">Lis le boss. Brise le rythme. Survis au prix juste.</h2>
+          <p class="eyebrow">Combat</p>
+          <h2 id="combat-title">Lis. Frappe. Survis.</h2>
           <p>
             Chaque tour oppose ta main, ta mana, ton bouclier et les intentions du boss.
             Les cartes ne sont pas seulement des actions: ce sont des paris.
           </p>
           <div class="stat-row">
-            <span>Deck evolutif</span>
-            <span>Boss scriptes</span>
+            <span>Deck évolutif</span>
+            <span>Boss scriptés</span>
             <span>Runs tendues</span>
           </div>
         </div>
@@ -76,29 +76,29 @@
 
       <section id="mechanics" class="section mechanics" aria-labelledby="mechanics-title">
         <div class="section__heading">
-          <p class="eyebrow">Mecaniques centrales</p>
-          <h2 id="mechanics-title">Des ressources simples. Des consequences sales.</h2>
+          <p class="eyebrow">Mécaniques</p>
+          <h2 id="mechanics-title">Peu de ressources. Beaucoup de dégâts.</h2>
         </div>
         <div class="mechanic-grid">
           <article>
             <img src="/assets/icon-burn.png" alt="" />
-            <h3>Brulure</h3>
-            <p>Accumule la pression, declenche des synergies, mais laisse le feu te mordre en retour.</p>
+            <h3>Brûlure</h3>
+            <p>Accumule la pression, déclenche des synergies, mais laisse le feu te mordre en retour.</p>
           </article>
           <article>
             <img src="/assets/icon-shield.png" alt="" />
             <h3>Bouclier</h3>
-            <p>Absorbe l'impact quand tu n'as plus le luxe d'attaquer. Tenir est parfois un combo.</p>
+            <p>Absorbe l’impact quand tu n’as plus le luxe d’attaquer. Tenir est parfois un combo.</p>
           </article>
           <article>
             <img src="/assets/icon-mana.png" alt="" />
             <h3>Mana</h3>
-            <p>Choisis ton tempo: vider ta main maintenant ou garder une reponse pour le prochain pattern.</p>
+            <p>Choisis ton tempo: vider ta main maintenant ou garder une réponse pour le prochain pattern.</p>
           </article>
           <article>
             <img src="/assets/icon-potion.png" alt="" />
             <h3>Potions</h3>
-            <p>Une securite limitee, rare, et souvent gardee trop longtemps. Comme il se doit.</p>
+            <p>Une sécurité limitée, rare, et souvent gardée trop longtemps. Comme il se doit.</p>
           </article>
         </div>
       </section>
@@ -109,22 +109,22 @@
         </div>
         <div class="showcase__copy">
           <p class="eyebrow">Campagne</p>
-          <h2 id="map-title">Une route de boss, pas une promenade.</h2>
+          <h2 id="map-title">Choisis ta route.</h2>
           <p>
-            Traverse des regions qui montent en danger, choisis tes combats, et construis
-            une reponse avant que le prochain adversaire ne t'impose la sienne.
+            Traverse des régions de plus en plus dangereuses, choisis tes combats,
+            et prépare une réponse avant que le prochain adversaire ne t’impose la sienne.
           </p>
         </div>
       </section>
 
       <section class="feature feature--butcher" aria-labelledby="patterns-title">
-        <video class="feature__media" src="/assets/zone-butcher.mp4" autoplay muted loop playsinline></video>
+        <video class="feature__media" src="/assets/zone-butcher.mp4?v=2" autoplay muted loop playsinline></video>
         <div class="feature__overlay"></div>
         <div class="feature__content feature__content--right">
-          <p class="eyebrow">Patterns de boss</p>
-          <h2 id="patterns-title">Chaque duel a sa propre grammaire.</h2>
+          <p class="eyebrow">Boss</p>
+          <h2 id="patterns-title">Chaque duel ment.</h2>
           <p>
-            Certains boss punissent la defense. D'autres detestent tes cartes lentes.
+            Certains boss punissent la défense. D’autres détestent tes cartes lentes.
             Apprendre leurs cycles devient aussi important que piocher la bonne main.
           </p>
         </div>
@@ -132,11 +132,11 @@
 
       <section class="section cards" aria-labelledby="cards-title">
         <div class="section__heading">
-          <p class="eyebrow">Deck</p>
-          <h2 id="cards-title">Construis autour de risques que tu comprends.</h2>
+          <p class="eyebrow">Cartes</p>
+          <h2 id="cards-title">Construis ton risque.</h2>
         </div>
-        <div class="card-rack" aria-label="Apercu de cartes">
-          <img src="/assets/card-judgement.png" alt="Carte Jugement du Bucher" />
+        <div class="card-rack" aria-label="Aperçu de cartes">
+          <img src="/assets/card-judgement.png" alt="Carte Jugement du Bûcher" />
           <img src="/assets/card-last-breath.png" alt="Carte Dernier Souffle" />
           <img src="/assets/card-fortress.png" alt="Carte Forteresse de Cendres" />
         </div>
@@ -145,11 +145,11 @@
       <section id="bosses" class="section bosses" aria-labelledby="bosses-title">
         <div class="section__heading">
           <p class="eyebrow">Adversaires</p>
-          <h2 id="bosses-title">Des silhouettes qui annoncent deja la douleur.</h2>
+          <h2 id="bosses-title">Ils t’attendent.</h2>
         </div>
         <div class="boss-grid">
           <article>
-            <img src="/assets/boss-grave.png" alt="Boss de la premiere zone" />
+            <img src="/assets/boss-grave.png" alt="Boss de la première zone" />
             <span>Grave of the Unyielding</span>
           </article>
           <article>
@@ -157,7 +157,7 @@
             <span>The Compassionate Butcher</span>
           </article>
           <article>
-            <img src="/assets/boss-thread.png" alt="Boss de la quatrieme zone" />
+            <img src="/assets/boss-thread.png" alt="Boss de la quatrième zone" />
             <span>The Final Thread</span>
           </article>
           <article>
@@ -168,14 +168,14 @@
       </section>
 
       <section class="feature feature--thread" aria-labelledby="tone-title">
-        <video class="feature__media" src="/assets/zone-thread.mp4" autoplay muted loop playsinline></video>
+        <video class="feature__media" src="/assets/zone-thread.mp4?v=2" autoplay muted loop playsinline></video>
         <div class="feature__overlay feature__overlay--red"></div>
         <div class="feature__content">
           <p class="eyebrow">Ambiance</p>
-          <h2 id="tone-title">Un monde qui ne veut pas etre sauve.</h2>
+          <h2 id="tone-title">Rien n’est sauvé.</h2>
           <p>
-            La direction artistique melange liturgie, ruines, chair, cendres et lumiere malade:
-            assez lisible pour jouer, assez noire pour rester en tete.
+            La direction artistique mélange liturgie, ruines, chair, cendres et lumière malade:
+            assez lisible pour jouer, assez noire pour rester en tête.
           </p>
         </div>
       </section>
@@ -183,28 +183,28 @@
       <section id="download" class="download" aria-labelledby="download-title">
         <div class="download__inner">
           <p class="eyebrow">Build jouable</p>
-          <h2 id="download-title">Entre dans la run.</h2>
+          <h2 id="download-title">Lance la run.</h2>
           <p>
-            Recupere le dernier installateur Windows publie sur GitHub Releases.
-            Le telechargement part directement de GitHub, sans passer par le serveur du site.
+            Récupère le dernier installateur Windows publié sur GitHub Releases.
+            Le téléchargement part directement de GitHub, sans passer par le serveur du site.
           </p>
           <div class="download__actions">
             <a
               class="button button--primary"
               href="https://github.com/AubergineDeluxeEdition/Against-the-Odds/releases/download/latest-build/AgainstTheOdds-setup.exe"
             >
-              Telecharger pour Windows
+              Télécharger pour Windows
             </a>
             <a class="button button--ghost" href="#top">Revoir le trailer</a>
           </div>
           <dl class="download__meta">
             <div>
               <dt>Genre</dt>
-              <dd>Deckbuilder narratif</dd>
+              <dd>Jeu de cartes</dd>
             </div>
             <div>
               <dt>Mode</dt>
-              <dd>Solo</dd>
+              <dd>Solo hardcore</dd>
             </div>
             <div>
               <dt>Statut</dt>
@@ -216,8 +216,14 @@
     </main>
 
     <footer>
-      <span>Against the Odds</span>
-      <span>Dark fantasy deckbuilder</span>
+      <div>
+        <strong>Against the Odds</strong>
+        <span>Jeu de cartes hardcore</span>
+      </div>
+      <div>
+        <a href="https://github.com/AubergineDeluxeEdition/Against-the-Odds">GitHub</a>
+        <span>Alexandre Morisetti · Antoine Dill · Hugo Brinchat</span>
+      </div>
     </footer>
   </body>
 </html>

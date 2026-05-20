@@ -1,61 +1,69 @@
 # Against the Odds Web
 
-Site statique autonome pour presenter le jeu avec une page immersive, des videos en fond, une presentation des mecaniques et une zone de telechargement.
+Site statique officiel pour **Against the Odds**, un jeu de cartes sombre centré sur les runs hardcore, les combats de boss et la gestion de ressources sous pression.
+
+Le site présente :
+
+- un hero vidéo léger et auto-joué ;
+- des sections immersives par zone ;
+- les mécaniques principales: brûlure, bouclier, mana, potions ;
+- la carte de campagne ;
+- une galerie de boss et de cartes ;
+- un bouton de téléchargement direct vers la release GitHub `latest-build`.
+
+## Pré-requis public
+
+Le bouton de téléchargement pointe vers :
+
+```text
+https://github.com/AubergineDeluxeEdition/Against-the-Odds/releases/download/latest-build/AgainstTheOdds-setup.exe
+```
+
+Pour que ce lien fonctionne chez les visiteurs sans authentification, le repository GitHub doit être public. Une release attachée à un repository privé reste privée.
 
 ## Lancer en local
 
 Depuis ce dossier :
 
-```powershell
-python -m http.server 8080
+```bash
+python3 -m http.server 8080
 ```
 
 Puis ouvrir <http://localhost:8080>.
 
-## Servir avec Docker
+Alternative Docker locale :
 
 ```bash
-cd web
 docker compose up -d
 ```
 
-Le site ecoute sur <http://localhost:8080>.
+Le site écoute sur <http://localhost:8080>.
 
-## Deployer sur le serveur avec Cloudflare Tunnel
+## Déploiement serveur
 
-Ce compose n'expose aucun port public. Le container rejoint le meme network Docker que `cloudflared`, puis Cloudflare pointe vers `http://against-the-odds-site:8080`.
+Le serveur web est un container Caddy statique. Le compose serveur n’expose aucun port public: le container rejoint le même network Docker que `cloudflared`, puis Cloudflare Tunnel route vers `http://against-the-odds-site:8080`.
 
-Premier deploiement avec sparse checkout :
+Premier déploiement avec sparse checkout :
 
 ```bash
-mkdir -p ~/sites
-cd ~/sites
-
-git clone --filter=blob:none --sparse https://github.com/AubergineDeluxeEdition/Against-the-Odds.git against-the-odds-site-repo
+git clone --filter=blob:none --sparse git@github.com:AubergineDeluxeEdition/Against-the-Odds.git against-the-odds-site-repo
 cd against-the-odds-site-repo
 git sparse-checkout set web
-
 cd web
 ```
 
-Configurer le deploiement :
+Configurer le network Docker de `cloudflared` :
 
 ```bash
 cp .env.example .env
+docker inspect cloudflared --format '{{range $name, $_ := .NetworkSettings.Networks}}{{println $name}}{{end}}'
 nano .env
 ```
 
-Trouver le network Docker de `cloudflared` :
+Lancer :
 
 ```bash
-docker inspect cloudflared --format '{{range $name, $_ := .NetworkSettings.Networks}}{{println $name}}{{end}}'
-```
-
-Lancer le deploiement :
-
-```bash
-chmod +x deploy-pi.sh
-./deploy-pi.sh
+bash deploy-pi.sh
 ```
 
 Dans Cloudflare Tunnel, le public hostname doit pointer vers :
@@ -65,24 +73,30 @@ HTTP
 against-the-odds-site:8080
 ```
 
-Mise a jour :
+Le champ `Path` doit rester vide pour servir toutes les routes, assets et téléchargements externes.
+
+## Mise à jour
+
+Depuis le serveur :
 
 ```bash
-cd ~/sites/against-the-odds-site-repo/web
-./deploy-pi.sh
+cd /mnt/san/against-the-odds-site-repo/web
+bash deploy-pi.sh
 ```
 
-Le script fait `git pull`, puis relance le container. Le bouton de telechargement pointe directement vers GitHub Releases.
+Le script fait `git pull --ff-only`, puis relance le container. Le téléchargement du jeu ne transite pas par le serveur: le client télécharge directement l’asset GitHub Release.
 
-## Ajouter le build du jeu
+## Publier un nouveau build
 
-1. Exporter le jeu.
-2. Publier `Output/AgainstTheOdds-setup.exe` dans la release GitHub `latest-build`.
-3. Verifier que le lien dans `index.html` pointe vers `https://github.com/AubergineDeluxeEdition/Against-the-Odds/releases/download/latest-build/AgainstTheOdds-setup.exe`.
+Depuis la machine de dev, après export Unity de `Output/AgainstTheOdds-setup.exe` :
 
-## Publier l'installer sur GitHub Release
+```bash
+gh release upload latest-build Output/AgainstTheOdds-setup.exe \
+  --repo AubergineDeluxeEdition/Against-the-Odds \
+  --clobber
+```
 
-Depuis la machine de dev, apres avoir exporte `Output/AgainstTheOdds-setup.exe` :
+Si la release n’existe pas encore :
 
 ```bash
 gh release create latest-build Output/AgainstTheOdds-setup.exe \
@@ -92,23 +106,16 @@ gh release create latest-build Output/AgainstTheOdds-setup.exe \
   --notes "Latest Windows installer."
 ```
 
-Pour remplacer l'asset apres un nouveau build :
-
-```bash
-gh release upload latest-build Output/AgainstTheOdds-setup.exe \
-  --repo AubergineDeluxeEdition/Against-the-Odds \
-  --clobber
-```
-
-Pour que le bouton fonctionne chez les visiteurs sans authentification, la release doit etre accessible publiquement. Une release dans un repository prive reste privee.
-
 ## Structure
 
-- `index.html`: contenu de la page.
+- `index.html`: page statique.
 - `styles.css`: design responsive.
-- `assets/`: images et videos embarquees.
-- `downloads/`: archives telechargeables.
-- `Caddyfile`: serveur statique.
-- `docker-compose.yml`: lancement Caddy via Docker.
-- `compose.pi.yml`: lancement Caddy derriere un Cloudflare Tunnel Docker.
-- `deploy-pi.sh`: pull, puis relance Docker.
+- `assets/`: images et vidéos optimisées.
+- `Caddyfile`: serveur statique et headers de cache.
+- `docker-compose.yml`: lancement local avec port `8080`.
+- `compose.pi.yml`: lancement serveur derrière Cloudflare Tunnel.
+- `deploy-pi.sh`: pull puis relance Docker.
+
+## Crédits
+
+Against the Odds est réalisé par Alexandre Morisetti, Antoine Dill et Hugo Brinchat.
