@@ -408,7 +408,7 @@ MonoBehaviour:
   - text: "Votre main fr\xF4le une poign\xE9e reconnaissable."
     duration: 4
     startCreditsHere: 0
-  - text: "\"Pourquoi me je r\xE9veille ?\""
+  - text: "\"Pourquoi je me r\xE9veille ?\""
     duration: 3
     startCreditsHere: 0
   - text: Plus de souvenirs.
@@ -824,7 +824,7 @@ MonoBehaviour:
   holdToSkip: 1
   holdSkipDuration: 2
   showHoldSkipPrompt: 1
-  holdSkipLabel: Passer la cinématique
+  holdSkipLabel: "Passer la cin\xE9matique"
   skipOnAnyKeyboardKey: 1
   skipOnMouseClick: 1
   skipOnTouch: 1

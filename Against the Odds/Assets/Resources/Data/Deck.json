@@ -337,8 +337,8 @@
       "type": "terrain",
       "subtype": "fire",
       "tags": ["terrain", "fire", "attack", "burn", "persistent"],
-      "description": "Terrain. Vos cartes Offensives infligent +{terrain:attackDamageBonus} dégâts. Quand vous appliquez Brûlure, appliquez-en {terrain:burnAppliedBonus} de plus.",
-      "descriptionTemplate": "Terrain. Vos cartes Offensives infligent +{terrain:attackDamageBonus} dégâts. Quand vous appliquez Brûlure, appliquez-en {terrain:burnAppliedBonus} de plus.",
+      "description": "Vos cartes Offensives infligent +{terrain:attackDamageBonus} dégâts. Quand vous appliquez Brûlure, appliquez-en {terrain:burnAppliedBonus} de plus.",
+      "descriptionTemplate": "Vos cartes Offensives infligent +{terrain:attackDamageBonus} dégâts. Quand vous appliquez Brûlure, appliquez-en {terrain:burnAppliedBonus} de plus.",
       "artResourcePath": "Cards/deck1/champ_de_braises",
       "effects": [
         { "action": "set_terrain", "terrainId": "champ_de_braises", "target": "self" }
@@ -355,8 +355,8 @@
       "type": "terrain",
       "subtype": "fortification",
       "tags": ["terrain", "defense", "block", "burn", "persistent"],
-      "description": "Terrain. Vos cartes Défensives donnent +{terrain:defenseBlockBonus} Blocage. La première fois que vous jouez une carte Défensive chaque tour, appliquez {terrain:firstDefenseEachTurnAppliesBurn} Brûlure à l'ennemi.",
-      "descriptionTemplate": "Terrain. Vos cartes Défensives donnent +{terrain:defenseBlockBonus} Blocage. La première fois que vous jouez une carte Défensive chaque tour, appliquez {terrain:firstDefenseEachTurnAppliesBurn} Brûlure à l'ennemi.",
+      "description": "Vos cartes Défensives donnent +{terrain:defenseBlockBonus} Blocage. La première fois que vous jouez une carte Défensive chaque tour, appliquez {terrain:firstDefenseEachTurnAppliesBurn} Brûlure à l'ennemi.",
+      "descriptionTemplate": "Vos cartes Défensives donnent +{terrain:defenseBlockBonus} Blocage. La première fois que vous jouez une carte Défensive chaque tour, appliquez {terrain:firstDefenseEachTurnAppliesBurn} Brûlure à l'ennemi.",
       "artResourcePath": "Cards/deck1/forteresse_de_cendres",
       "effects": [
         { "action": "set_terrain", "terrainId": "forteresse_de_cendres", "target": "self" }
@@ -373,8 +373,8 @@
       "type": "terrain",
       "subtype": "ritual",
       "tags": ["terrain", "ritual", "draw", "persistent"],
-      "description": "Terrain. Vos cartes Rituel coûtent {terrain:ritualCostReduction} mana de moins. La première fois que vous jouez un Rituel chaque tour, piochez {terrain:firstRitualEachTurnDrawCards} carte.",
-      "descriptionTemplate": "Terrain. Vos cartes Rituel coûtent {terrain:ritualCostReduction} mana de moins. La première fois que vous jouez un Rituel chaque tour, piochez {terrain:firstRitualEachTurnDrawCards} carte.",
+      "description": "Vos cartes Rituel coûtent {terrain:ritualCostReduction} mana de moins. La première fois que vous jouez un Rituel chaque tour, piochez {terrain:firstRitualEachTurnDrawCards} carte.",
+      "descriptionTemplate": "Vos cartes Rituel coûtent {terrain:ritualCostReduction} mana de moins. La première fois que vous jouez un Rituel chaque tour, piochez {terrain:firstRitualEachTurnDrawCards} carte.",
       "artResourcePath": "Cards/deck1/autel_profane",
       "effects": [
         { "action": "set_terrain", "terrainId": "autel_profane", "target": "self" }
@@ -391,8 +391,8 @@
       "type": "terrain",
       "subtype": "engine",
       "tags": ["terrain", "mana", "damage", "block", "persistent"],
-      "description": "Terrain. À la fin de votre tour, si vous avez dépensé au moins 6 mana, infligez {terrain:endTurnIfSpentManaAtLeast6DealDamage} dégâts à l'ennemi. Si vous avez dépensé au moins 8 mana, gagnez aussi {terrain:endTurnIfSpentManaAtLeast8GainBlock} Blocage.",
-      "descriptionTemplate": "Terrain. À la fin de votre tour, si vous avez dépensé au moins 6 mana, infligez {terrain:endTurnIfSpentManaAtLeast6DealDamage} dégâts à l'ennemi. Si vous avez dépensé au moins 8 mana, gagnez aussi {terrain:endTurnIfSpentManaAtLeast8GainBlock} Blocage.",
+      "description": "À la fin de votre tour, si vous avez dépensé au moins 6 mana, infligez {terrain:endTurnIfSpentManaAtLeast6DealDamage} dégâts à l'ennemi. Si vous avez dépensé au moins 8 mana, gagnez aussi {terrain:endTurnIfSpentManaAtLeast8GainBlock} Blocage.",
+      "descriptionTemplate": "À la fin de votre tour, si vous avez dépensé au moins 6 mana, infligez {terrain:endTurnIfSpentManaAtLeast6DealDamage} dégâts à l'ennemi. Si vous avez dépensé au moins 8 mana, gagnez aussi {terrain:endTurnIfSpentManaAtLeast8GainBlock} Blocage.",
       "artResourcePath": "Cards/deck1/trone_des_restes",
       "effects": [
         { "action": "set_terrain", "terrainId": "trone_des_restes", "target": "self" }

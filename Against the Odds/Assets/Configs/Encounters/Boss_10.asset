@@ -15,7 +15,7 @@ MonoBehaviour:
   bossIndex: 9
   bossDisplayName: "La Volont\xE9 Maudite"
   playerStartHP: 100
-  bossStartHP: 165
+  bossStartHP: 200
   cardDatabaseResourcePath: 
   bossSprite: {fileID: 4805271038156805735, guid: 4474ad13511a8ec4596a6370c44a4584, type: 3}
   bossVisualScale: 2
@@ -223,7 +223,7 @@ MonoBehaviour:
       chargeTurnEffects: []
       resolveEffects:
       - effectType: 2
-        value: 12
+        value: 8
         line: Ce qui te maintient se consume.
         voiceLine: {fileID: 0}
       - effectType: 0

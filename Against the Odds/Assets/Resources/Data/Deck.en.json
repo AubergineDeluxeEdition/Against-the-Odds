@@ -513,7 +513,7 @@
         "burn",
         "persistent"
       ],
-      "description": "Terrain. Your Offensive cards deal +{terrain:attackDamageBonus} damage. Whenever you apply Burn, apply {terrain:burnAppliedBonus} more.",
+      "description": "Your Offensive cards deal +{terrain:attackDamageBonus} damage. Whenever you apply Burn, apply {terrain:burnAppliedBonus} more.",
       "effects": [
         {
           "action": "set_terrain",
@@ -526,7 +526,7 @@
         "burnAppliedBonus": 1
       },
       "artResourcePath": "Cards/deck1/champ_de_braises",
-      "descriptionTemplate": "Terrain. Your Offensive cards deal +{terrain:attackDamageBonus} damage. Whenever you apply Burn, apply {terrain:burnAppliedBonus} more."
+      "descriptionTemplate": "Your Offensive cards deal +{terrain:attackDamageBonus} damage. Whenever you apply Burn, apply {terrain:burnAppliedBonus} more."
     },
     {
       "id": "forteresse_de_cendres",
@@ -541,7 +541,7 @@
         "burn",
         "persistent"
       ],
-      "description": "Terrain. Your Defensive cards grant +{terrain:defenseBlockBonus} Block. The first time you play a Defensive card each turn, apply {terrain:firstDefenseEachTurnAppliesBurn} Burn to the enemy.",
+      "description": "Your Defensive cards grant +{terrain:defenseBlockBonus} Block. The first time you play a Defensive card each turn, apply {terrain:firstDefenseEachTurnAppliesBurn} Burn to the enemy.",
       "effects": [
         {
           "action": "set_terrain",
@@ -554,7 +554,7 @@
         "firstDefenseEachTurnAppliesBurn": 1
       },
       "artResourcePath": "Cards/deck1/forteresse_de_cendres",
-      "descriptionTemplate": "Terrain. Your Defensive cards grant +{terrain:defenseBlockBonus} Block. The first time you play a Defensive card each turn, apply {terrain:firstDefenseEachTurnAppliesBurn} Burn to the enemy."
+      "descriptionTemplate": "Your Defensive cards grant +{terrain:defenseBlockBonus} Block. The first time you play a Defensive card each turn, apply {terrain:firstDefenseEachTurnAppliesBurn} Burn to the enemy."
     },
     {
       "id": "autel_profane",
@@ -568,7 +568,7 @@
         "mana",
         "persistent"
       ],
-      "description": "Terrain. Your Ritual cards cost {terrain:ritualCostReduction} less mana. The first time you play a Ritual each turn, gain {terrain:firstRitualEachTurnGainMana} mana.",
+      "description": "Your Ritual cards cost {terrain:ritualCostReduction} less mana. The first time you play a Ritual each turn, gain {terrain:firstRitualEachTurnGainMana} mana.",
       "effects": [
         {
           "action": "set_terrain",
@@ -581,7 +581,7 @@
         "firstRitualEachTurnGainMana": 1
       },
       "artResourcePath": "Cards/deck1/autel_profane",
-      "descriptionTemplate": "Terrain. Your Ritual cards cost {terrain:ritualCostReduction} less mana. The first time you play a Ritual each turn, gain {terrain:firstRitualEachTurnGainMana} mana."
+      "descriptionTemplate": "Your Ritual cards cost {terrain:ritualCostReduction} less mana. The first time you play a Ritual each turn, gain {terrain:firstRitualEachTurnGainMana} mana."
     },
     {
       "id": "trone_des_restes",
@@ -596,7 +596,7 @@
         "block",
         "persistent"
       ],
-      "description": "Terrain. At the end of your turn, if you spent at least 6 mana, deal {terrain:endTurnIfSpentManaAtLeast6DealDamage} damage to the enemy. If you spent at least 8 mana, also gain {terrain:endTurnIfSpentManaAtLeast8GainBlock} Block.",
+      "description": "At the end of your turn, if you spent at least 6 mana, deal {terrain:endTurnIfSpentManaAtLeast6DealDamage} damage to the enemy. If you spent at least 8 mana, also gain {terrain:endTurnIfSpentManaAtLeast8GainBlock} Block.",
       "effects": [
         {
           "action": "set_terrain",
@@ -609,7 +609,7 @@
         "endTurnIfSpentManaAtLeast8GainBlock": 5
       },
       "artResourcePath": "Cards/deck1/trone_des_restes",
-      "descriptionTemplate": "Terrain. At the end of your turn, if you spent at least 6 mana, deal {terrain:endTurnIfSpentManaAtLeast6DealDamage} damage to the enemy. If you spent at least 8 mana, also gain {terrain:endTurnIfSpentManaAtLeast8GainBlock} Block."
+      "descriptionTemplate": "At the end of your turn, if you spent at least 6 mana, deal {terrain:endTurnIfSpentManaAtLeast6DealDamage} damage to the enemy. If you spent at least 8 mana, also gain {terrain:endTurnIfSpentManaAtLeast8GainBlock} Block."
     }
   ],
   "language": "en"
