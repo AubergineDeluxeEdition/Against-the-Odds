@@ -149,6 +149,7 @@ public static class CardTextFormatter
             "firstDefenseEachTurnAppliesBurn" => effect.firstDefenseEachTurnAppliesBurn,
             "ritualCostReduction" => effect.ritualCostReduction,
             "firstRitualEachTurnGainMana" => effect.firstRitualEachTurnGainMana,
+            "firstRitualEachTurnDrawCards" => effect.firstRitualEachTurnDrawCards,
             "endTurnIfSpentManaAtLeast6DealDamage" => effect.endTurnIfSpentManaAtLeast6DealDamage,
             "endTurnIfSpentManaAtLeast8GainBlock" => effect.endTurnIfSpentManaAtLeast8GainBlock,
             _ => 0

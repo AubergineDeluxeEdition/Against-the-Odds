@@ -88,6 +88,6 @@ MonoBehaviour:
   rewardPickCount: 2
   rewardCardIds:
   - champ_de_braises
-  - apotheose_cendree
-  - fortification_sepulcrale
+  - forteresse_de_cendres
+  - autel_profane
   potionRewardCount: 1

@@ -1,80 +1,30 @@
 {
   "deckId": "braises_du_sanctuaire_starter",
   "deckName": "Braises du Sanctuaire",
-  "totalCards": 22,
+  "totalCards": 27,
   "deck": [
-    {
-      "cardId": "entaille_de_braise",
-      "quantity": 2
-    },
-    {
-      "cardId": "cendres_voraces",
-      "quantity": 2
-    },
-    {
-      "cardId": "morsure_du_foyer",
-      "quantity": 1
-    },
-    {
-      "cardId": "saignee_ardente",
-      "quantity": 1
-    },
-    {
-      "cardId": "jugement_du_bucher",
-      "quantity": 1
-    },
-    {
-      "cardId": "apotheose_cendree",
-      "quantity": 1
-    },
-    {
-      "cardId": "mur_de_charbon",
-      "quantity": 2
-    },
-    {
-      "cardId": "armure_calcinee",
-      "quantity": 1
-    },
-    {
-      "cardId": "fortification_sepulcrale",
-      "quantity": 1
-    },
-    {
-      "cardId": "rempart_des_cendres",
-      "quantity": 1
-    },
-    {
-      "cardId": "autel_des_cendres",
-      "quantity": 2
-    },
-    {
-      "cardId": "rite_de_l_ascension",
-      "quantity": 1
-    },
-    {
-      "cardId": "dernier_souffle",
-      "quantity": 1
-    },
-    {
-      "cardId": "offrande_impie",
-      "quantity": 1
-    },
-    {
-      "cardId": "champ_de_braises",
-      "quantity": 1
-    },
-    {
-      "cardId": "forteresse_de_cendres",
-      "quantity": 1
-    },
-    {
-      "cardId": "autel_profane",
-      "quantity": 1
-    },
-    {
-      "cardId": "trone_des_restes",
-      "quantity": 1
-    }
+    { "cardId": "entaille_de_braise", "quantity": 2 },
+    { "cardId": "cendres_voraces", "quantity": 2 },
+    { "cardId": "morsure_du_foyer", "quantity": 1 },
+    { "cardId": "saignee_ardente", "quantity": 1 },
+    { "cardId": "jugement_du_bucher", "quantity": 1 },
+    { "cardId": "apotheose_cendree", "quantity": 1 },
+    { "cardId": "couronne_de_l_extinction", "quantity": 1 },
+    { "cardId": "fournaise_du_martyr", "quantity": 1 },
+    { "cardId": "mur_de_charbon", "quantity": 2 },
+    { "cardId": "armure_calcinee", "quantity": 1 },
+    { "cardId": "fortification_sepulcrale", "quantity": 1 },
+    { "cardId": "rempart_des_cendres", "quantity": 1 },
+    { "cardId": "autel_des_cendres", "quantity": 2 },
+    { "cardId": "rite_de_l_ascension", "quantity": 1 },
+    { "cardId": "dernier_souffle", "quantity": 2 },
+    { "cardId": "presage_de_cendres", "quantity": 1 },
+    { "cardId": "communion_profane", "quantity": 1 },
+    { "cardId": "offrande_impie", "quantity": 1 },
+    { "cardId": "champ_de_braises", "quantity": 1 },
+    { "cardId": "forteresse_de_cendres", "quantity": 1 },
+    { "cardId": "autel_profane", "quantity": 1 },
+    { "cardId": "trone_des_restes", "quantity": 1 }
   ],
   "cards": [
     {
@@ -83,27 +33,14 @@
       "cost": 1,
       "type": "attack",
       "subtype": "fire",
-      "tags": [
-        "attack",
-        "fire",
-        "burn"
-      ],
-      "description": "Inflige {damage:0} degats. Applique {status:burn:0} Brulure.",
-      "effects": [
-        {
-          "action": "deal_damage",
-          "value": 7,
-          "target": "enemy"
-        },
-        {
-          "action": "apply_status",
-          "status": "burn",
-          "value": 1,
-          "target": "enemy"
-        }
-      ],
+      "tags": ["attack", "fire", "burn"],
+      "description": "Inflige {damage:0} dégâts. Applique {status:burn:0} Brûlure.",
+      "descriptionTemplate": "Inflige {damage:0} dégâts. Applique {status:burn:0} Brûlure.",
       "artResourcePath": "Cards/deck1/entaille_de_braise",
-      "descriptionTemplate": "Inflige {damage:0} degats. Applique {status:burn:0} Brulure."
+      "effects": [
+        { "action": "deal_damage", "value": 5, "target": "enemy" },
+        { "action": "apply_status", "status": "burn", "value": 1, "target": "enemy" }
+      ]
     },
     {
       "id": "cendres_voraces",
@@ -111,155 +48,124 @@
       "cost": 2,
       "type": "attack",
       "subtype": "fire",
-      "tags": [
-        "attack",
-        "fire",
-        "burn",
-        "conditional"
-      ],
-      "description": "Inflige {damage:0} degats. Si la cible a Brulure, inflige +{damage:1} degats.",
+      "tags": ["attack", "fire", "burn", "conditional"],
+      "description": "Inflige {damage:0} dégâts. Si la cible a Brûlure, inflige +{damage:1} dégâts.",
+      "descriptionTemplate": "Inflige {damage:0} dégâts. Si la cible a Brûlure, inflige +{damage:1} dégâts.",
+      "artResourcePath": "Cards/deck1/cendres_voraces",
       "effects": [
+        { "action": "deal_damage", "value": 7, "target": "enemy" },
         {
+          "condition": { "target": "enemy", "hasStatus": "burn" },
           "action": "deal_damage",
-          "value": 10,
-          "target": "enemy"
-        },
-        {
-          "condition": {
-            "target": "enemy",
-            "hasStatus": "burn"
-          },
-          "action": "deal_damage",
-          "value": 4,
+          "value": 3,
           "target": "enemy"
         }
-      ],
-      "artResourcePath": "Cards/deck1/cendres_voraces",
-      "descriptionTemplate": "Inflige {damage:0} degats. Si la cible a Brulure, inflige +{damage:1} degats."
+      ]
+    },
+    {
+      "id": "fournaise_du_martyr",
+      "name": "Fournaise du Martyr",
+      "cost": 3,
+      "type": "attack",
+      "subtype": "fire",
+      "tags": ["attack", "fire", "burn"],
+      "description": "Inflige {damage:0} dégâts. Applique {status:burn:0} Brûlures.",
+      "descriptionTemplate": "Inflige {damage:0} dégâts. Applique {status:burn:0} Brûlures.",
+      "artResourcePath": "Cards/deck1/fournaise_du_martyr",
+      "effects": [
+        { "action": "deal_damage", "value": 5, "target": "enemy" },
+        { "action": "apply_status", "status": "burn", "value": 3, "target": "enemy" }
+      ]
     },
     {
       "id": "morsure_du_foyer",
       "name": "Morsure du Foyer",
-      "cost": 3,
+      "cost": 4,
       "type": "attack",
       "subtype": "fire",
-      "tags": [
-        "attack",
-        "fire",
-        "burn",
-        "terrain"
-      ],
-      "description": "Inflige {damage:0} degats. Si un Terrain est actif, applique {status:burn:0} Brulures.",
+      "tags": ["attack", "fire", "burn", "terrain"],
+      "description": "Inflige {damage:0} dégâts. Si un Terrain est actif, applique {status:burn:0} Brûlures.",
+      "descriptionTemplate": "Inflige {damage:0} dégâts. Si un Terrain est actif, applique {status:burn:0} Brûlures.",
+      "artResourcePath": "Cards/deck1/morsure_du_foyer",
       "effects": [
+        { "action": "deal_damage", "value": 10, "target": "enemy" },
         {
-          "action": "deal_damage",
-          "value": 12,
-          "target": "enemy"
-        },
-        {
-          "condition": {
-            "target": "self",
-            "hasActiveTerrain": true
-          },
+          "condition": { "target": "self", "hasActiveTerrain": true },
           "action": "apply_status",
           "status": "burn",
           "value": 2,
           "target": "enemy"
         }
-      ],
-      "artResourcePath": "Cards/deck1/morsure_du_foyer",
-      "descriptionTemplate": "Inflige {damage:0} degats. Si un Terrain est actif, applique {status:burn:0} Brulures."
+      ]
     },
     {
       "id": "saignee_ardente",
-      "name": "Saignee Ardente",
-      "cost": 3,
+      "name": "Saignée Ardente",
+      "cost": 4,
       "type": "attack",
       "subtype": "fire",
-      "tags": [
-        "attack",
-        "fire",
-        "burn",
-        "scaling"
-      ],
-      "description": "Inflige {damage:0} degats. Double la Brulure de la cible.",
-      "effects": [
-        {
-          "action": "deal_damage",
-          "value": 8,
-          "target": "enemy"
-        },
-        {
-          "action": "multiply_status",
-          "status": "burn",
-          "multiplier": 2,
-          "target": "enemy"
-        }
-      ],
+      "tags": ["attack", "fire", "burn", "scaling"],
+      "description": "Double la Brûlure de la cible.",
+      "descriptionTemplate": "Double la Brûlure de la cible.",
       "artResourcePath": "Cards/deck1/saignee_ardente",
-      "descriptionTemplate": "Inflige {damage:0} degats. Double la Brulure de la cible."
+      "effects": [
+        { "action": "multiply_status", "status": "burn", "multiplier": 2, "target": "enemy" }
+      ]
     },
     {
       "id": "jugement_du_bucher",
-      "name": "Jugement du Bucher",
+      "name": "Jugement du Bûcher",
       "cost": 6,
       "type": "attack",
       "subtype": "fire",
-      "tags": [
-        "attack",
-        "fire",
-        "burn",
-        "finisher"
-      ],
-      "description": "Inflige {damage:0} degats. Si la cible a Brulure, inflige +{damage:1} degats.",
+      "tags": ["attack", "fire", "burn", "finisher"],
+      "description": "Inflige {damage:0} dégâts. Si la cible a Brûlure, inflige +{damage:1} dégâts.",
+      "descriptionTemplate": "Inflige {damage:0} dégâts. Si la cible a Brûlure, inflige +{damage:1} dégâts.",
+      "artResourcePath": "Cards/deck1/jugement_du_bucher",
       "effects": [
+        { "action": "deal_damage", "value": 15, "target": "enemy" },
         {
+          "condition": { "target": "enemy", "hasStatus": "burn" },
           "action": "deal_damage",
-          "value": 24,
-          "target": "enemy"
-        },
-        {
-          "condition": {
-            "target": "enemy",
-            "hasStatus": "burn"
-          },
-          "action": "deal_damage",
-          "value": 6,
+          "value": 5,
           "target": "enemy"
         }
-      ],
-      "artResourcePath": "Cards/deck1/jugement_du_bucher",
-      "descriptionTemplate": "Inflige {damage:0} degats. Si la cible a Brulure, inflige +{damage:1} degats."
+      ]
     },
     {
       "id": "apotheose_cendree",
-      "name": "Apotheose Cendree",
+      "name": "Apothéose Cendrée",
       "cost": 8,
       "type": "attack",
       "subtype": "fire",
-      "tags": [
-        "attack",
-        "fire",
-        "burn",
-        "finisher",
-        "consume"
-      ],
-      "description": "Inflige {damage:0} degats. Consomme toute la Brulure de la cible, puis inflige +{damage_per_stack:0} degats par stack consommee.",
+      "tags": ["attack", "fire", "burn", "finisher", "consume"],
+      "description": "Inflige {damage:0} dégâts. Consomme toute la Brûlure de la cible, puis inflige +{damage_per_stack:0} dégâts par stack consommée.",
+      "descriptionTemplate": "Inflige {damage:0} dégâts. Consomme toute la Brûlure de la cible, puis inflige +{damage_per_stack:0} dégâts par stack consommée.",
+      "artResourcePath": "Cards/deck1/apotheose_cendree",
       "effects": [
+        { "action": "deal_damage", "value": 20, "target": "enemy" },
+        { "action": "consume_status_for_damage", "status": "burn", "damagePerStack": 3, "target": "enemy" }
+      ]
+    },
+    {
+      "id": "couronne_de_l_extinction",
+      "name": "Couronne de l'Extinction",
+      "cost": 8,
+      "type": "attack",
+      "subtype": "fire",
+      "tags": ["attack", "fire", "burn", "finisher", "conditional"],
+      "description": "Inflige {damage:0} dégâts. Si la cible a plus de 5 Brûlures, inflige encore {damage:1} dégâts.",
+      "descriptionTemplate": "Inflige {damage:0} dégâts. Si la cible a plus de 5 Brûlures, inflige encore {damage:1} dégâts.",
+      "artResourcePath": "Cards/deck1/couronne_de_l_extinction",
+      "effects": [
+        { "action": "deal_damage", "value": 20, "target": "enemy" },
         {
+          "condition": { "target": "enemy", "hasStatus": "burn", "minStatusStacks": 6 },
           "action": "deal_damage",
-          "value": 30,
-          "target": "enemy"
-        },
-        {
-          "action": "consume_status_for_damage",
-          "status": "burn",
-          "damagePerStack": 3,
+          "value": 20,
           "target": "enemy"
         }
-      ],
-      "artResourcePath": "Cards/deck1/apotheose_cendree",
-      "descriptionTemplate": "Inflige {damage:0} degats. Consomme toute la Brulure de la cible, puis inflige +{damage_per_stack:0} degats par stack consommee."
+      ]
     },
     {
       "id": "mur_de_charbon",
@@ -267,85 +173,52 @@
       "cost": 1,
       "type": "defense",
       "subtype": "fortification",
-      "tags": [
-        "defense",
-        "block"
-      ],
+      "tags": ["defense", "block"],
       "description": "Gagne {block:0} Blocage.",
-      "effects": [
-        {
-          "action": "gain_block",
-          "value": 8,
-          "target": "self"
-        }
-      ],
+      "descriptionTemplate": "Gagne {block:0} Blocage.",
       "artResourcePath": "Cards/deck1/mur_de_charbon",
-      "descriptionTemplate": "Gagne {block:0} Blocage."
+      "effects": [
+        { "action": "gain_block", "value": 8, "target": "self" }
+      ]
     },
     {
       "id": "armure_calcinee",
-      "name": "Armure Calcinee",
+      "name": "Armure Calcinée",
       "cost": 2,
       "type": "defense",
       "subtype": "fortification",
-      "tags": [
-        "defense",
-        "block",
-        "burn",
-        "retaliation"
-      ],
-      "description": "Gagne {block:0} Blocage. Si vous etes attaque avant votre prochain tour, l'ennemi recoit {retaliation_status:burn:0} Brulure.",
+      "tags": ["defense", "block", "burn", "retaliation"],
+      "description": "Gagne {block:0} Blocage. Si vous êtes attaqué avant votre prochain tour, l'ennemi reçoit {retaliation_status:burn:0} Brûlure.",
+      "descriptionTemplate": "Gagne {block:0} Blocage. Si vous êtes attaqué avant votre prochain tour, l'ennemi reçoit {retaliation_status:burn:0} Brûlure.",
+      "artResourcePath": "Cards/deck1/armure_calcinee",
       "effects": [
-        {
-          "action": "gain_block",
-          "value": 12,
-          "target": "self"
-        },
+        { "action": "gain_block", "value": 12, "target": "self" },
         {
           "action": "apply_delayed_retaliation",
           "trigger": "on_attacked_before_next_turn",
-          "payload": {
-            "action": "apply_status",
-            "status": "burn",
-            "value": 1,
-            "target": "enemy"
-          }
+          "payload": { "action": "apply_status", "status": "burn", "value": 1, "target": "enemy" }
         }
-      ],
-      "artResourcePath": "Cards/deck1/armure_calcinee",
-      "descriptionTemplate": "Gagne {block:0} Blocage. Si vous etes attaque avant votre prochain tour, l'ennemi recoit {retaliation_status:burn:0} Brulure."
+      ]
     },
     {
       "id": "fortification_sepulcrale",
-      "name": "Fortification Sepulcrale",
+      "name": "Fortification Sépulcrale",
       "cost": 3,
       "type": "defense",
       "subtype": "fortification",
-      "tags": [
-        "defense",
-        "block",
-        "draw",
-        "terrain"
-      ],
+      "tags": ["defense", "block", "draw", "terrain"],
       "description": "Gagne {block:0} Blocage. Si un Terrain est actif, pioche {value:draw_cards:0} carte.",
+      "descriptionTemplate": "Gagne {block:0} Blocage. Si un Terrain est actif, pioche {value:draw_cards:0} carte.",
+      "artResourcePath": "Cards/deck1/fortification_sepulcrale",
       "effects": [
+        { "action": "gain_block", "value": 18, "target": "self" },
         {
-          "action": "gain_block",
-          "value": 18,
-          "target": "self"
-        },
-        {
-          "condition": {
-            "target": "self",
-            "hasActiveTerrain": true
-          },
+          "condition": { "target": "self", "hasActiveTerrain": true },
           "action": "draw_cards",
           "value": 1,
           "target": "self"
         }
-      ],
-      "artResourcePath": "Cards/deck1/fortification_sepulcrale",
-      "descriptionTemplate": "Gagne {block:0} Blocage. Si un Terrain est actif, pioche {value:draw_cards:0} carte."
+      ]
     },
     {
       "id": "rempart_des_cendres",
@@ -353,30 +226,18 @@
       "cost": 2,
       "type": "defense",
       "subtype": "fortification",
-      "tags": [
-        "defense",
-        "block",
-        "buff",
-        "attack_synergy"
-      ],
-      "description": "Gagne {block:0} Blocage. La prochaine carte Offensive que vous jouez ce tour inflige +{modifier_damage:0} degats.",
+      "tags": ["defense", "block", "buff", "attack_synergy"],
+      "description": "Gagne {block:0} Blocage. La prochaine carte Offensive que vous jouez ce tour inflige +{modifier_damage:0} dégâts.",
+      "descriptionTemplate": "Gagne {block:0} Blocage. La prochaine carte Offensive que vous jouez ce tour inflige +{modifier_damage:0} dégâts.",
+      "artResourcePath": "Cards/deck1/rempart_des_cendres",
       "effects": [
-        {
-          "action": "gain_block",
-          "value": 10,
-          "target": "self"
-        },
+        { "action": "gain_block", "value": 10, "target": "self" },
         {
           "action": "apply_temporary_modifier",
           "target": "self",
-          "modifier": {
-            "appliesTo": "next_attack_this_turn",
-            "damageBonus": 3
-          }
+          "modifier": { "appliesTo": "next_attack_this_turn", "damageBonus": 3 }
         }
-      ],
-      "artResourcePath": "Cards/deck1/rempart_des_cendres",
-      "descriptionTemplate": "Gagne {block:0} Blocage. La prochaine carte Offensive que vous jouez ce tour inflige +{modifier_damage:0} degats."
+      ]
     },
     {
       "id": "autel_des_cendres",
@@ -384,26 +245,14 @@
       "cost": 1,
       "type": "utility",
       "subtype": "ritual",
-      "tags": [
-        "utility",
-        "ritual",
-        "ramp",
-        "exhaust"
-      ],
-      "description": "Gagne {value:gain_max_mana:0} mana max. S'epuise.",
-      "effects": [
-        {
-          "action": "gain_max_mana",
-          "value": 1,
-          "target": "self"
-        },
-        {
-          "action": "exhaust",
-          "target": "self_card"
-        }
-      ],
+      "tags": ["utility", "ritual", "ramp", "exhaust"],
+      "description": "Gagne {value:gain_max_mana:0} mana max. S'épuise.",
+      "descriptionTemplate": "Gagne {value:gain_max_mana:0} mana max. S'épuise.",
       "artResourcePath": "Cards/deck1/autel_des_cendres",
-      "descriptionTemplate": "Gagne {value:gain_max_mana:0} mana max. S'epuise."
+      "effects": [
+        { "action": "gain_max_mana", "value": 1, "target": "self" },
+        { "action": "exhaust", "target": "self_card" }
+      ]
     },
     {
       "id": "rite_de_l_ascension",
@@ -411,66 +260,60 @@
       "cost": 2,
       "type": "utility",
       "subtype": "ritual",
-      "tags": [
-        "utility",
-        "ritual",
-        "ramp",
-        "hp_cost",
-        "exhaust"
-      ],
-      "description": "Perdez {value:lose_health:0} PV. Gagne {value:gain_max_mana:0} mana max. S'epuise.",
-      "effects": [
-        {
-          "action": "lose_health",
-          "value": 4,
-          "target": "self"
-        },
-        {
-          "action": "gain_max_mana",
-          "value": 2,
-          "target": "self"
-        },
-        {
-          "action": "exhaust",
-          "target": "self_card"
-        }
-      ],
+      "tags": ["utility", "ritual", "ramp", "hp_cost", "exhaust"],
+      "description": "Perdez {value:lose_health:0} PV. Gagne {value:gain_max_mana:0} mana max. S'épuise.",
+      "descriptionTemplate": "Perdez {value:lose_health:0} PV. Gagne {value:gain_max_mana:0} mana max. S'épuise.",
       "artResourcePath": "Cards/deck1/rite_de_l_ascension",
-      "descriptionTemplate": "Perdez {value:lose_health:0} PV. Gagne {value:gain_max_mana:0} mana max. S'epuise."
+      "effects": [
+        { "action": "lose_health", "value": 4, "target": "self" },
+        { "action": "gain_max_mana", "value": 2, "target": "self" },
+        { "action": "exhaust", "target": "self_card" }
+      ]
     },
     {
       "id": "dernier_souffle",
       "name": "Dernier Souffle",
-      "cost": 0,
+      "cost": 2,
       "type": "utility",
       "subtype": "ritual",
-      "tags": [
-        "utility",
-        "ritual",
-        "mana",
-        "draw",
-        "hp_cost"
-      ],
-      "description": "Perdez {value:lose_health:0} PV. Gagne {value:gain_temporary_mana:0} mana ce tour. Pioche {value:draw_cards:0} carte.",
-      "effects": [
-        {
-          "action": "lose_health",
-          "value": 3,
-          "target": "self"
-        },
-        {
-          "action": "gain_temporary_mana",
-          "value": 1,
-          "target": "self"
-        },
-        {
-          "action": "draw_cards",
-          "value": 1,
-          "target": "self"
-        }
-      ],
+      "tags": ["utility", "ritual", "draw", "hp_cost"],
+      "description": "Perdez {value:lose_health:0} PV. Pioche {value:draw_cards:0} cartes.",
+      "descriptionTemplate": "Perdez {value:lose_health:0} PV. Pioche {value:draw_cards:0} cartes.",
       "artResourcePath": "Cards/deck1/dernier_souffle",
-      "descriptionTemplate": "Perdez {value:lose_health:0} PV. Gagne {value:gain_temporary_mana:0} mana ce tour. Pioche {value:draw_cards:0} carte."
+      "effects": [
+        { "action": "lose_health", "value": 6, "target": "self" },
+        { "action": "draw_cards", "value": 2, "target": "self" }
+      ]
+    },
+    {
+      "id": "presage_de_cendres",
+      "name": "Présage de Cendres",
+      "cost": 4,
+      "type": "utility",
+      "subtype": "ritual",
+      "tags": ["utility", "ritual", "draw", "hp_cost"],
+      "description": "Perdez {value:lose_health:0} PV. Pioche {value:draw_cards:0} cartes.",
+      "descriptionTemplate": "Perdez {value:lose_health:0} PV. Pioche {value:draw_cards:0} cartes.",
+      "artResourcePath": "Cards/deck1/presage_de_cendres",
+      "effects": [
+        { "action": "lose_health", "value": 4, "target": "self" },
+        { "action": "draw_cards", "value": 3, "target": "self" }
+      ]
+    },
+    {
+      "id": "communion_profane",
+      "name": "Communion Profane",
+      "cost": 7,
+      "type": "utility",
+      "subtype": "ritual",
+      "tags": ["utility", "ritual", "draw", "mana"],
+      "description": "Pioche {value:draw_cards:0} cartes. Gagne {value:gain_temporary_mana:0} mana ce tour.",
+      "descriptionTemplate": "Pioche {value:draw_cards:0} cartes. Gagne {value:gain_temporary_mana:0} mana ce tour.",
+      "artResourcePath": "Cards/deck1/communion_profane",
+      "effects": [
+        { "action": "draw_cards", "value": 4, "target": "self" },
+        { "action": "gain_temporary_mana", "value": 2, "target": "self" }
+      ]
     },
     {
       "id": "offrande_impie",
@@ -478,27 +321,14 @@
       "cost": 0,
       "type": "utility",
       "subtype": "ritual",
-      "tags": [
-        "utility",
-        "ritual",
-        "mana",
-        "discard"
-      ],
-      "description": "Defausse {value:discard_cards:0} carte. Gagne {value:gain_temporary_mana:0} mana ce tour.",
-      "effects": [
-        {
-          "action": "discard_cards",
-          "value": 1,
-          "target": "self"
-        },
-        {
-          "action": "gain_temporary_mana",
-          "value": 2,
-          "target": "self"
-        }
-      ],
+      "tags": ["utility", "ritual", "mana", "discard"],
+      "description": "Défausse {value:discard_cards:0} carte. Gagne {value:gain_temporary_mana:0} mana ce tour.",
+      "descriptionTemplate": "Défausse {value:discard_cards:0} carte. Gagne {value:gain_temporary_mana:0} mana ce tour.",
       "artResourcePath": "Cards/deck1/offrande_impie",
-      "descriptionTemplate": "Defausse {value:discard_cards:0} carte. Gagne {value:gain_temporary_mana:0} mana ce tour."
+      "effects": [
+        { "action": "discard_cards", "value": 1, "target": "self" },
+        { "action": "gain_temporary_mana", "value": 2, "target": "self" }
+      ]
     },
     {
       "id": "champ_de_braises",
@@ -506,27 +336,17 @@
       "cost": 2,
       "type": "terrain",
       "subtype": "fire",
-      "tags": [
-        "terrain",
-        "fire",
-        "attack",
-        "burn",
-        "persistent"
-      ],
-      "description": "Terrain. Vos cartes Offensives infligent +{terrain:attackDamageBonus} degats. Quand vous appliquez Brulure, appliquez-en {terrain:burnAppliedBonus} de plus.",
+      "tags": ["terrain", "fire", "attack", "burn", "persistent"],
+      "description": "Terrain. Vos cartes Offensives infligent +{terrain:attackDamageBonus} dégâts. Quand vous appliquez Brûlure, appliquez-en {terrain:burnAppliedBonus} de plus.",
+      "descriptionTemplate": "Terrain. Vos cartes Offensives infligent +{terrain:attackDamageBonus} dégâts. Quand vous appliquez Brûlure, appliquez-en {terrain:burnAppliedBonus} de plus.",
+      "artResourcePath": "Cards/deck1/champ_de_braises",
       "effects": [
-        {
-          "action": "set_terrain",
-          "terrainId": "champ_de_braises",
-          "target": "self"
-        }
+        { "action": "set_terrain", "terrainId": "champ_de_braises", "target": "self" }
       ],
       "terrainEffect": {
         "attackDamageBonus": 2,
         "burnAppliedBonus": 1
-      },
-      "artResourcePath": "Cards/deck1/champ_de_braises",
-      "descriptionTemplate": "Terrain. Vos cartes Offensives infligent +{terrain:attackDamageBonus} degats. Quand vous appliquez Brulure, appliquez-en {terrain:burnAppliedBonus} de plus."
+      }
     },
     {
       "id": "forteresse_de_cendres",
@@ -534,82 +354,53 @@
       "cost": 2,
       "type": "terrain",
       "subtype": "fortification",
-      "tags": [
-        "terrain",
-        "defense",
-        "block",
-        "burn",
-        "persistent"
-      ],
-      "description": "Terrain. Vos cartes Defensives donnent +{terrain:defenseBlockBonus} Blocage. La premiere fois que vous jouez une carte Defensive chaque tour, appliquez {terrain:firstDefenseEachTurnAppliesBurn} Brulure a l'ennemi.",
+      "tags": ["terrain", "defense", "block", "burn", "persistent"],
+      "description": "Terrain. Vos cartes Défensives donnent +{terrain:defenseBlockBonus} Blocage. La première fois que vous jouez une carte Défensive chaque tour, appliquez {terrain:firstDefenseEachTurnAppliesBurn} Brûlure à l'ennemi.",
+      "descriptionTemplate": "Terrain. Vos cartes Défensives donnent +{terrain:defenseBlockBonus} Blocage. La première fois que vous jouez une carte Défensive chaque tour, appliquez {terrain:firstDefenseEachTurnAppliesBurn} Brûlure à l'ennemi.",
+      "artResourcePath": "Cards/deck1/forteresse_de_cendres",
       "effects": [
-        {
-          "action": "set_terrain",
-          "terrainId": "forteresse_de_cendres",
-          "target": "self"
-        }
+        { "action": "set_terrain", "terrainId": "forteresse_de_cendres", "target": "self" }
       ],
       "terrainEffect": {
         "defenseBlockBonus": 4,
         "firstDefenseEachTurnAppliesBurn": 1
-      },
-      "artResourcePath": "Cards/deck1/forteresse_de_cendres",
-      "descriptionTemplate": "Terrain. Vos cartes Defensives donnent +{terrain:defenseBlockBonus} Blocage. La premiere fois que vous jouez une carte Defensive chaque tour, appliquez {terrain:firstDefenseEachTurnAppliesBurn} Brulure a l'ennemi."
+      }
     },
     {
       "id": "autel_profane",
       "name": "Autel Profane",
-      "cost": 3,
+      "cost": 4,
       "type": "terrain",
       "subtype": "ritual",
-      "tags": [
-        "terrain",
-        "ritual",
-        "mana",
-        "persistent"
-      ],
-      "description": "Terrain. Vos cartes Rituel coutent {terrain:ritualCostReduction} mana de moins. La premiere fois que vous jouez un Rituel chaque tour, gagnez {terrain:firstRitualEachTurnGainMana} mana.",
+      "tags": ["terrain", "ritual", "draw", "persistent"],
+      "description": "Terrain. Vos cartes Rituel coûtent {terrain:ritualCostReduction} mana de moins. La première fois que vous jouez un Rituel chaque tour, piochez {terrain:firstRitualEachTurnDrawCards} carte.",
+      "descriptionTemplate": "Terrain. Vos cartes Rituel coûtent {terrain:ritualCostReduction} mana de moins. La première fois que vous jouez un Rituel chaque tour, piochez {terrain:firstRitualEachTurnDrawCards} carte.",
+      "artResourcePath": "Cards/deck1/autel_profane",
       "effects": [
-        {
-          "action": "set_terrain",
-          "terrainId": "autel_profane",
-          "target": "self"
-        }
+        { "action": "set_terrain", "terrainId": "autel_profane", "target": "self" }
       ],
       "terrainEffect": {
         "ritualCostReduction": 1,
-        "firstRitualEachTurnGainMana": 1
-      },
-      "artResourcePath": "Cards/deck1/autel_profane",
-      "descriptionTemplate": "Terrain. Vos cartes Rituel coutent {terrain:ritualCostReduction} mana de moins. La premiere fois que vous jouez un Rituel chaque tour, gagnez {terrain:firstRitualEachTurnGainMana} mana."
+        "firstRitualEachTurnDrawCards": 1
+      }
     },
     {
       "id": "trone_des_restes",
-      "name": "Trone des Restes",
+      "name": "Trône des Restes",
       "cost": 3,
       "type": "terrain",
       "subtype": "engine",
-      "tags": [
-        "terrain",
-        "mana",
-        "damage",
-        "block",
-        "persistent"
-      ],
-      "description": "Terrain. A la fin de votre tour, si vous avez depense au moins 6 mana, infligez {terrain:endTurnIfSpentManaAtLeast6DealDamage} degats a l'ennemi. Si vous avez depense au moins 8 mana, gagnez aussi {terrain:endTurnIfSpentManaAtLeast8GainBlock} Blocage.",
+      "tags": ["terrain", "mana", "damage", "block", "persistent"],
+      "description": "Terrain. À la fin de votre tour, si vous avez dépensé au moins 6 mana, infligez {terrain:endTurnIfSpentManaAtLeast6DealDamage} dégâts à l'ennemi. Si vous avez dépensé au moins 8 mana, gagnez aussi {terrain:endTurnIfSpentManaAtLeast8GainBlock} Blocage.",
+      "descriptionTemplate": "Terrain. À la fin de votre tour, si vous avez dépensé au moins 6 mana, infligez {terrain:endTurnIfSpentManaAtLeast6DealDamage} dégâts à l'ennemi. Si vous avez dépensé au moins 8 mana, gagnez aussi {terrain:endTurnIfSpentManaAtLeast8GainBlock} Blocage.",
+      "artResourcePath": "Cards/deck1/trone_des_restes",
       "effects": [
-        {
-          "action": "set_terrain",
-          "terrainId": "trone_des_restes",
-          "target": "self"
-        }
+        { "action": "set_terrain", "terrainId": "trone_des_restes", "target": "self" }
       ],
       "terrainEffect": {
         "endTurnIfSpentManaAtLeast6DealDamage": 5,
         "endTurnIfSpentManaAtLeast8GainBlock": 5
-      },
-      "artResourcePath": "Cards/deck1/trone_des_restes",
-      "descriptionTemplate": "Terrain. A la fin de votre tour, si vous avez depense au moins 6 mana, infligez {terrain:endTurnIfSpentManaAtLeast6DealDamage} degats a l'ennemi. Si vous avez depense au moins 8 mana, gagnez aussi {terrain:endTurnIfSpentManaAtLeast8GainBlock} Blocage."
+      }
     }
   ],
   "language": "fr"

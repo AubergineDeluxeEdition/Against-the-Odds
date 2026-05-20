@@ -196,9 +196,9 @@ MonoBehaviour:
       shield: 0
       invulnerableTurns: 0
       vulnerableTurns: 0
-  rewardPickCount: 1
+  rewardPickCount: 2
   rewardCardIds:
-  - forteresse_de_cendres
-  - rite_de_l_ascension
+  - morsure_du_foyer
+  - saignee_ardente
   - fortification_sepulcrale
   potionRewardCount: 0

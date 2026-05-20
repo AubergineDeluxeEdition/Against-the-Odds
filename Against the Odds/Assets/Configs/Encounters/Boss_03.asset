@@ -196,9 +196,9 @@ MonoBehaviour:
       shield: 0
       invulnerableTurns: 0
       vulnerableTurns: 0
-  rewardPickCount: 1
+  rewardPickCount: 2
   rewardCardIds:
-  - armure_calcinee
-  - rempart_des_cendres
+  - trone_des_restes
+  - autel_profane
   - autel_des_cendres
   potionRewardCount: 0

@@ -10,7 +10,7 @@ public class TurnManager
 
     private const int InitialHandSize = 4;
     private const int DrawPerTurn = 1;
-    private const int NaturalManaCap = 8;
+    public const int ManaCap = 8;
 
     private readonly EffectResolver resolver;
     private bool redrawFullHandEachTurn;
@@ -33,8 +33,8 @@ public class TurnManager
         TurnNumber++;
         CurrentPhase = TurnPhase.PlayerTurn;
 
-        state.BaseMana = Mathf.Min(TurnNumber, NaturalManaCap);
-        state.MaxMana = state.BaseMana + state.PermanentManaBonus;
+        state.BaseMana = Mathf.Min(TurnNumber, ManaCap);
+        state.MaxMana = Mathf.Min(ManaCap, state.BaseMana + state.PermanentManaBonus);
         state.CurrentMana = state.MaxMana;
         state.ManaSpentThisTurn = 0;
 

@@ -124,13 +124,13 @@ public class EffectResolver
 
             case "gain_max_mana":
                 state.PermanentManaBonus += effect.value;
-                state.MaxMana += effect.value;
-                state.CurrentMana += effect.value;
+                state.MaxMana = Mathf.Min(TurnManager.ManaCap, state.BaseMana + state.PermanentManaBonus);
+                state.CurrentMana = Mathf.Min(state.CurrentMana, TurnManager.ManaCap);
                 Log($"Mana max augmente a {state.MaxMana}");
                 break;
 
             case "gain_temporary_mana":
-                state.CurrentMana += effect.value;
+                state.CurrentMana = Mathf.Min(TurnManager.ManaCap, state.CurrentMana + effect.value);
                 Log($"Gagne {effect.value} mana temporaire");
                 break;
 
@@ -193,8 +193,18 @@ public class EffectResolver
             if (state.ActiveTerrain?.id == "autel_profane")
             {
                 int mana = state.ActiveTerrain.terrainEffect.firstRitualEachTurnGainMana;
-                state.CurrentMana += mana;
-                Log($"Autel Profane : gagne {mana} mana");
+                if (mana > 0)
+                {
+                    state.CurrentMana = Mathf.Min(TurnManager.ManaCap, state.CurrentMana + mana);
+                    Log($"Autel Profane : gagne {mana} mana");
+                }
+
+                int cards = state.ActiveTerrain.terrainEffect.firstRitualEachTurnDrawCards;
+                if (cards > 0)
+                {
+                    DrawCards(cards, state);
+                    Log($"Autel Profane : pioche {cards} carte(s)");
+                }
             }
         }
     }
@@ -347,7 +357,7 @@ public class EffectResolver
             Dictionary<string, int> dictionary = condition.target == "enemy" ? state.EnemyStatuses : null;
             return dictionary != null
                 && dictionary.TryGetValue(condition.hasStatus, out int value)
-                && value > 0;
+                && value >= Mathf.Max(1, condition.minStatusStacks);
         }
 
         if (condition.hasActiveTerrain)

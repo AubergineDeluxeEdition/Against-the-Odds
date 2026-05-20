@@ -250,9 +250,9 @@ MonoBehaviour:
       shield: 20
       invulnerableTurns: 0
       vulnerableTurns: 0
-  rewardPickCount: 1
+  rewardPickCount: 2
   rewardCardIds:
-  - armure_calcinee
-  - autel_profane
-  - saignee_ardente
+  - apotheose_cendree
+  - rempart_des_cendres
+  - dernier_souffle
   potionRewardCount: 1
