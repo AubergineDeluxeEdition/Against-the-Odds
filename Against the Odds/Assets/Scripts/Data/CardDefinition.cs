@@ -56,9 +56,10 @@ public class EffectCondition
 {
     public string target;
     public string hasStatus;
+    public int minStatusStacks;
     public bool hasActiveTerrain;
 
-    public bool IsActive() => !string.IsNullOrEmpty(hasStatus) || hasActiveTerrain;
+    public bool IsActive() => !string.IsNullOrEmpty(hasStatus) || minStatusStacks > 0 || hasActiveTerrain;
 }
 
 [Serializable]
@@ -71,6 +72,7 @@ public class TerrainEffect
     public int firstDefenseEachTurnAppliesBurn;
     public int ritualCostReduction;
     public int firstRitualEachTurnGainMana;
+    public int firstRitualEachTurnDrawCards;
     public int endTurnIfSpentManaAtLeast6DealDamage;
     public int endTurnIfSpentManaAtLeast8GainBlock;
 }

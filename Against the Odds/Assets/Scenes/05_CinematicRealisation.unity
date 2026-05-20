@@ -833,9 +833,13 @@ MonoBehaviour:
   fallbackMusicSource: {fileID: 0}
   allowSkip: 1
   skipEnabledAfterSeconds: 0.25
-  skipOnAnyKeyboardKey: 0
+  holdToSkip: 1
+  holdSkipDuration: 2
+  showHoldSkipPrompt: 1
+  holdSkipLabel: Passer la cinématique
+  skipOnAnyKeyboardKey: 1
   skipOnMouseClick: 1
-  skipOnTouch: 0
+  skipOnTouch: 1
   autoAdvanceAfterSeconds: 0
 --- !u!4 &2137921276
 Transform:
