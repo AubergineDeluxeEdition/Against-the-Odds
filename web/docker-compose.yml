@@ -1,0 +1,13 @@
+services:
+  site:
+    image: caddy:2-alpine
+    container_name: against-the-odds-site
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./index.html:/usr/share/caddy/index.html:ro
+      - ./styles.css:/usr/share/caddy/styles.css:ro
+      - ./assets:/usr/share/caddy/assets:ro
+      - ./downloads:/usr/share/caddy/downloads:ro
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro

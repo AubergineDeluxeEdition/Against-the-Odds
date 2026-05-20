@@ -33,6 +33,7 @@ namespace AgainstTheOdds.Core
 
             bootstrapDejaInitialise = true;
             DontDestroyOnLoad(gameObject);
+            CursorManager.ApplyDefaultCursor();
 
             if (!TousLesManagersSontPresents())
             {

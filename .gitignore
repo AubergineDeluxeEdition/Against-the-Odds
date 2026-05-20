@@ -50,6 +50,11 @@ sysinfo.txt
 *.aab
 *.unitypackage
 *.app
+Output/
+web/downloads/*.exe
+web/downloads/*.zip
+web/downloads/*.7z
+!web/downloads/README.txt
 
 # ---- Crashlytics generated file ----
 crashlytics-build.properties

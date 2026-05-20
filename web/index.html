@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Against the Odds, un deckbuilder sombre ou chaque decision peut sauver une run ou la condamner."
+    />
+    <meta property="og:title" content="Against the Odds" />
+    <meta
+      property="og:description"
+      content="Deckbuilder narratif, combats de boss, sacrifices, brulures et choix impossibles."
+    />
+    <meta property="og:image" content="/assets/hero-background.jpg" />
+    <title>Against the Odds</title>
+    <link rel="preload" href="/assets/hero-loop.mp4" as="video" type="video/mp4" />
+    <link rel="stylesheet" href="/styles.css?v=2" />
+  </head>
+  <body>
+    <header class="site-header" aria-label="Navigation principale">
+      <a class="brand" href="#top" aria-label="Against the Odds">
+        <img src="/assets/logo.png" alt="" />
+      </a>
+      <nav>
+        <a href="#combat">Combat</a>
+        <a href="#mechanics">Mecaniques</a>
+        <a href="#bosses">Boss</a>
+        <a href="#download">Telecharger</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <video
+          class="hero__video"
+          src="/assets/hero-loop.mp4"
+          autoplay
+          muted
+          loop
+          playsinline
+          poster="/assets/hero-background.jpg"
+        ></video>
+        <div class="hero__shade"></div>
+        <div class="hero__content">
+          <p class="kicker">Dark fantasy deckbuilder</p>
+          <h1 id="hero-title">Against the Odds</h1>
+          <p class="hero__lead">
+            Forge un deck dans les cendres, affronte des boss qui changent les
+            regles, et paie chaque victoire avec quelque chose que tu voulais garder.
+          </p>
+          <div class="hero__actions">
+            <a class="button button--primary" href="#download">Telecharger le jeu</a>
+            <a class="button button--ghost" href="#combat">Explorer les mecaniques</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="combat" class="feature feature--embers" aria-labelledby="combat-title">
+        <video class="feature__media" src="/assets/zone-embers.mp4" autoplay muted loop playsinline></video>
+        <div class="feature__overlay"></div>
+        <div class="feature__content">
+          <p class="eyebrow">Systeme de combat</p>
+          <h2 id="combat-title">Lis le boss. Brise le rythme. Survis au prix juste.</h2>
+          <p>
+            Chaque tour oppose ta main, ta mana, ton bouclier et les intentions du boss.
+            Les cartes ne sont pas seulement des actions: ce sont des paris.
+          </p>
+          <div class="stat-row">
+            <span>Deck evolutif</span>
+            <span>Boss scriptes</span>
+            <span>Runs tendues</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="mechanics" class="section mechanics" aria-labelledby="mechanics-title">
+        <div class="section__heading">
+          <p class="eyebrow">Mecaniques centrales</p>
+          <h2 id="mechanics-title">Des ressources simples. Des consequences sales.</h2>
+        </div>
+        <div class="mechanic-grid">
+          <article>
+            <img src="/assets/icon-burn.png" alt="" />
+            <h3>Brulure</h3>
+            <p>Accumule la pression, declenche des synergies, mais laisse le feu te mordre en retour.</p>
+          </article>
+          <article>
+            <img src="/assets/icon-shield.png" alt="" />
+            <h3>Bouclier</h3>
+            <p>Absorbe l'impact quand tu n'as plus le luxe d'attaquer. Tenir est parfois un combo.</p>
+          </article>
+          <article>
+            <img src="/assets/icon-mana.png" alt="" />
+            <h3>Mana</h3>
+            <p>Choisis ton tempo: vider ta main maintenant ou garder une reponse pour le prochain pattern.</p>
+          </article>
+          <article>
+            <img src="/assets/icon-potion.png" alt="" />
+            <h3>Potions</h3>
+            <p>Une securite limitee, rare, et souvent gardee trop longtemps. Comme il se doit.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="showcase showcase--map" aria-labelledby="map-title">
+        <div class="showcase__image">
+          <img src="/assets/campaign-map.jpg" alt="Carte de campagne d'Against the Odds" />
+        </div>
+        <div class="showcase__copy">
+          <p class="eyebrow">Campagne</p>
+          <h2 id="map-title">Une route de boss, pas une promenade.</h2>
+          <p>
+            Traverse des regions qui montent en danger, choisis tes combats, et construis
+            une reponse avant que le prochain adversaire ne t'impose la sienne.
+          </p>
+        </div>
+      </section>
+
+      <section class="feature feature--butcher" aria-labelledby="patterns-title">
+        <video class="feature__media" src="/assets/zone-butcher.mp4" autoplay muted loop playsinline></video>
+        <div class="feature__overlay"></div>
+        <div class="feature__content feature__content--right">
+          <p class="eyebrow">Patterns de boss</p>
+          <h2 id="patterns-title">Chaque duel a sa propre grammaire.</h2>
+          <p>
+            Certains boss punissent la defense. D'autres detestent tes cartes lentes.
+            Apprendre leurs cycles devient aussi important que piocher la bonne main.
+          </p>
+        </div>
+      </section>
+
+      <section class="section cards" aria-labelledby="cards-title">
+        <div class="section__heading">
+          <p class="eyebrow">Deck</p>
+          <h2 id="cards-title">Construis autour de risques que tu comprends.</h2>
+        </div>
+        <div class="card-rack" aria-label="Apercu de cartes">
+          <img src="/assets/card-judgement.png" alt="Carte Jugement du Bucher" />
+          <img src="/assets/card-last-breath.png" alt="Carte Dernier Souffle" />
+          <img src="/assets/card-fortress.png" alt="Carte Forteresse de Cendres" />
+        </div>
+      </section>
+
+      <section id="bosses" class="section bosses" aria-labelledby="bosses-title">
+        <div class="section__heading">
+          <p class="eyebrow">Adversaires</p>
+          <h2 id="bosses-title">Des silhouettes qui annoncent deja la douleur.</h2>
+        </div>
+        <div class="boss-grid">
+          <article>
+            <img src="/assets/boss-grave.png" alt="Boss de la premiere zone" />
+            <span>Grave of the Unyielding</span>
+          </article>
+          <article>
+            <img src="/assets/boss-butcher.png" alt="Boss boucher" />
+            <span>The Compassionate Butcher</span>
+          </article>
+          <article>
+            <img src="/assets/boss-thread.png" alt="Boss de la quatrieme zone" />
+            <span>The Final Thread</span>
+          </article>
+          <article>
+            <img src="/assets/boss-final.png" alt="Boss final" />
+            <span>No Odds Left</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="feature feature--thread" aria-labelledby="tone-title">
+        <video class="feature__media" src="/assets/zone-thread.mp4" autoplay muted loop playsinline></video>
+        <div class="feature__overlay feature__overlay--red"></div>
+        <div class="feature__content">
+          <p class="eyebrow">Ambiance</p>
+          <h2 id="tone-title">Un monde qui ne veut pas etre sauve.</h2>
+          <p>
+            La direction artistique melange liturgie, ruines, chair, cendres et lumiere malade:
+            assez lisible pour jouer, assez noire pour rester en tete.
+          </p>
+        </div>
+      </section>
+
+      <section id="download" class="download" aria-labelledby="download-title">
+        <div class="download__inner">
+          <p class="eyebrow">Build jouable</p>
+          <h2 id="download-title">Entre dans la run.</h2>
+          <p>
+            Le bouton est pret pour l'archive du jeu. Place le build exporte dans
+            <code>web/downloads</code>, puis branche le fichier final.
+          </p>
+          <div class="download__actions">
+            <a class="button button--primary" href="/downloads/AgainstTheOdds-setup.exe" download>
+              Telecharger pour Windows
+            </a>
+            <a class="button button--ghost" href="#top">Revoir le trailer</a>
+          </div>
+          <dl class="download__meta">
+            <div>
+              <dt>Genre</dt>
+              <dd>Deckbuilder narratif</dd>
+            </div>
+            <div>
+              <dt>Mode</dt>
+              <dd>Solo</dd>
+            </div>
+            <div>
+              <dt>Statut</dt>
+              <dd>Prototype</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>Against the Odds</span>
+      <span>Dark fantasy deckbuilder</span>
+    </footer>
+  </body>
+</html>
